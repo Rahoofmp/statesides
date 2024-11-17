@@ -587,6 +587,13 @@ class Base_Model extends CI_Model
     function getSideMenu($user_type, $type= 'site', $status ='1')
     {
         $LANG_CODE = $this->getLangCode($this->software->LANG_ID);
+
+
+        if ($user_type=='supervisor') {
+            
+            $user_type='sub-admin';
+        }
+        
         $permission_type = 'perm_' . $user_type;
         $path_root = base_url() . $user_type."/";
         $current_url = current_uri();
@@ -627,6 +634,7 @@ class Base_Model extends CI_Model
             }else{
                 $menu_link = $path_root . $menu_link;                
             }
+
 
 
             $menu["link"] = $menu_link;

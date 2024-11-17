@@ -27,7 +27,7 @@ class Login extends Base_Controller
 			{ 
 				$this->Base_model->insertIntoActivityHistory($user_id, $user_id, 'login');
 				if($this->session->userdata('site_logged_in')['user_type'] == 'supervisor'){
-					$this->redirect("", "delivery/read-delivery-code", true);
+					$this->redirect("", "dashboard", true);
 				}else{
 
 					$this->redirect("", "dashboard", true);
@@ -69,7 +69,7 @@ class Login extends Base_Controller
 			{ 
 				$this->Base_model->insertIntoActivityHistory($user_id, $user_id, 'customer-login');
 				if($this->session->userdata('site_logged_in')['user_type'] == 'supervisor'){
-					$this->redirect("", "delivery/read-delivery-code", true);
+					$this->redirect("", "dashboard", true);
 				}else{
 					$this->redirect("", "dashboard", true);
 				}

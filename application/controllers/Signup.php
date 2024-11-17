@@ -65,7 +65,7 @@ class Signup extends Base_Controller
 
 	function validate_signup() {
 		$password_length = value_by_key('password_length');
-		$this->form_validation->set_rules('user_type','user type', 'trim|required|in_list[driver,dept_supervisor,supervisor,store_keeper,packager,admin,salesman,designer,purchaser,workers]');
+		$this->form_validation->set_rules('user_type','user type', 'trim|required|in_list[supervisor,admin,salesman]');
 		$this->form_validation->set_rules('user_name','user name', 'trim|required|is_unique[login_info.user_name]');
 		// $this->form_validation->set_rules('department','Department', 'trim|required|is_exist[department.id]');
 		

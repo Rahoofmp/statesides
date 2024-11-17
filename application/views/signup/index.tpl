@@ -27,7 +27,7 @@
 									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="User type" id="user_type" name="user_type" required="" >
 										<option value="admin">Admin</option>
 										
-										<option value="subadmin">Subadmin</option>
+										<option value="supervisor">Subadmin</option>
 									
 										<option value="salesman">Salesman</option>
 										

@@ -20,6 +20,15 @@ $route['customer-job-order-confirmation/(:any)']	= "login/customer-job-order-con
 $route['admin-job-order-confirmation/(:any)']	= "login/admin-job-order-confirmation/$1";
 $route['customer-forgot']	= "login/customer_forgot";
 
+$route['sub-admin'] = 'supervisor';
+$route['sub-admin/(:any)'] = 'supervisor/$1';
+$route['sub-admin/(:any)/(:any)'] = 'supervisor/$1/$2';
+$route['sub-admin/(:any)/(:any)/(:any)'] = 'supervisor/$1/$2/$3';
+$route['sub-admin/(:any)/(:any)/(:any)/(:any)'] = 'supervisor/$1/$2/$3/$4';
+
+
+
+
 // $route['index'] 				= 'website/index';
 // $route['contact-us'] 		= 'website/contact';
 // $route['about-us.php'] 			= 'website/about';

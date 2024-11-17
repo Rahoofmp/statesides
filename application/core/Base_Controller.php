@@ -134,9 +134,16 @@ class Base_Controller extends CI_Controller
         } else {
             if ($this->hasSession()) {
                 $user_type = $this->session->userdata['site_logged_in']['user_type'];
+
+                if ($user_type=='supervisor') {
+                   $user_type='sub-admin';
+                }
                 if ($user_type == "admin" || $user_type == "employee") {
                     $path .= "admin/" . $page_to_reload;
-                } else {
+                } 
+              
+
+                else {
                     $path .= $user_type."/" . $page_to_reload;
                 }
                 redirect("$path", 'refresh');
