@@ -26,15 +26,11 @@
 								<div class="form-group">
 									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="User type" id="user_type" name="user_type" required="" >
 										<option value="admin">Admin</option>
-										<option value="packager">Packager</option>
-										<option value="store_keeper">Storekeeper</option>
-										<option value="supervisor">Supervisor</option>
-										<option value="dept_supervisor">Dept. Supervisor</option>
-										<option value="driver">Driver</option>
+										
+										<option value="subadmin">Subadmin</option>
+									
 										<option value="salesman">Salesman</option>
-										<option value="designer">Designer</option>
-										<option value="purchaser">Purchaser</option>
-										<option value="workers">Workers</option>
+										
 									</select> 
 									{form_error('user_type')}
 								</div> 
