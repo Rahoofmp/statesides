@@ -1,0 +1,3 @@
+[06-Nov-2024 10:06:01 Asia/Dubai] PHP Fatal error:  Cannot redeclare Member_model::EmailDetails() in /home/hlwgd3cf01ho/public_html/n/pine_tree/application/models/Member_model.php on line 928
+[06-Nov-2024 10:06:06 Asia/Dubai] PHP Fatal error:  Cannot redeclare Member_model::EmailDetails() in /home/hlwgd3cf01ho/public_html/n/pine_tree/application/models/Member_model.php on line 928
+[06-Nov-2024 10:06:49 Asia/Dubai] PHP Fatal error:  Cannot redeclare Member_model::EmailDetails() in /home/hlwgd3cf01ho/public_html/n/pine_tree/application/models/Member_model.php on line 928

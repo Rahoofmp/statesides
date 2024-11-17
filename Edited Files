@@ -1,0 +1,143 @@
+ 
+/var/www/html/WORKS/pine_tree/assets/bootv4/css/style.css
+/var/www/html/WORKS/pine_tree/assets/js/dropzone.js
+/var/www/html/WORKS/pine_tree/assets/css/dropzone.min.css
+
+
+
+
+
+
+
+
+
+
+
+API Key: oey1e3fLFiqT8Ln6IMEfZGdIr1VL4Kac8jWBxL727eTqWwuPW1eMKjYsVgPlurK3
+
+Secret Key: Kfj9N7DgNWisPSzAQpqHYqrOWm7u7PQmKIkos0fZff8YYZAjg9B5ukBtl0MUK1p6
+
+
+
+
+API Key: xjp2evkwcd0f07e8subojern8fvtl4cac76i3r92zax4qwz5qximqmcpycsgjmab
+
+
+Secret Key: 9gs2b9fswgu0ucmaop1bwgpvchumfrm8pulmdaqflwpxgnfyxwo0c8nh6drr0g6x
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Project master
+Estimated project cost
+Estimated value 
+Estimated project duration 
+Start date end date
+Status draft also
+
+Customer master
+ ID
+ Name
+ Email
+ Address
+ Google map location
+ Contact Number
+ Customer portal username and password
+Department master
+ ID
+ Department Name
+ Department cost per hour
+User master ( Enhancement)
+ ID
+ Name
+ Department
+ email
+ Mobile number
+ User Type
+ Password
+ Multiple admin
+
+Job Order Module (Admin)
+ Job order ID
+ Job order name
+ Job order date
+ Delivery requested date
+ Customer
+ Project
+ Department allocation (Multiple Department)
+ Department wise job order short description (For customer portal)
+ Department wise job order description
+ Department wise estimated working hours 
+ Department wise actual working hours 
+ Department wise difference of estimated hours and actual hours
+ Status(Admin approved, Customer approved, Approved, Work 
+progress, Finished )
+ Day progress department wise
+ Total estimated working hours of job order
+ Total actual working hours of job order
+ Total difference of estimated hours and actual hours
+ Multiple print module
+ 2 Level email approval 
+ Email notification
+
+Job Order Module (Department)
+ Job order ID
+ Job order name
+ Customer
+ Project
+ job order short description (For customer portal)
+ job order description
+ estimated working hours 
+ actual working hours 
+ difference of estimated hours and actual hours
+ Status(Admin approved, Customer approved, Approved, Work 
+progress, Finished )
+ Day progress department wise
+ Multiple print module
+ 2 Level email approval 
+ Email notification
+
+
+
+Day progress of job order (Department wise)
+ Job order ID
+ Project
+ Customer
+ Job name
+ Job description
+ Department name
+ Total consumed hours as of now
+ Estimated hours
+ Day progress note
+ Consumed time(Hours)
+Project Dashboard
+ Project name
+ Customer name
+ Job orders with status
+ Total estimated hours
+ Total actual hours
+ Total difference hours
+Customer Portal
+ Customer login
+ Customer dashboard
+ Projects
+ Job orders
+ Job order approval
+ Delivery
+ Customer profile(My profile)
+Reports 
+ Project report 
+ Customer wise report
+ Job order wise report
+ Department wise report including amount

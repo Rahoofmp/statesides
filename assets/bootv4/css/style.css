@@ -1,0 +1,85 @@
+.help-block {
+    color: #f33;
+    float: right;
+    font-size: 18px;
+}
+.form-error {
+    color: #f44336 !important;
+    margin: 0px 0px;
+    font-size: 14px;
+}
+.my-modal .modal-dialog .modal-header .modal-title 
+{
+	padding-bottom: 20px;
+}
+
+.help-block-sucess {
+    color: #2b9227;
+    float: right;
+    font-size: 18px;  
+}
+.multiinput-title{
+    top: 14px
+}
+.multiInput .remove, .multiInput .add{
+    position: absolute;
+    top: 0px;
+}
+.inputWrapper{ position:relative }
+.inputWrapper .add,.inputWrapper .remove{ 
+    position:absolute;
+    top:25px;right:0;
+    position: absolute;
+    top: 0px;
+}
+.inputWrapper .add{ 
+    right:25px; 
+    position: absolute;
+    top: 0px;
+}
+
+.product-items{
+    margin: 23px 0px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    padding: 21px 16px;
+}
+
+.product-items input{  
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-image: none;
+    padding: 15px 11px;
+}
+#name::placeholder {
+    line-height: 0.5;
+}
+.card-collapse h5 a {
+    font-weight: bold;
+}
+#packageAccordion .card-collapse .card-header {
+    background: #fcc;
+    border-bottom: 1px solid #a6a6a6;
+}
+#packageAccordion .card-header a {
+    color: #9f8b9e;
+}
+.hidden-print{
+
+}
+@media print
+{    
+    .no-print, .no-print *, .hidden-print, .hidden-print *
+    {
+        display: none !important;
+    }
+}
+.table-responsive a .material-icons{
+    cursor: pointer;
+}
+.table-responsive tbody td img, .table-responsive thead th.img{
+    max-width: 63px;
+}
+.normal{
+    font-weight: normal;
+}

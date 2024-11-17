@@ -1,0 +1,6 @@
+[error_the_fieldid_field_is_required]
+[error_atleast_number]
+[error_enter_greater_number]
+[error_missmatch_with_fieldid]
+[error_select_year_month_day]
+[error_in_the_fieldid]
