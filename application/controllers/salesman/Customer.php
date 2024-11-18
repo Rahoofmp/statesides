@@ -197,6 +197,8 @@ class Customer extends Base_Controller {
 			$post_arr['salesman_id'] = log_user_id();
 			// print_r($post_arr);die();
 			$details = $this->Customer_model->getAllCustomersAjax( $post_arr,'');
+
+		
 			// echo $this->db->last_query();
 			// die();
 			$response = array(

@@ -126,9 +126,9 @@ class Customer_model extends Base_model {
         $this->db->select('ci.*');
         $searchValue = $search_arr['search']['value']; 
         if('' != $searchValue) { 
-            $where = "(ci.name LIKE '%$searchValue%' 
+            $where = "(ci.firstname LIKE '%$searchValue%' 
             OR ci.date LIKE '%$searchValue%'
-            OR  ci.customer_username LIKE '%$searchValue%'
+            OR  ci.firstname LIKE '%$searchValue%'
             OR ci.email LIKE '%$searchValue%')"; 
             $this->db->where($where);
         }
@@ -145,8 +145,8 @@ class Customer_model extends Base_model {
             $this->db->like('ci.mobile', $mobile);
         }
 
-        if( $user_name =  element('customer_username', $search_arr) ){
-            $this->db->like('ci.customer_id', $user_name);
+        if( $user_name =  element('firstname', $search_arr) ){
+            $this->db->like('ci.firstname', $user_name);
         }  
 
         if(element('salesman_id', $search_arr) ){
@@ -174,11 +174,13 @@ class Customer_model extends Base_model {
         $i=1;
         foreach ($query->result_array() as $row) {
             $row['index'] =$search_arr['start']+$i;
+            $row['fullname'] =$row['firstname'].$row['lastname'];
             $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
             $row['date'] = date('Y-m-d',strtotime($row['date']));
             $details[] = $row;
             $i++;
         }
+      
         return $details;
     }
 

@@ -22,55 +22,49 @@
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<div class="card"> 
+		<!-- <div class="card"> 
 			<div class="card-content collapse show">
 				<div class="card-body">
 					{form_open('','class="form" ')}
 					<div class="form-body">
 						<div class="row">
 							<div class="col-sm-4">
+
 								<div class="form-group">
-									<select type="text" id="customer_username" class="form-control customer_ajax" name="customer_username"></select>
-								</div>
+							
+
+						<select id="type" name="type" class="selectpicker" data-style="select-with-transition" title="Type" >
+
+						<option value="customer" }>Customer</option>
+						<option value="lead" }>Lead</option>
+							
+
+						</select> 
+								
 							</div> 
-							<div class="col-sm-4">
-								<div class="form-group">
-									<label for="first_name">{lang('first_name')}</label>
-									<input type="text" id="name" class="form-control" name="name" autocomplete="off" value="{$search_arr['name']}">
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group">
-									<label for="email">{lang('email')}</label>
-									<input type="text" id="email" class="form-control" name="email" autocomplete="off" value="{$search_arr['email']}">
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="form-group">
-									<label for="mobile">{lang('mobile')}</label>
-									<input type="text" id="email" class="form-control" name="mobile" autocomplete="off" value="{$search_arr['mobile']}">
-								</div>
-							</div>
+							
+							
 
 						</div>
+					</div>
 						<div class="row mt-2"> 
-							<div class="col-sm-6"> 
+							<div class="col-sm-3"> 
 								<button type="submit" class="btn btn-primary col-sm-6" name="submit" value="filter">
 									<i class="fa fa-filter"></i> Filter
 								</button>
 							</div>
-							<div class="col-sm-6"> 
+							<div class="col-sm-3"> 
 								<button type="submit" class="btn btn-warning col-sm-6  pull-right" name="submit" value="reset">
 									<i class="fa fa-refresh"></i> Reset
 								</button>  
 							</div>
 						</div>
-					</div>
+					
 					{form_close()}
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="col-md-12">
 		<div class="card"> 
 			<div class="card-header card-header-rose card-header-icon">
@@ -85,13 +79,14 @@
 						<thead class="bg-light text-warning">
 							<tr>
 								<th>#</th> 
-								<th>{lang('username')}</th>
-								<th>{lang('firstname')}</th>
-								<th>Details</th>
-								<th>Salesman</th>
+								<th>{lang('fullname')}</th>
+								
+								<th>Mobile</th>
+								<th>Email</th>
 
-								<th>Location</th>
-								<th>{lang('registered_on')}</th>  
+								<th>Emigration</th>
+								<th>Enquiry</th>  
+								<th>Created date</th>  
 
 								<th class="text-center">{lang('action')}</th>   
 							</tr>
@@ -207,44 +202,13 @@
 
 
 			{ data: 'index'},
-			{ data: 'customer_username',
-			mRender: function(data, type, row) {
-
-				var html = data;
-				if(row.user_type == 'lead'){
-					html += '<br><span class="badge badge-info">Lead</span>';
-				}else{
-					html += '<br><span class="badge badge-success">Customer</span>';
-				}
-
-				return html;
-			} },
-			{ data: 'name',
-			mRender: function(data, type, row) {
-
-				var html = data;
-				if(row.organization_type == 'Individual'){
-					html += '<br><span class="badge badge-danger">Individual</span>';
-				}else if(row.organization_type == 'organization'){
-					html += '<br><span class="badge badge-warning">Organization</span>';
-				}
-
-				return html;
-			}},
-			{ data: 'email',
-			mRender: function(data, type, row) {
-				var link = row.email +'<span class="clearfix"></span>'+row.mobile;
-
-				return link;
-			}},
-			{ data: 'salesman_name'}, 
-			{ data: 'map',
-			mRender: function(data, type, row) {
-				var link = '<a href ="' + row.map +'"   target="_blank">Show location</a>';
-
-				return link;
-			}}, 
-			{ data: 'date'},
+			{ data: 'fullname'},
+			{ data: 'mobile'},
+			{ data: 'email'},
+			{ data: 'immigration_status'},
+			{ data: 'enquiry_status'},
+	
+			{ data: 'created_date'},
 			{ data: 'customer_username',
 			mRender: function(data, type, row) {
 				var link = '<a href = "add-customer/' + row.enc_customerid +'" class="btn-sm btn btn-info btn-link" data-placement="top" title ="Edit" target="_blank"><i class="material-icons" aria-hidden="true">person</i></a>';
