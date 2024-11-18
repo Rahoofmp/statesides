@@ -643,4 +643,31 @@ class Packages_model extends Base_model {
 		return $details;
 	}
 
+	public function createLeads($post_arr='')
+	{
+		$date=date('Y-m-d H:i:s');
+		$this->db->set('salesman_id',$post_arr['sales_man']);
+		$this->db->set('firstname',$post_arr['first_name']);
+		$this->db->set('lastname',$post_arr['last_name']);
+		$this->db->set('gender',$post_arr['gender']);
+		$this->db->set('email',$post_arr['email']);
+		$this->db->set('mobile',$post_arr['mobile']);
+		$this->db->set('date',$post_arr['date']);
+		$this->db->set('due_amount',$post_arr['due_amount']);
+		$this->db->set('total_amount',$post_arr['total_amount']);
+		$this->db->set('advance',$post_arr['advance_amount']);
+		$this->db->set('age',$post_arr['age']);
+		$this->db->set('current_job',$post_arr['current_job']);
+		$this->db->set('created_date',$date);
+		$this->db->set('sslc_certificate',$post_arr['ss_cirtifcate']);
+		$this->db->set('police_certificate',$post_arr['police_clearence']);
+		$this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
+		$this->db->set('passport_copy',$post_arr['passport_copy']);
+		$this->db->set('dob_certificate',$post_arr['dob_certificate']);
+		$result = $this->db->insert('customer_info');
+
+		return $result;
+		
+	}
+
 }

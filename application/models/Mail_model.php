@@ -815,27 +815,27 @@ class Mail_model extends Base_Model
 
 
 
-    // public function getUserMessages($user_id, $mail_id='') {
-    //     $messages = array();
-    //     $this->db->select('*');
-    //     $this->db->from('internal_mail_details');
-    //     $this->db->where('status', 'yes');
-    //     $this->db->where('to_user', $user_id);
-    //     if($mail_id)
-    //         $this->db->where('id', $mail_id);
-    //     $this->db->order_by('date', 'desc');
-    //     $query = $this->db->get();
-    //     foreach ($query->result_array() as $row) 
-    //     {
-    //         $row['flag'] = 1;
-    //         $row['full_name'] = $this->getUserInfoField('first_name', $row['from_user']) . ' '. $this->getUserInfoField('second_name', $row['from_user']);
-    //         $row['user_name'] = $this->getUserName($row['from_user']);
-    //         $message = stripslashes($row['message']);
-    //         $row['message'] = $message;
-    //         $messages[] = $row;
-    //     }
-    //     return $messages;
-    // }
+    public function getUserMessages($user_id, $mail_id='') {
+        $messages = array();
+        $this->db->select('*');
+        $this->db->from('internal_mail_details');
+        $this->db->where('status', 'yes');
+        $this->db->where('to_user', $user_id);
+        if($mail_id)
+            $this->db->where('id', $mail_id);
+        $this->db->order_by('date', 'desc');
+        $query = $this->db->get();
+        foreach ($query->result_array() as $row) 
+        {
+            $row['flag'] = 1;
+            $row['full_name'] = $this->getUserInfoField('first_name', $row['from_user']) . ' '. $this->getUserInfoField('second_name', $row['from_user']);
+            $row['user_name'] = $this->getUserName($row['from_user']);
+            $message = stripslashes($row['message']);
+            $row['message'] = $message;
+            $messages[] = $row;
+        }
+        return $messages;
+    }
 
 
     // public function getMessagesSent($user_id) {
