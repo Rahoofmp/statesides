@@ -30,7 +30,7 @@
 									<label class="bmd-label-floating">
 										Sales Man
 									</label>
-									<select id="sales_man" name="sales_man" class="supervisor_ajax form-control" >
+									<select id="sales_man" name="sales_man" class="salesman_ajax form-control" >
 										{if $id}
 										{if $project['sales_man']}
 										<option value="{$project['sales_man']}">{$project['customer_username']}</option>
@@ -515,11 +515,11 @@ async
 
 	$(document).ready(function(){ 
 
-		$('.supervisor_ajax').select2({
+		$('.salesman_ajax').select2({
 
 			placeholder: 'Select  Salesman',
 			ajax: {
-				url:'{base_url()}admin/autocomplete/supervisor_ajax',
+				url:'{base_url()}admin/autocomplete/salesman_ajax',
 
 				type: 'post',
 				dataType: 'json',

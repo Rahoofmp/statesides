@@ -123,8 +123,7 @@ class Customer_model extends Base_model {
         $row = $search_arr['start'];
         $rowperpage = $search_arr['length'];
 
-        $this->db->select('ci.*')
-        ->select('lis.user_name as salesman_name');
+        $this->db->select('ci.*');
         $searchValue = $search_arr['search']['value']; 
         if('' != $searchValue) { 
             $where = "(ci.name LIKE '%$searchValue%' 
@@ -160,8 +159,8 @@ class Customer_model extends Base_model {
 
         $this->db->from('customer_info ci')
         ->join('login_info lis', 'lis.user_id = ci.salesman_id', 'left')
-        ->order_by( 'ci.date', 'DESC' )
-        ->where( 'ci.status', 'active' );
+        ->order_by( 'ci.created_date', 'DESC' )
+        ->where( 'ci.status', 'pending' );
 
         
         if($count) {
@@ -169,11 +168,13 @@ class Customer_model extends Base_model {
         }
         $this->db->limit($rowperpage, $row);
         $query = $this->db->get(); 
+
+
         $details = [] ;
         $i=1;
         foreach ($query->result_array() as $row) {
             $row['index'] =$search_arr['start']+$i;
-            $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['customer_id']);
+            $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
             $row['date'] = date('Y-m-d',strtotime($row['date']));
             $details[] = $row;
             $i++;
