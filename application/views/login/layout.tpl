@@ -44,9 +44,9 @@
                     {else}
                     {if current_uri() == 'login/index'}
                     <li class="nav-item row">
-                        <a href="{base_url('customer-login')}" class="nav-link">
+                       <!--  <a href="{base_url('customer-login')}" class="nav-link">
                             <i class="material-icons">fingerprint</i> Customer Login
-                        </a>
+                        </a> -->
                         <a href="{base_url('forgot')}" class="nav-link" target="new">
                             <i class="material-icons">lock_open</i> Forgot Password
                         </a>
