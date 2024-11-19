@@ -22,31 +22,36 @@
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<!-- <div class="card"> 
+		 <div class="card"> 
 			<div class="card-content collapse show">
 				<div class="card-body">
 					{form_open('','class="form" ')}
 					<div class="form-body">
-						<div class="row">
-							<div class="col-sm-4">
-
-								<div class="form-group">
-							
-
-						<select id="type" name="type" class="selectpicker" data-style="select-with-transition" title="Type" >
-
+							<div class="row">
+						<div class="col-sm-4">
+						<div class="form-group">
+						<select id="enquiry" name="enquiry" class="selectpicker" data-style="select-with-transition" title="Enquiry" >
 						<option value="customer" }>Customer</option>
 						<option value="lead" }>Lead</option>
-							
-
 						</select> 
-								
 							</div> 
-							
-							
-
 						</div>
-					</div>
+								<!-- <div class="col-sm-4">
+									<div class="form-group">
+										<label for="first_name">{lang('first_name')}</label>
+										<input type="text" id="name" class="form-control" name="name" autocomplete="off" value="{$search_arr['name']}">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="email">{lang('email')}</label>
+										<input type="text" id="email" class="form-control" name="email" autocomplete="off" value="{$search_arr['email']}">
+									</div>
+								</div> -->
+
+							</div>
+						
+					
 						<div class="row mt-2"> 
 							<div class="col-sm-3"> 
 								<button type="submit" class="btn btn-primary col-sm-6" name="submit" value="filter">
@@ -64,7 +69,7 @@
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div> 
 	<div class="col-md-12">
 		<div class="card"> 
 			<div class="card-header card-header-rose card-header-icon">
@@ -191,9 +196,10 @@
 				"type": "POST", 
 				"data" : {
 					'customer_username' : '{$search_arr['customer_username']}',
-					'name' : '{$search_arr['name']}',
-					'email' : '{$search_arr['email']}',
-					'mobile' : '{$search_arr['mobile']}',
+					// 'name' : '{$search_arr['name']}',
+					// 'email' : '{$search_arr['email']}',
+					// 'mobile' : '{$search_arr['mobile']}',
+					'enquiry' : '{$search_arr['enquiry']}',
 				}
 
 			},

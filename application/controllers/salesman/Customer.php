@@ -137,7 +137,7 @@ class Customer extends Base_Controller {
 
 			$post_arr['id']=$customer_id;
 
-		
+
 
 			// if ($post_arr['enquiry_status']=='customer') {
 				
@@ -150,10 +150,10 @@ class Customer extends Base_Controller {
 
 			if($update_lead)
 			{
-				$this->redirect( 'Lead updated successfully', "customer/add-customer/".$enc_id, true );
+				$this->redirect( 'Lead updated successfully', "customer/customer-list", true );
 			}
 			else{
-				$this->redirect( 'Error on updating lead', "customer/add-customer", false );
+				$this->redirect( 'Error on updating lead', "customer/add-customer/".$enc_id, false );
 			}
 
 
@@ -228,6 +228,7 @@ class Customer extends Base_Controller {
 
 			}elseif( $this->input->post('submit') == 'filter'){
 				$post_arr = $this->input->post();
+
 				if(!element('customer_username',$post_arr)){
 					$post_arr['customer_username'] = '';
 				} 
@@ -240,8 +241,8 @@ class Customer extends Base_Controller {
 
 				}
 				
-				$search_arr['name'] = $post_arr['name'];
-				$search_arr['email'] = $post_arr['email'];
+				// $search_arr['name'] = $post_arr['name'];
+				$search_arr['enquiry'] = $post_arr['enquiry'];
 				$search_arr['customer_username'] = $post_arr['customer_username'];
 				$search_arr['salesman_id'] = $post_arr['salesman_id'];
 
@@ -251,7 +252,7 @@ class Customer extends Base_Controller {
 		}
 
 		$data['search_arr'] = $search_arr; 
-		// $data['details'] = $details; 
+		$data['details'] = $details; 
 
 		// print_r($data['details']);die();
 		$data['title'] = lang('customers_list'); 
@@ -264,7 +265,7 @@ class Customer extends Base_Controller {
 			$count_without_filter = $this->Customer_model->getOrderCount();
 			$count_with_filter = $this->Customer_model->getAllCustomersAjax($post_arr, 1);
 			$post_arr['salesman_id'] = log_user_id();
-			// print_r($post_arr);die();
+		
 			$details = $this->Customer_model->getAllCustomersAjax( $post_arr,'');
 
 		

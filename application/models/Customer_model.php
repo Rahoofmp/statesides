@@ -139,6 +139,10 @@ class Customer_model extends Base_model {
             $this->db->like('ci.name', $name);
         }
 
+         if( $enquiry =  element('enquiry', $search_arr) ){
+            $this->db->like('ci.enquiry_status', $enquiry);
+        }
+
         if( $email =  element('email', $search_arr) ){
             $this->db->like('ci.email', $email);
         }
@@ -230,7 +234,7 @@ class Customer_model extends Base_model {
         $this->db->set('gender',$post_arr['gender']);
         $this->db->set('email',$post_arr['email']);
         $this->db->set('mobile',$post_arr['mobile']);
-        
+
         $this->db->set('date',$post_arr['date']);
         $this->db->set('immigration_status',$post_arr['emmigration']);
        
