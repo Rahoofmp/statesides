@@ -6,7 +6,12 @@ class Dashboard_model extends Base_model {
 		parent::__construct();
 
 	}
-
+	public function getCustomerinfo($enquiry_status = "lead") {
+		$this->db->from('customer_info');
+		$this->db->where('enquiry_status', $enquiry_status); 
+		$count = $this->db->count_all_results();
+		return $count;
+	}
 	public function getUserCount($type=""){
 		$this->db->from('login_info');
 		

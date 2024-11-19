@@ -35,7 +35,7 @@
 					<i class="material-icons">people</i>
 				</div>
 				<p class="card-category">Total Leads</p>
-				<h4 class="card-title">{$pending_delivery_count}</h4>
+				<h4 class="card-title">{$total_leads}</h4>
 			</div>
 			{if log_user_type() =="admin"}
 
