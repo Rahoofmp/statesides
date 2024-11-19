@@ -15,226 +15,355 @@
 				{if $id}<h4 class="card-title">Edit Customer</h4>{else}<h4 class="card-title">Add Customer</h4>{/if}
 			</div>
 			<div class="card-body">
-				{form_open('','id="file_form" name="file_form" class="form-add-customer ValidateForm" enctype="multipart/form-data"')}
-				<div class="col-lg-12">
-					<div class="input-group form-control-lg">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="material-icons">grading</i>
-							</span>
-						</div>
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label class="bmd-label-floating">
-									UserName
-								</label>
-								<input type="text" class="form-control" id="customer_username" name="customer_username" {if $id} value="{$customer['customer_username']}" {else} value="{set_value('customer_username')}" {/if} required="true" autocomplete="Off">
-								{form_error("customer_username")}
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="form-group">
-								<label class="bmd-label-floating">
-									<select id="salesman_id" name="salesman_id" class="salesman_ajax form-control" >
-									</label>
-									{if $customer['salesman_id']}
-									<option value="{$customer['salesman_id']}">{$customer['salesman_name']}</option>
-									{/if} 
-								</select> 
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="input-group form-control-lg">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="material-icons">person</i>
-							</span>
-						</div>
-						<div class="col-sm-11">
-							<div class="form-group">
-								<label class="bmd-label-floating">
-									Name
-								</label>
-								<input type="text" class="form-control" id="name" name="name"{if $id} value="{$customer['name']}" {else}value="{set_value('name')}"  {/if}required="true" autocomplete="Off">
-								{form_error("name")}
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="input-group form-control-lg">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="material-icons">email</i>
-							</span>
-						</div>
-						<div class="col-sm-11">
-							<div class="form-group">
-								<label class="bmd-label-floating"> Email </label>
-
-								<input type="email" id="email" class="form-control " name="email"{if $id} value="{$customer['email']}"{else}value="{set_value('email')}"{/if} required="true" autocomplete="Off">
-								{form_error("email")} 
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="input-group form-control-lg">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="material-icons">home</i>
-							</span>
-						</div>
-						<div class="col-sm-11">
-							<div class="form-group">
-								<label class="bmd-label-floating"> Address </label>
-								<textarea name="address" id="address" class="form-control " >{if $customer['address']}"{else}{set_value('address')}{/if}</textarea>
-								{form_error("address")} 
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="input-group form-control-lg">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="material-icons">call</i>
-							</span>
-						</div>
-						<div class="col-sm-11">
-							<div class="form-group">
-								<label class="bmd-label-floating"> Contact Number </label>
-								<input type="text" class="form-control" id="mobile" name="mobile"{if $id} value="{$customer['mobile']}" {else}value="{set_value('mobile')}" {/if}required="true" number="true" autocomplete="Off">
-								{form_error("mobile")}
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row col-lg-12"> 
-					<div class="col-lg-6">  
+					{form_open_multipart('','id="file_form" name="file_form" class="form-add-project ValidateForm needs-validation" enctype="multipart/form-data"')}
+				<div class="row">
+					<div class="col-lg-12">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">password</i>
+								<span class="input-group-text"><i class="material-icons">grading</i>
 								</span>
 							</div>
-							<div class="col-sm-10">
+
+								<div class="col-sm-11">
 								<div class="form-group">
-									<label for="exampleInput1" class="bmd-label-floating">Password</label>
-									<input type="password" id="password" class="form-control" name="psw" value="" autocomplete="off" {if !$id} required{/if}>
-									{form_error('psw')}
+									<label class="bmd-label-floating">
+										Sales Man
+									</label>
+									<select id="sales_man" name="sales_man" class="salesman_ajax form-control" >
+										{if $id}
+										{if $project['sales_man']}
+										<option value="{$project['sales_man']}">{$project['customer_username']}</option>
+										{/if}
+										{/if}
+									</select> 
+									{form_error("sales_man")}
+								</div>
+							</div>
+						
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">person</i>
+								</span>
+							</div>
+
+								<div class="col-sm-11">
+								<div class="form-group">
+									<label class="bmd-label-floating">
+										First Name
+									</label>
+									<input type="text" class="form-control" id="first_name" name="first_name" {if $id} value="{$project['first_name']}" {else} value="{set_value('first_name')}" {/if} required="true" autocomplete="Off">
+									{form_error("first_name")}
+								</div>
+							</div>
+						
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">person</i>
+								</span>
+							</div>
+
+								<div class="col-sm-11">
+								<div class="form-group">
+									<label class="bmd-label-floating">
+										Last Name
+									</label>
+									<input type="text" class="form-control" id="last_name" name="last_name" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} required="true" autocomplete="Off">
+									{form_error("last_name")}
+								</div>
+							</div>
+						
+						</div>
+					</div>
+					 <div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">call</i>
+								</span>
+							</div>
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="bmd-label-floating"> Mobile </label>
+									<input type="text" class="form-control" id="mobile" name="mobile"{if $id} value="{$project['mobile']}" {else}value="{set_value('mobile')}" {/if}required="true" number="true" autocomplete="Off">
+									{form_error("mobile")}
 								</div>
 							</div>
 						</div>
 					</div> 
+
+					<div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">email</i>
+								</span>
+							</div>
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="bmd-label-floating"> Email </label>
+
+									<input type="email" id="email" class="form-control " name="email"{if $id} value="{$project['email']}"{else}value="{set_value('email')}"{/if} required="true" autocomplete="Off">
+									{form_error("email")} 
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">person</i>
+								</span>
+							</div>
+
+								<div class="col-sm-11">
+								<div class="form-group">
+									<label class="bmd-label-floating">
+										Age
+									</label>
+									<input type="text" class="form-control" id="last_name" name="age" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} required="true" autocomplete="Off">
+									{form_error("last_name")}
+								</div>
+							</div>
+						
+						</div>
+					</div>
+					
+
+				
+				</div>
+
+				<div class="row">
+
 					<div class="col-lg-6">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">password</i>
+								<span class="input-group-text"><i class="material-icons">list</i>
 								</span>
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
-									<label for="exampleInput1" class="bmd-label-floating">Confirm Password</label>
+									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Gender" id="gender" name="gender" required="" >
+										<option value="male" {if $project['gender'] == 'male'} selected="" {/if}>Male</option>
+										<option value="femaile" {if $project['gender'] == 'femaile'} selected="" {/if}>Femaile</option>
+										<option value="others" {if $project['status'] == 'others'} selected="" {/if}>Others</option>
+									</select> 
+									{form_error('gender')}
+								</div>
+							</div>
+						</div>
+					</div>
+				
 
-									<input type="password" id="cpassword" class="form-control" name="cpsw" value="" autocomplete="off" {if !$id} required{/if}>
-									{form_error('cpassword')}
+					<div class="col-lg-6">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">advance</i>
+								</span>
+							</div>
+							<div class="col-sm-10">
+								<div class="form-group">
+									<label class="bmd-label-floating"> Advance Amount </label>
+
+									<input type="text" id="advance_amount" class="form-control " name="advance_amount"{if $id} value="{$project['advance_amount']}"{else}value="{set_value('advance_amount')}"{/if}  autocomplete="Off">
+									{form_error("advance_amount")} 
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
-				
-				<div class="row col-lg-12"> 
 
+				<div class="row">
 					<div class="col-lg-6">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">place</i>
+								<span class="input-group-text"><i class="material-icons">total</i>
 								</span>
 							</div>
-							<div class="col-sm-7">
+							<div class="col-sm-10">
 								<div class="form-group">
-									<label class="bmd-label-floating"> Location: ( lat, long )</label>
+									<label class="bmd-label-floating"> Total Amount </label>
 
-									<input type="text" class="form-control"  name="location"
-									{if $id}value="{$customer['location']}" {/if} id="location" autocomplete="Off" >
-									{form_error("location")} 
+									<input type="text" id="total_amount" class="form-control " name="total_amount"  autocomplete="Off">
+									{form_error("total_amount")} 
 								</div>
 							</div>
-							<label class="col-sm-3 label-on-right">
-								<a href="https://www.google.com/maps/@25.20388676754449,55.26983662798098,16z" class="btn btn-info" target="_blank">View Map</a>
-							</label>
+						</div>
+					</div>
+
+
+						
+					<div class="col-lg-6">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">job</i>
+								</span>
+							</div>
+							<div class="col-sm-10">
+								<div class="form-group">
+									<label class="bmd-label-floating"> Current Job </label>
+
+									<input type="text" id="current_job" class="form-control " name="current_job" {if $id} value="{$project['current_job']}"{else}value="{set_value('current_job')}"{/if} required="true" autocomplete="Off">
+									{form_error("current_job")} 
+								</div>
+							</div>
 						</div>
 					</div> 
+					
+				</div>
 
-					<div class="col-lg-3">
-						<div class="form-group">                     
-							<label class="col-sm-12 label-checkbox">Customer Type</label>
-							<div class="col-sm-10 checkbox-radios">
-								<div class="form-check form-check-inline">
-
-									{assign var="customer_checked" value='checked'}
-									{assign var="lead_checked" value=''}
-
-									{if $id} 
-									{if $customer['user_type'] == 'customer' } 
-									{$customer_checked = 'checked' }
-									{else if $customer['user_type'] == 'lead'}
-									{$lead_checked = 'checked' }
-									{/if}
-									{/if}
-
-									<label class="form-check-label">
-										<input class="form-check-input" type="radio" value="customer" {$customer_checked} name="user_type"> Customer
-										<span class="circle">  <span class="check"></span> </span>
-									</label>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">date_range</i>
+								</span>
+							</div>
+							<div class="col-sm-10">
+								<div class="form-group">
+									<label for="from_date"> Date</label>
+									<input type="text" id="date" class="form-control datepicker" name="date" {if $id} value="{$project['date']}" {else} value="{set_value('date')}" {/if} autocomplete="off">
+									{form_error("date")} 
 								</div>
-								<div class="form-check form-check-inline">
-									<label class="form-check-label">
-										<input class="form-check-input" type="radio" value="lead" {$lead_checked} name="user_type"> Lead
-										<span class="circle">  <span class="check"></span> </span>
+							</div>
+						</div>
+					</div>
 
-									</label>
-								</div> 
-								{form_error("user_type")}  
-							</div>  
-						</div>  
-					</div>  
-					<div class="col-lg-3">
-						<div class="form-group">                     
-							<label class="col-sm-12 label-checkbox">Organization Type</label>
-							<div class="col-sm-10 checkbox-radios">
-								<div class="form-check form-check-inline">
+					<div class="col-lg-6">
+							<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">list</i>
+								</span>
+							</div>
+							<div class="col-sm-10">
+								<div class="form-group">
+									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Emmigration" id="emmigration" name="emmigration" required="" >
+										<option value="none" {if $project['immigration_status'] == 'none'} selected="" {/if}>None</option>
+										<option value="applied" {if $project['immigration_status'] == 'applied'} selected="" {/if}>Applied</option>
 
-									{assign var="Individual_checked" value='checked'}
-									{assign var="organization_checked" value=''}
+										<option value="approved" {if $project['immigration_status'] == 'approved'} selected="" {/if}>Approved</option>
 
-									{if $id} 
-									{if $customer['organization_type'] == 'Individual' } 
-									{$organization_checked = 'checked' }
-									{else if $customer['organization_type'] == 'organization'}
-									{$Individual_checked = 'checked' }
-									{/if}
-									{/if}
-
-									<label class="form-check-label">
-										<input class="form-check-input" type="radio" value="Individual" {$Individual_checked} name="organization_type"> Individual 
-										<span class="circle">  <span class="check"></span> </span>
-									</label>
+										<option value="rejected" {if $project['immigration_status'] == 'rejected'} selected="" {/if}>Rejected</option>
+										
+									</select> 
+									{form_error('gender')}
 								</div>
-								<div class="form-check form-check-inline">
-									<label class="form-check-label">
-										<input class="form-check-input" type="radio" value="organization" {$organization_checked} name="organization_type"> organization
-										<span class="circle">  <span class="check"></span> </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
 
-									</label>
-								</div> 
-								<!-- {form_error("organization_type")}   -->
-							</div>  
-						</div>  
-					</div>  
 
-				</div>  
+
+				
+				</div>
 			</div>
+
+                  <div class="row">
+	                <div class=" col-md-3 px-5">
+						
+						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+							<div class="fileinput-new thumbnail img-circle">
+								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+							</div>
+							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+							<div>
+								<span class="btn btn-round btn-info btn-file">
+									<span class="fileinput-new">SSLC-Cirtificate</span>
+									<span class="fileinput-exists">{lang('change')}</span>
+									<input type="file" name="ss_cirtifcate" />
+								</span>
+								<br />
+								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
+							</div>
+						</div>
+					</div>
+
+
+				    <div class="col-md-3">
+						
+						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+							<div class="fileinput-new thumbnail img-circle">
+								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+							</div>
+							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+							<div>
+								<span class="btn btn-round btn-info btn-file">
+									<span class="fileinput-new">Police Clearence</span>
+									<span class="fileinput-exists">{lang('change')}</span>
+									<input type="file" name="police_clearence" />
+								</span>
+								<br />
+								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
+							</div>
+						</div>
+					</div>
+
+					 <div class="col-md-3">
+						
+						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+							<div class="fileinput-new thumbnail img-circle">
+								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+							</div>
+							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+							<div>
+								<span class="btn btn-round btn-info btn-file">
+									<span class="fileinput-new">Job Cirtificate</span>
+									<span class="fileinput-exists">{lang('change')}</span>
+									<input type="file" name="job_cirtificate" />
+								</span>
+								<br />
+								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
+							</div>
+						</div>
+					</div>
+
+					 <div class="col-md-3">
+						
+						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+							<div class="fileinput-new thumbnail img-circle">
+								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+							</div>
+							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+							<div>
+								<span class="btn btn-round btn-info btn-file">
+									<span class="fileinput-new">Passport Copy</span>
+									<span class="fileinput-exists">{lang('change')}</span>
+									<input type="file" name="passport_copy" />
+								</span>
+								<br />
+								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
+							</div>
+						</div>
+					</div>
+
+						 <div class="col-md-3 px-5">
+						
+						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+							<div class="fileinput-new thumbnail img-circle">
+								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+							</div>
+							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+							<div>
+								<span class="btn btn-round btn-info btn-file">
+									<span class="fileinput-new">DOB Cirtificate</span>
+									<span class="fileinput-exists">{lang('change')}</span>
+									<input type="file" name="dob_certificate" />
+								</span>
+								<br />
+								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
+							</div>
+						</div>
+					</div>
+
+
+                   </div>
 
 			<div class="card-footer text-right">
 				<div class="form-check mr-auto">

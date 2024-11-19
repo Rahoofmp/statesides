@@ -1,7 +1,7 @@
 {extends file="layout/base.tpl"}
 
 {block name="body"}  
-{if log_user_type()=="store_keeper"}
+
 
 
 
@@ -17,14 +17,14 @@
 				<p class="card-category">Total Projects</p>
 				<h4 class="card-title">{$project_count}</h4>
 			</div>
-			{if log_user_type() =="store_keeper"}
+			
 
 			<div class="card-footer">
 				<div class="stats">
 					<i class="material-icons">local_offer</i><a href="#" > View Details</a>
 				</div>
 			</div>
-			{/if}
+			
 		</div>
 	</div>
 	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
@@ -36,14 +36,14 @@
 				<p class="card-category">Pending Deliveries</p>
 				<h4 class="card-title">{$pending_delivery_count}</h4>
 			</div>
-			{if log_user_type() =="store_keeper"}
+			
 
 			<div class="card-footer">
 				<div class="stats">
 					<i class="material-icons">local_offer</i><a href="{base_url()}store_keeper/delivery/delivery-list" > View Details</a>
 				</div>
 			</div>
-			{/if}
+			
 		</div>
 	</div>
 
@@ -143,7 +143,7 @@
 		</div>
 	</div>
 </div>
-{/if}
+
 {/block}
 
 {block name="footer"}

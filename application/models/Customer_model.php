@@ -95,7 +95,7 @@ class Customer_model extends Base_model {
 
         if( $user_name =  element('customer_username', $search_arr) ){
 
-            $this->db->where('ci.customer_id', $user_name);
+            $this->db->where('ci.id', $user_name);
         }  
 
         if( $created_by =  element('created_by', $search_arr) ){
@@ -112,7 +112,7 @@ class Customer_model extends Base_model {
       
         $details = [] ;
         foreach ($query->result_array() as $row) {
-            $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['customer_id']);
+            $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
             $details[] = $row;
         }
         return $details;

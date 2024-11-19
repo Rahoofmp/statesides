@@ -190,7 +190,7 @@
 								<div class="form-group">
 									<label class="bmd-label-floating"> Total Amount </label>
 
-									<input type="text" id="total_amount" class="form-control " name="total_amount"  autocomplete="Off">
+									<input type="text" id="total_amount" class="form-control " name="total_amount"  autocomplete="Off" required>
 									{form_error("total_amount")} 
 								</div>
 							</div>

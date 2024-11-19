@@ -145,7 +145,7 @@ class Packages extends Base_Controller {
 				}
 			}
 
-			if (element('advance_amount',$post_arr) && element('total_amount',$post_arr)) {
+			if (element('advance_amount',$post_arr)) {
 
 								
 				$post_arr['due_amount']=$post_arr['total_amount']-$post_arr['advance_amount'];
@@ -153,7 +153,7 @@ class Packages extends Base_Controller {
 			else{
 				$post_arr['due_amount']=0;
 				$post_arr['advance_amount']=0;
-				$post_arr['total_amount']=0;
+				
 			}
 
 			
@@ -186,6 +186,7 @@ class Packages extends Base_Controller {
 		$this->form_validation->set_rules('gender', lang('gender'), 'required');
 		$this->form_validation->set_rules('date', lang('date'), 'required');
 		$this->form_validation->set_rules('emmigration', lang('emmigration'), 'required');
+		$this->form_validation->set_rules('total_amount', lang('total_amount'), 'required');
 
 		$result = $this->form_validation->run();
 		return $result;
