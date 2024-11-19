@@ -309,7 +309,7 @@
 				</div>
 
 
-				<div class="col-md-3 mt-lg-2">
+				<div class="col-md-3 ">
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
@@ -328,7 +328,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3 mt-4">
+				<div class="col-md-3 ">
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
@@ -347,7 +347,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3 mt-4">
+				<div class="col-md-3 ">
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
@@ -366,7 +366,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3 px-5 mt-4">
+				<div class="col-md-3 px-5 ">
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">

@@ -659,11 +659,32 @@ class Packages_model extends Base_model {
 		$this->db->set('age',$post_arr['age']);
 		$this->db->set('current_job',$post_arr['current_job']);
 		$this->db->set('created_date',$date);
-		$this->db->set('sslc_certificate',$post_arr['ss_cirtifcate']);
-		$this->db->set('police_certificate',$post_arr['police_clearence']);
-		$this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
-		$this->db->set('passport_copy',$post_arr['passport_copy']);
-		$this->db->set('dob_certificate',$post_arr['dob_certificate']);
+
+		if (element('ss_cirtifcate',$post_arr)) {
+			
+			$this->db->set('sslc_certificate',$post_arr['ss_cirtifcate']);
+		}   
+
+		if (element('police_clearence',$post_arr)) {
+			
+			$this->db->set('police_certificate',$post_arr['police_clearence']);
+		}
+
+		if (element('job_cirtificate',$post_arr)) {
+			
+			$this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
+		}
+
+		if (element('passport_copy',$post_arr)) {
+			
+			$this->db->set('passport_copy',$post_arr['passport_copy']);
+		}
+
+		if (element('dob_certificate',$post_arr)) {
+			
+			$this->db->set('dob_certificate',$post_arr['dob_certificate']);
+		}
+		
 		$result = $this->db->insert('customer_info');
 
 		return $result;

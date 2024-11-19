@@ -6,43 +6,9 @@ class Packages extends Base_Controller {
 	{
 		parent::__construct(); 	
 	}
-  
 
-	public  function package_details($enc_id)
-	{
-		$data['title']='Package Details';
-		if($enc_id)
-		{
-			$id=$this->Base_model->encrypt_decrypt( 'decrypt', $enc_id );
-			$data['details']= $this->Packages_model->getPackagesDetails($id,true);
-		}
-		$this->loadView($data);
-	} 
 
-	public  function read_package_code()
-	{ 
-		$data['title']='Read the package code';
 
-		if ($this->input->post('search')) {
-			$post_arr = $this->input->post();
-
-			$package_id = $this->Packages_model->getpackageIdByCode($post_arr['package_code']);
-		
-
-			if($package_id){
-				$enc_id = $this->Base_model->encrypt_decrypt( 'encrypt', $package_id );
-
-				$this->redirect('','packages/package-details/'.$enc_id, FALSE);
-			}else{
-
-				$msg="Invalid code";
-				$this->redirect($msg, 'packages/read-package-code/', FALSE);
-			}
-
-		}
-		$this->loadView($data);
-
-	}
 
 	public  function create_leads()
 	{ 
@@ -54,7 +20,203 @@ class Packages extends Base_Controller {
 			
 			// print_r($_FILES);
 			// die();
-            $config['upload_path'] = './assets/images/leads_data/';
+			$config['upload_path'] = './assets/images/leads_data/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx';
+			$config['max_size'] = '2000000';
+			$config['remove_spaces'] = true;
+			$config['overwrite'] = false;
+			$config['encrypt_name'] = TRUE;
+
+			if($_FILES['ss_cirtifcate']['error']!=4)
+			{
+				
+
+				$this->load->library('upload', $config);
+				$msg = '';
+				if (!$this->upload->do_upload('ss_cirtifcate')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['ss_cirtifcate']=$image_arr['file_name'];
+				}
+			}
+
+
+
+			
+			if($_FILES['police_clearence']['error']!=4)
+			{
+				$this->load->library('upload', $config);
+
+				
+				$msg = '';
+				if (!$this->upload->do_upload('police_clearence')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['police_clearence']=$image_arr['file_name'];
+				}
+			}
+
+
+			if($_FILES['job_cirtificate']['error']!=4)
+			{
+				$this->load->library('upload', $config);
+
+				
+				$msg = '';
+				if (!$this->upload->do_upload('job_cirtificate')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['job_cirtificate']=$image_arr['file_name'];
+				}
+			}
+
+
+			if($_FILES['passport_copy']['error']!=4)
+			{
+				$this->load->library('upload', $config);
+				
+				$msg = '';
+				if (!$this->upload->do_upload('passport_copy')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['passport_copy']=$image_arr['file_name'];
+				}
+			}
+
+			if($_FILES['dob_certificate']['error']!=4)
+			{
+				$this->load->library('upload', $config);
+				
+				$msg = '';
+				if (!$this->upload->do_upload('dob_certificate')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['dob_certificate']=$image_arr['file_name'];
+				}
+			}
+
+			if (element('advance_amount',$post_arr)) {
+
+
+				$post_arr['due_amount']=$post_arr['total_amount']-$post_arr['advance_amount'];
+			}
+			else{
+				$post_arr['due_amount']=0;
+				$post_arr['advance_amount']=0;
+				
+			}
+
+			
+
+			$create_lead =  $this->Packages_model->createLeads($post_arr);
+
+			
+
+			if($create_lead)
+			{
+				$this->redirect( 'Lead created successfully', "packages/create-leads", true );
+			}
+			else{
+				$this->redirect( 'Error on creating lead', "packages/create-leads", false );
+			}
+
+			
+
+		}
+		$this->loadView($data);
+
+	}
+
+	function list_leads()
+	{ 
+
+		$details = $search_arr = $post_arr=[];
+		if( $this->input->post('submit') )
+		{
+			if( $this->input->post('submit') == 'reset')
+			{
+				$search_arr = [];
+
+			}elseif( $this->input->post('submit') == 'filter'){
+				$post_arr = $this->input->post();
+				if(!element('customer_username',$post_arr)){
+					$post_arr['customer_username'] = '';
+				} 
+
+				if(!element('salesman_id',$post_arr)){
+					$post_arr['salesman_id'] = '';
+				}else{
+					$post_arr['salesman_name'] = $this->Base_model->getUserName($post_arr['salesman_id']);
+					$search_arr['salesman_name'] = $post_arr['salesman_name'];
+
+				}
+				
+				$search_arr['name'] = $post_arr['name'];
+				$search_arr['email'] = $post_arr['email'];
+				$search_arr['customer_username'] = $post_arr['customer_username'];
+				$search_arr['salesman_id'] = $post_arr['salesman_id'];
+
+			}
+			// $details = $this->Customer_model->getAllCustomers( $search_arr );
+
+		}
+
+		$data['search_arr'] = $search_arr; 
+		// $data['details'] = $details; 
+
+		// print_r($data['details']);die();
+		$data['title'] = 'Leads Details'; 
+		$this->loadView($data);
+	}
+
+	function modify_leads($enc_id='')
+	{   	
+		$this->load->model('Customer_model');
+		
+		if( $enc_id ){
+
+
+			// $customer_username =  $this->input->get( 'customer_username' ); 
+			$customer_id = $this->Base_model->encrypt_decrypt('decrypt',$enc_id); 
+
+			if (!$customer_id) {
+				$msg = lang('text_invalid_customer_username');
+				$this->redirect($msg, 'customer/add-customer', FALSE);
+			}
+			$data['id']=$customer_id;
+			$search_arr['customer_username']=$customer_id;
+			$data['customer'] = element(0,$this->Customer_model->getAllCustomers( $search_arr ));
+			// print_r($data['customer']);
+			// die();
+
+			
+
+		}
+
+
+
+		if ($this->input->post('update_customer') && $this->validate_leads()) {
+			$post_arr = $this->input->post();
+
+
+
+			$config['upload_path'] = './assets/images/leads_data/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx';
 			$config['max_size'] = '2000000';
 			$config['remove_spaces'] = true;
@@ -156,25 +318,47 @@ class Packages extends Base_Controller {
 				
 			}
 
+			$post_arr['id']=$customer_id;
 			
+			$update_lead =  $this->Customer_model->updateLead($post_arr);
 
-			$create_lead =  $this->Packages_model->createLeads($post_arr);
-
-			
-
-			if($create_lead)
+			if($update_lead)
 			{
-				$this->redirect( 'Lead created successfully', "packages/create-leads", true );
+				$this->redirect( 'Lead updated successfully', "packages/list-leads", true );
 			}
 			else{
-				$this->redirect( 'Error on creating lead', "packages/create-leads", false );
+				$this->redirect( 'Error on updating lead', "packages/modify-leads/".$enc_id, false );
 			}
 
-			
 
-		}
+		
+	}
+		// print_r($this->input->post());
+		// die();
+
+		
+		$data['title'] = 'Modify Leads';
 		$this->loadView($data);
+	}
 
+	public function get_customer_list_ajax() {
+		if ($this->input->is_ajax_request()) {
+			$draw = $this->input->post('draw');
+			$post_arr = $this->input->post();
+			$count_without_filter = $this->Customer_model->getOrderCount();
+			$count_with_filter = $this->Customer_model->getAllCustomersAjax($post_arr, 1);
+			$details = $this->Customer_model->getAllCustomersAjax( $post_arr,'');
+			// echo $this->db->last_query();
+			// die();
+			$response = array(
+				"draw" => intval($draw),
+				"iTotalRecords" => $count_without_filter,
+				"iTotalDisplayRecords" => $count_with_filter,
+				"aaData" => $details,
+			);
+
+			echo json_encode($response);
+		}
 	}
 
 	protected function validate_leads( ){
@@ -187,6 +371,7 @@ class Packages extends Base_Controller {
 		$this->form_validation->set_rules('date', lang('date'), 'required');
 		$this->form_validation->set_rules('emmigration', lang('emmigration'), 'required');
 		$this->form_validation->set_rules('total_amount', lang('total_amount'), 'required');
+
 
 		$result = $this->form_validation->run();
 		return $result;

@@ -61,12 +61,7 @@ class Base_Model extends CI_Model
 
         foreach ($query->result_array() as $row) 
         {
-// if( element( 'user_photo', $row )){
-//     $img_path = $this->config->item('assets_folder').'/images/profile_pic/'. $row['user_photo'] ;
-//     if (!file_exists( $img_path)) {
-//         $row['user_photo'] = 'nophoto.png';
-//     } 
-// }
+
             $row['user_photo'] = 'nophoto.png';
 
             return $row;
@@ -590,10 +585,10 @@ class Base_Model extends CI_Model
 
 
         if ($user_type=='supervisor') {
-            
+
             $user_type='sub-admin';
         }
-        
+
         $permission_type = 'perm_' . $user_type;
         $path_root = base_url() . $user_type."/";
         $current_url = current_uri();
@@ -1967,7 +1962,7 @@ class Base_Model extends CI_Model
     }
 
 
-     public function getReturnEmployeeAjax($term='', $user_id='') {
+    public function getReturnEmployeeAjax($term='', $user_id='') {
 
         $output = [];
         $this->db->select('user_id, user_name')
@@ -2003,13 +1998,50 @@ class Base_Model extends CI_Model
         $this->db->limit(10);
         $this->db->order_by('name','ASC');
         $res = $this->db->get();
-  
+
         foreach($res->result_array() as $row) {
             $output[] = ['id'=>$row['id'], 
             'text'=>$row['name']];
         }
 
         return $output;
+    }
+
+    public function getEnquiryDetails($staff_id='') 
+    {
+        $user_details = array(); 
+        $this->db->select('*');
+        $this->db->from("customer_info");
+        if($staff_id){
+
+            $this->db->where("salesman_id", $staff_id);
+        }
+        $query = $this->db->get();
+       
+        foreach ($query->result_array() as $row) 
+        {
+
+
+            $user_details[]=$row;
+
+
+        }
+
+        return $user_details;
+    }
+
+    public function getEnquiryDetailsCount($staff_id='') 
+    {
+        
+        $this->db->select('*');
+        $this->db->from("customer_info");
+        if($staff_id){
+
+            $this->db->where("salesman_id", $staff_id);
+        }
+        $query = $this->db->get();
+        $total_count = $this->db->count_all_results();
+        return $total_count;
     }
 
 }
