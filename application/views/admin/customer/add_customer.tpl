@@ -129,8 +129,9 @@
 					<div class="col-lg-6">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">list</i>
-								</span>
+								<label class="bmd-label-floating">
+										Geneder
+									</label>
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
@@ -187,8 +188,9 @@
 					<div class="col-lg-6">
 							<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">list</i>
-								</span>
+								<label class="bmd-label-floating">
+										 Emmigration Status
+									</label>
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
