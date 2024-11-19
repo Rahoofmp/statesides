@@ -101,7 +101,7 @@ class Member extends Base_Controller {
 		if($this->input->post('credential_update') == 'password' && $this->validate_change_credential('update_password')){
 
 			$post_arr = $this->input->post();
- 
+
 			$this->config->load('bcrypt');
 			$this->load->library('bcrypt');
 			$new_password_hashed = $this->bcrypt->hash_password( $post_arr["new_password"] );
@@ -126,12 +126,44 @@ class Member extends Base_Controller {
 				$msg = lang('error_on_password_updation');
 				$this->redirect($msg, "member/change-credential?user_name=$user_name", FALSE);
 			}
-		
+
 		}
- 		$data['user_name'] = $user_name; 
+		$data['user_name'] = $user_name; 
 		$data['enc_user_id'] = $this->Base_model->encrypt_decrypt("encrypt",$user_id);; 
 
 		$data['title'] = lang('change_credential'); 
+		$this->loadView($data);
+	}
+
+	function reminder_settings()
+	{ 
+
+		$user_id = log_user_id();
+		$user_name = log_user_name(); 
+
+		$data['current_reminders'] = $this->Member_model->getcurrentreminders($user_id);
+
+
+		if($this->input->post() && $this->validate_reminder())
+		{
+
+			$post_arr = $this->input->post();
+			$post_arr['user_id']=$user_id;
+			$create_reminder=$this->Member_model->createReminder($post_arr);
+
+			if ($create_reminder) {
+
+				$this->redirect( 'Reminder Created', "member/reminder-settings", true );
+			}
+			else{
+				$this->redirect( 'Error On Reminder Creation', "member/reminder-settings", false );
+			}
+
+
+		}
+		
+		
+		$data['title'] = 'Reminder Settings'; 
 		$this->loadView($data);
 	}
 
@@ -144,6 +176,14 @@ class Member extends Base_Controller {
 			$this->form_validation->set_rules( 'confirm_password', lang( 'confirm_password' ), 'trim|required|min_length['. $password_length .']|matches[new_password]' );
 		}
 
+		$result = $this->form_validation->run(); 
+		return $result;
+	}
+
+	protected function validate_reminder(){
+
+		$this->form_validation->set_rules( 'date', lang('date'), 'trim|required');
+		$this->form_validation->set_rules( 'message', lang( 'message' ), 'trim|required' );
 		$result = $this->form_validation->run(); 
 		return $result;
 	}

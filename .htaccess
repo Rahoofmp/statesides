@@ -24,6 +24,8 @@
     RewriteRule ^(.*)$ index.php?/$1 [L]  
 
 <Files "index.php">
+php_value upload_max_filesize 12M
+
 AcceptPathInfo On
 </Files>  
 </IfModule>

@@ -925,21 +925,67 @@ class Member_model extends Base_model {
 
 // }
 
-public function EmailDetails($user_name)
-{
- $details='';
- $this->db->select('email');
- $this->db->where('user_name' , $user_name);
- $this->db->from('supplier_info');
- $this->db->where("product_name LIKE '%{$filter_params['search_products']}%'");
+    public function EmailDetails($user_name)
+    {
+       $details='';
+       $this->db->select('email');
+       $this->db->where('user_name' , $user_name);
+       $this->db->from('supplier_info');
+       $this->db->where("product_name LIKE '%{$filter_params['search_products']}%'");
 
- $res=$this->db->get();
- foreach($res->result_array() as $row)
- {
-    $details=$row['email'];
+       $res=$this->db->get();
+       foreach($res->result_array() as $row)
+       {
+        $details=$row['email'];
+    }
+    return $details;
+
 }
-return $details;
 
+public function getcurrentreminders($user_id)
+{
+   $details=array();
+   $this->db->select('*');
+   $this->db->where('user_id' , $user_id);
+   $this->db->where('status' , 'pending');
+   $this->db->from('reminders');
+   $this->db->order_by('date ASC');
+   $this->db->limit('10');
+   $res=$this->db->get();
+   foreach($res->result_array() as $row)
+   {
+     $details[]=$row;
+ }
+ return $details;
+
+}
+
+public function getTodayreminders($user_id,$date)
+{
+   $details=array();
+   $this->db->select('*');
+   $this->db->where('user_id' , $user_id);
+   $this->db->where('date' , $date);
+   $this->db->where('status' , 'pending');
+   $this->db->from('reminders');
+   $res=$this->db->get();
+   foreach($res->result_array() as $row)
+   {
+     $details=$row;
+ }
+ return $details;
+
+}
+
+public function createReminder($post_arr){
+
+    $date = date('Y-m-d H:i:s');
+    $this->db->set('user_id' , $post_arr['user_id']);
+    $this->db->set('message' , $post_arr['message']);
+    $this->db->set('date' , $post_arr['date']);
+    $this->db->set('created_date' , $date);
+    $res=$this->db->insert('reminders');
+    return $res;
 }
 
 

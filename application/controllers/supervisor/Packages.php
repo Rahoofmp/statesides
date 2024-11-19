@@ -12,6 +12,9 @@ class Packages extends Base_Controller {
 
 	public  function create_leads()
 	{ 
+		 // phpinfo();
+		 // die();
+
 		$data['title']='Create Leads';
 
 		if ($this->input->post() && $this->validate_leads()) {

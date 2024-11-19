@@ -777,4 +777,19 @@ class Login extends Base_Controller
 		
 		$this->loadView($data);
 	}
+
+	public function reminder_change() {
+
+		if ($this->input->is_ajax_request()) {
+			$draw = $this->input->post('draw');
+			$post_arr = $this->input->post();
+			$result_data = $this->Base_model->changeReminder($post_arr['id']);
+			$response = array(
+				
+				"success" => $result_data,
+			);
+
+			echo json_encode($response);
+		}
+	}
 }

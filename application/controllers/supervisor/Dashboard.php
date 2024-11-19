@@ -9,11 +9,21 @@ class Dashboard extends Base_Controller {
 
 	function index()
 	{  
+		$this->load->model('Member_model');
 		$data['title'] = lang('dashboard'); 
 		$user_id = log_user_id();
 		$customers=0;
 		$leads=0;
 		$details=0;
+
+		$date=date('Y-m-d');
+		$today_reminder= $this->Member_model->getTodayreminders($user_id,$date);
+		if ($today_reminder) {
+			
+			$data['today_reminder']=$today_reminder['message'];
+			$data['reminder_id']=$today_reminder['id'];
+		}
+	
 
 		$details = $this->Dashboard_model->getEnquiryDetails();
 		$total_count = $this->Dashboard_model->getEnquiryDetailsCount();
@@ -34,7 +44,7 @@ class Dashboard extends Base_Controller {
 		
 
 
-	
+
 		$data['details']=$details;
 		$data['enquires']=$total_count;
 		$data['leads']=$leads;
@@ -45,5 +55,7 @@ class Dashboard extends Base_Controller {
 
 		$this->loadView($data);
 	}
+
+
 
 }

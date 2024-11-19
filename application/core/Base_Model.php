@@ -2017,7 +2017,7 @@ class Base_Model extends CI_Model
             $this->db->where("salesman_id", $staff_id);
         }
         $query = $this->db->get();
-       
+
         foreach ($query->result_array() as $row) 
         {
 
@@ -2032,7 +2032,7 @@ class Base_Model extends CI_Model
 
     public function getEnquiryDetailsCount($staff_id='') 
     {
-        
+
         $this->db->select('*');
         $this->db->from("customer_info");
         if($staff_id){
@@ -2042,6 +2042,15 @@ class Base_Model extends CI_Model
         $query = $this->db->get();
         $total_count = $this->db->count_all_results();
         return $total_count;
+    }
+
+    public function changeReminder($id) 
+    {
+
+        $this->db->set('status','closed');
+        $this->db->where('id',$id);
+        $result=$this->db->update("reminders");
+        return $result;
     }
 
 }

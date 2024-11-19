@@ -76,6 +76,8 @@ class Delivery extends Base_Controller {
 
 	public  function read_delivery_code()
 	{ 
+		$this->redirect('','dashboard/index', true);
+
 		$data['title']='Read the delivery code';
 
 		if ($this->input->post('search')) {
