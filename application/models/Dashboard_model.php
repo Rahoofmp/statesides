@@ -9,7 +9,6 @@ class Dashboard_model extends Base_model {
 
 	public function getUserCount($type=""){
 		$this->db->from('login_info');
-		$this->db->where('user_type' , $type);
 		
 		$this->db->where('status' , 1);
 		$count = $this->db->count_all_results();

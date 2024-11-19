@@ -56,7 +56,7 @@
 					<i class="material-icons">people</i>
 				</div>
 				<p class="card-category">Total Staffs</p>
-				<h4 class="card-title">{$sendto_delivery_count}</h4>
+				<h4 class="card-title">{$staff_count}</h4>
 			</div>
 			<div class="card-footer">
 				<div class="stats">
