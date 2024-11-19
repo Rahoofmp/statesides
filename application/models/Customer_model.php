@@ -230,10 +230,13 @@ class Customer_model extends Base_model {
         $this->db->set('gender',$post_arr['gender']);
         $this->db->set('email',$post_arr['email']);
         $this->db->set('mobile',$post_arr['mobile']);
+        
         $this->db->set('date',$post_arr['date']);
+        $this->db->set('immigration_status',$post_arr['emmigration']);
        
         $this->db->set('age',$post_arr['age']);
         $this->db->set('current_job',$post_arr['current_job']);
+        $this->db->set('enquiry_status',$post_arr['enquiry_status']);
 
         if (element('ss_cirtifcate',$post_arr)) {
           

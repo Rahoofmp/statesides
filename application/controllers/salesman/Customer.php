@@ -137,6 +137,14 @@ class Customer extends Base_Controller {
 
 			$post_arr['id']=$customer_id;
 
+		
+
+			// if ($post_arr['enquiry_status']=='customer') {
+				
+			// 	$this->load->model('Signup_model');
+
+			// }
+
 			
 			$update_lead =  $this->Customer_model->updateLead($post_arr);
 

@@ -17,6 +17,23 @@
 			<div class="card-body">
 					{form_open_multipart('','id="file_form" name="file_form" class="form-add-project ValidateForm needs-validation" enctype="multipart/form-data"')}
 				<div class="row">
+
+												<div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<label for="from_date"> Enquiry Status</label>
+							</div>
+							<div class="col-sm-10">
+								<div class="form-group">
+									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Enquiry Status" id="enquiry_status" name="enquiry_status" required="" >
+										<option value="lead" {if $customer['enquiry_status'] == 'lead'} selected="" {/if}>Lead</option>
+										<option value="customer" {if $customer['enquiry_status'] == 'customer'} selected="" {/if}>Customer</option>
+										
+									</select> 
+									{form_error('gender')}
+								</div>
+							</div>
+						</div>
 					<div class="col-lg-12">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
@@ -27,6 +44,9 @@
 						
 						
 						</div>
+					</div>
+
+
 					</div>
 					<div class="col-lg-12">
 						<div class="input-group form-control-lg">
@@ -129,8 +149,7 @@
 					<div class="col-lg-6">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">list</i>
-								</span>
+								<label for="from_date"> Gender</label>
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
@@ -187,7 +206,8 @@
 					<div class="col-lg-6">
 							<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">list</i>
+								<label for="from_date"> Emmigration</label>
+								
 								</span>
 							</div>
 							<div class="col-sm-10">
