@@ -441,16 +441,6 @@
 
 
 <script>
-	$(document).ready(function() { 
-		md.initFormExtendedDatetimepickers();
-	});
-</script>
-{* <script
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtmmOPB_Ngkkmq8u_bZcpkp-w_1gvpslk&callback=initMap&libraries=&v=weekly"
-async
-></script> 
-
-<script type="text/javascript">
 
 
 	 (function () {
@@ -469,6 +459,19 @@ async
             }, false)
         })
     })()
+    
+	$(document).ready(function() { 
+		md.initFormExtendedDatetimepickers();
+	});
+</script>
+{* <script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtmmOPB_Ngkkmq8u_bZcpkp-w_1gvpslk&callback=initMap&libraries=&v=weekly"
+async
+></script> 
+
+<script type="text/javascript">
+
+
 
 
 	function initMap() {

@@ -9,12 +9,14 @@ class Customer extends Base_Controller {
 
 	function add_customer($enc_id='')
 	{   	
+
 		
 		if( $enc_id ){
 
 
 			// $customer_username =  $this->input->get( 'customer_username' ); 
 			$customer_id = $this->Base_model->encrypt_decrypt('decrypt',$enc_id); 
+
 
 			if (!$customer_id) {
 				$msg = lang('text_invalid_customer_username');
@@ -23,93 +25,152 @@ class Customer extends Base_Controller {
 			$data['id']=$customer_id;
 			$search_arr['customer_username']=$customer_id;
 			$data['customer'] = element(0,$this->Customer_model->getAllCustomers( $search_arr ));
-
-			
-
-		}
-		if ($this->input->post('add_customer') && $this->validate_add_customer()) {
-			$post_arr = $this->input->post();
-			$post_arr['password']=$post_arr['psw'];
-			$post_arr['created_by']= log_user_id();
-			$this->load->model('Packages_model');
-			if(element( 'salesman_id', $post_arr ))				
-				$post_arr['salesman_name'] = $this->Base_model->getUserName($post_arr['salesman_id']);
-
-			$ins=$this->Customer_model->addCustomerDetails($post_arr);
-
-			if($ins){
-				$this->Base_model->insertIntoActivityHistory(log_user_id(), log_user_id(),'Customer Registered', serialize($post_arr));
-				$this->load->model('Mail_model');
-				$email_alerts_arr = $this->software->getSettingsByKey('register'); 
-
-				if(value_by_key('register') && $email_alerts_arr['code'] == 'e_mail_alert')
-				{
-
-					$this->load->model('Mail_model'); 
-					$post_arr['fullname'] = $post_arr['name'];
-
-					// $send_mail = $this->Mail_model->sendEmails('customer_registration', $post_arr);
-				}
-
-				$msg = 'Registration completed Successfully'.' , ID : '.$post_arr['customer_username'].' ,password : '.$post_arr['password'];
-				$this->redirect("<b>$msg </b>", "customer/add-customer", TRUE);
-			}
-			else{
-				$msg = 'Registration Failed...!';
-				$this->redirect("<b>$msg </b>", "customer/add-customer", FALSE);
-			}
-			
 		}
 
 
-		if ($this->input->post('update_customer') && $this->validate_update_customer()) {
+		if ($this->input->post('update_customer') && $this->validate_leads()) {
 			$post_arr = $this->input->post();
 
-			$post_arr['password']=$post_arr['psw'];
-			if($post_arr['psw']){
-				if ($post_arr['psw']!=$post_arr['cpsw']) {
-					$this->redirect("Confirm Password missmatch to Password", "customer/add-customer/$enc_id", FALSE);
-				}
-			}
-			if($post_arr['customer_username']!=$data['customer']['customer_username']){
-				if ($this->Customer_model->check_exists('customer_username',$post_arr['customer_username'])) {
-					$this->redirect("UserName Already Exists", "customer/add-customer/$enc_id", FALSE);
-				}
-			}
-			if($post_arr['mobile']!=$data['customer']['mobile']){
-				if ($this->Customer_model->check_exists('mobile',$post_arr['mobile'])) {
-					$this->redirect("Mobile Already Exists", "customer/add-customer/$enc_id", FALSE);
-				}
-			}
-			if($post_arr['email']!=$data['customer']['email']){
-				if ($this->Customer_model->check_exists('email',$post_arr['email'])) {
-					$this->redirect("Email Already Exists", "customer/add-customer/$enc_id", FALSE);
-				}
-			}
 
-			$update=$this->Customer_model->updateCustomerDetails($post_arr,$customer_id);
-			if($update){
-				$this->load->model('Mail_model'); 
 
-				// $send_mail = $this->Mail_model->sendEmails('customer_updation', $post_arr);
+			$config['upload_path'] = './assets/images/leads_data/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx';
+			$config['max_size'] = '2000000';
+			$config['remove_spaces'] = true;
+			$config['overwrite'] = false;
+			$config['encrypt_name'] = TRUE;
+           
+			if($_FILES['ss_cirtifcate']['error']!=4)
+			{
 				
-				$this->Base_model->insertIntoActivityHistory(log_user_id(), log_user_id(), 'customer_data_updated', serialize($post_arr));
 
-				$msg = 'Updateion completed Successfully'.' , ID : '.$post_arr['customer_username'];
-				$this->redirect("<b>$msg </b>", "customer/customer-list", TRUE);
+				$this->load->library('upload', $config);
+				$msg = '';
+				if (!$this->upload->do_upload('ss_cirtifcate')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['ss_cirtifcate']=$image_arr['file_name'];
+				}
 			}
-			else{
-				$msg = 'Updateion Failed...!';
-				$this->redirect("<b>$msg </b>", "customer/customer-list", FALSE);
-			}
-			
-		}
-		// print_r($this->input->post());
-		// die();
 
 		
-		$data['title'] = 'Add Customer';
+
+			
+			if($_FILES['police_clearence']['error']!=4)
+			{
+				$this->load->library('upload', $config);
+
+				
+				$msg = '';
+				if (!$this->upload->do_upload('police_clearence')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['police_clearence']=$image_arr['file_name'];
+				}
+			}
+
+			 
+			if($_FILES['job_cirtificate']['error']!=4)
+			{
+				$this->load->library('upload', $config);
+
+				
+				$msg = '';
+				if (!$this->upload->do_upload('job_cirtificate')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['job_cirtificate']=$image_arr['file_name'];
+				}
+			}
+
+		   
+			if($_FILES['passport_copy']['error']!=4)
+			{
+				$this->load->library('upload', $config);
+				
+				$msg = '';
+				if (!$this->upload->do_upload('passport_copy')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['passport_copy']=$image_arr['file_name'];
+				}
+			}
+
+			if($_FILES['dob_certificate']['error']!=4)
+			{
+				$this->load->library('upload', $config);
+				
+				$msg = '';
+				if (!$this->upload->do_upload('dob_certificate')) {
+					$msg = lang('image_not_selected');
+					$error = $this->upload->display_errors();
+					$this->redirect( $error, "packages/create-leads", false );
+				} else {
+					$image_arr = $this->upload->data();  
+					$post_arr['dob_certificate']=$image_arr['file_name'];
+				}
+			}
+
+			if (element('advance_amount',$post_arr)) {
+
+								
+				$post_arr['due_amount']=$post_arr['total_amount']-$post_arr['advance_amount'];
+			}
+			else{
+				$post_arr['due_amount']=0;
+				$post_arr['advance_amount']=0;
+				
+			}
+
+			$post_arr['id']=$customer_id;
+
+			
+			$update_lead =  $this->Customer_model->updateLead($post_arr);
+
+			if($update_lead)
+			{
+				$this->redirect( 'Lead updated successfully', "customer/add-customer/".$enc_id, true );
+			}
+			else{
+				$this->redirect( 'Error on updating lead', "customer/add-customer", false );
+			}
+
+
+		
+	}
+		$data['title'] = 'Modify Customer';
 		$this->loadView($data);
+}
+
+		protected function validate_leads(){
+
+		
+		$this->form_validation->set_rules('first_name', lang('first_name'), 'required');
+		$this->form_validation->set_rules('last_name', lang('last_name'), 'required');
+		$this->form_validation->set_rules('mobile', lang('mobile'), 'required');
+		$this->form_validation->set_rules('gender', lang('gender'), 'required');
+		$this->form_validation->set_rules('date', lang('date'), 'required');
+		$this->form_validation->set_rules('emmigration', lang('emmigration'), 'required');
+		
+
+		$result = $this->form_validation->run();
+		
+		return $result;
+
+
 	}
 	function validate_add_customer() 
 	{
@@ -197,7 +258,6 @@ class Customer extends Base_Controller {
 			$post_arr['salesman_id'] = log_user_id();
 			// print_r($post_arr);die();
 			$details = $this->Customer_model->getAllCustomersAjax( $post_arr,'');
-			
 
 		
 			// echo $this->db->last_query();

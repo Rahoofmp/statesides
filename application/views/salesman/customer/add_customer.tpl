@@ -24,21 +24,7 @@
 								</span>
 							</div>
 
-								<div class="col-sm-11">
-								<div class="form-group">
-									<label class="bmd-label-floating">
-										Sales Man
-									</label>
-									<select id="sales_man" name="sales_man" class="salesman_ajax form-control" >
-										{if $id}
-										{if $project['sales_man']}
-										<option value="{$project['sales_man']}">{$project['customer_username']}</option>
-										{/if}
-										{/if}
-									</select> 
-									{form_error("sales_man")}
-								</div>
-							</div>
+						
 						
 						</div>
 					</div>
@@ -54,7 +40,7 @@
 									<label class="bmd-label-floating">
 										First Name
 									</label>
-									<input type="text" class="form-control" id="first_name" name="first_name" {if $id} value="{$project['first_name']}" {else} value="{set_value('first_name')}" {/if} required="true" autocomplete="Off">
+									<input type="text" class="form-control" id="first_name" name="first_name"  value="{$customer['firstname']}"  required="true" autocomplete="Off">
 									{form_error("first_name")}
 								</div>
 							</div>
@@ -74,7 +60,7 @@
 									<label class="bmd-label-floating">
 										Last Name
 									</label>
-									<input type="text" class="form-control" id="last_name" name="last_name" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} required="true" autocomplete="Off">
+									<input type="text" class="form-control" id="last_name" name="last_name" value="{$customer['lastname']}" required="true" autocomplete="Off">
 									{form_error("last_name")}
 								</div>
 							</div>
@@ -90,7 +76,7 @@
 							<div class="col-sm-11">
 								<div class="form-group">
 									<label class="bmd-label-floating"> Mobile </label>
-									<input type="text" class="form-control" id="mobile" name="mobile"{if $id} value="{$project['mobile']}" {else}value="{set_value('mobile')}" {/if}required="true" number="true" autocomplete="Off">
+									<input type="text" class="form-control" id="mobile" name="mobile"  value="{$customer['mobile']}" required="true" number="true" autocomplete="Off">
 									{form_error("mobile")}
 								</div>
 							</div>
@@ -107,7 +93,7 @@
 								<div class="form-group">
 									<label class="bmd-label-floating"> Email </label>
 
-									<input type="email" id="email" class="form-control " name="email"{if $id} value="{$project['email']}"{else}value="{set_value('email')}"{/if} required="true" autocomplete="Off">
+									<input type="email" id="email" class="form-control " name="email"  value="{$customer['email']}" required="true" autocomplete="Off">
 									{form_error("email")} 
 								</div>
 							</div>
@@ -126,7 +112,7 @@
 									<label class="bmd-label-floating">
 										Age
 									</label>
-									<input type="text" class="form-control" id="last_name" name="age" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} required="true" autocomplete="Off">
+									<input type="text" class="form-control" id="last_name" name="age"  value="{$customer['age']}" required="true" autocomplete="Off">
 									{form_error("last_name")}
 								</div>
 							</div>
@@ -149,54 +135,16 @@
 							<div class="col-sm-10">
 								<div class="form-group">
 									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Gender" id="gender" name="gender" required="" >
-										<option value="male" {if $project['gender'] == 'male'} selected="" {/if}>Male</option>
-										<option value="femaile" {if $project['gender'] == 'femaile'} selected="" {/if}>Femaile</option>
-										<option value="others" {if $project['status'] == 'others'} selected="" {/if}>Others</option>
+										<option value="male" {if $customer['gender'] == 'male'} selected="" {/if}>Male</option>
+										<option value="femaile" {if $customer['gender'] == 'femaile'} selected="" {/if}>Femaile</option>
+										<option value="others" {if $customer['status'] == 'others'} selected="" {/if}>Others</option>
 									</select> 
 									{form_error('gender')}
 								</div>
 							</div>
 						</div>
 					</div>
-				
-
-					<div class="col-lg-6">
-						<div class="input-group form-control-lg">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">advance</i>
-								</span>
-							</div>
-							<div class="col-sm-10">
-								<div class="form-group">
-									<label class="bmd-label-floating"> Advance Amount </label>
-
-									<input type="text" id="advance_amount" class="form-control " name="advance_amount"{if $id} value="{$project['advance_amount']}"{else}value="{set_value('advance_amount')}"{/if}  autocomplete="Off">
-									{form_error("advance_amount")} 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="input-group form-control-lg">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="material-icons">total</i>
-								</span>
-							</div>
-							<div class="col-sm-10">
-								<div class="form-group">
-									<label class="bmd-label-floating"> Total Amount </label>
-
-									<input type="text" id="total_amount" class="form-control " name="total_amount"  autocomplete="Off">
-									{form_error("total_amount")} 
-								</div>
-							</div>
-						</div>
-					</div>
-
-
+			
 						
 					<div class="col-lg-6">
 						<div class="input-group form-control-lg">
@@ -208,7 +156,9 @@
 								<div class="form-group">
 									<label class="bmd-label-floating"> Current Job </label>
 
-									<input type="text" id="current_job" class="form-control " name="current_job" {if $id} value="{$project['current_job']}"{else}value="{set_value('current_job')}"{/if} required="true" autocomplete="Off">
+									<input type="text" id="current_job" class="form-control " name="current_job"  value="{$customer['current_job']}"  required="true" autocomplete="Off">
+									<input type="hidden" id="advance_amount" class="form-control " name="advance_amount"  value="{$customer['advance']}"  autocomplete="Off">
+                                    <input type="hidden" id="total_amount" class="form-control " name="total_amount"  value="{$customer['total_amount']}"   autocomplete="Off">
 									{form_error("current_job")} 
 								</div>
 							</div>
@@ -227,7 +177,7 @@
 							<div class="col-sm-10">
 								<div class="form-group">
 									<label for="from_date"> Date</label>
-									<input type="text" id="date" class="form-control datepicker" name="date" {if $id} value="{$project['date']}" {else} value="{set_value('date')}" {/if} autocomplete="off">
+									<input type="text" id="date" class="form-control datepicker" name="date" value="{$customer['date']}" autocomplete="off">
 									{form_error("date")} 
 								</div>
 							</div>
@@ -243,12 +193,12 @@
 							<div class="col-sm-10">
 								<div class="form-group">
 									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Emmigration" id="emmigration" name="emmigration" required="" >
-										<option value="none" {if $project['immigration_status'] == 'none'} selected="" {/if}>None</option>
-										<option value="applied" {if $project['immigration_status'] == 'applied'} selected="" {/if}>Applied</option>
+										<option value="none" {if $customer['immigration_status'] == 'none'} selected="" {/if}>None</option>
+										<option value="pending" {if $customer['immigration_status'] == 'pending'} selected="" {/if}>Pending</option>
 
-										<option value="approved" {if $project['immigration_status'] == 'approved'} selected="" {/if}>Approved</option>
+										<option value="approved" {if $customer['immigration_status'] == 'approved'} selected="" {/if}>Approved</option>
 
-										<option value="rejected" {if $project['immigration_status'] == 'rejected'} selected="" {/if}>Rejected</option>
+										<option value="rejected" {if $customer['immigration_status'] == 'rejected'} selected="" {/if}>Rejected</option>
 										
 									</select> 
 									{form_error('gender')}
@@ -266,11 +216,11 @@
 			</div>
 
                   <div class="row">
-	                <div class=" col-md-3 px-5">
+	                <div class=" col-md-3 px-5 ">
 						
 						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+								<img src="{assets_url('images/leads_data/')}{$customer['sslc_certificate']}" alt="{$user_name}">
 							</div>
 							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 							<div>
@@ -286,11 +236,11 @@
 					</div>
 
 
-				    <div class="col-md-3">
+				    <div class="col-md-3 mt-lg-2">
 						
 						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+								<img src="{assets_url('images/leads_data/')}{$customer['police_certificate']}" alt="{$user_name}">
 							</div>
 							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 							<div>
@@ -305,11 +255,11 @@
 						</div>
 					</div>
 
-					 <div class="col-md-3">
+					 <div class="col-md-3 mt-4">
 						
 						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+								<img src="{assets_url('images/leads_data/')}{$customer['job_cirtificate']}" alt="{$user_name}">
 							</div>
 							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 							<div>
@@ -324,11 +274,11 @@
 						</div>
 					</div>
 
-					 <div class="col-md-3">
+					 <div class="col-md-3 mt-4">
 						
 						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+								<img src="{assets_url('images/leads_data/')}{$customer['passport_copy']}" alt="{$user_name}">
 							</div>
 							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 							<div>
@@ -343,11 +293,11 @@
 						</div>
 					</div>
 
-						 <div class="col-md-3 px-5">
+						 <div class="col-md-3 px-5 mt-4">
 						
 						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+								<img src="{assets_url('images/leads_data/')}{$customer['dob_certificate']}" alt="{$user_name}">
 							</div>
 							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 							<div>
@@ -361,29 +311,17 @@
 							</div>
 						</div>
 					</div>
-
-
                    </div>
+
 
 			<div class="card-footer text-right">
 				<div class="form-check mr-auto">
 				</div>
-				{if $id}
+			
 				<button class="btn btn-primary pull-right" type="submit" id="update_customer" name="update_customer" value="update_customer">
-					Update customer <i class="fa fa-arrow-circle-right"></i>
+					Update Lead <i class="fa fa-arrow-circle-right"></i>
 				</button>
-				{else}	
-				<button class="btn btn-primary pull-right" type="submit" id="add_customer" name="add_customer" value="add_customer">
-					Add customer <i class="fa fa-arrow-circle-right"></i>
-				</button>
-				{/if}			
-			</div>
-
-			{* <div class="form-group">
-				<button class="btn btn-primary pull-right" type="submit" id="add_customer" name="add_customer" value="add_customer">
-					Add customer <i class="fa fa-arrow-circle-right"></i>
-				</button>
-			</div> *}
+				
 
 		</div>
 	</div>
@@ -406,7 +344,11 @@
 <script src="{assets_url('bootv4/js/plugins/moment.min.js')}"></script>  
 <script src="{assets_url('bootv4/js/plugins/bootstrap-datetimepicker.min.js')}"></script> 
 <script src="{assets_url('plugins/DataTables/media/js/jquery.dataTables.min.js')}"></script> 
+<script src="{assets_url('bootv4/js/plugins/bootstrap-selectpicker.js')}"></script> 
+<script src="{assets_url('bootv4/js/plugins/bootstrap-datetimepicker.min.js')}"></script>
 <script src="{assets_url()}plugins/select2/js/select2.min.js"></script>
+
+<script src="{assets_url('bootv4/js/plugins/jasny-bootstrap.min.js')}"></script>
 
 
 <script
