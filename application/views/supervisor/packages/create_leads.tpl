@@ -55,7 +55,7 @@
 									<label class="bmd-label-floating">
 										First Name
 									</label>
-									<input type="text" class="form-control" id="first_name" name="first_name" {if $id} value="{$project['first_name']}" {else} value="{set_value('first_name')}" {/if} required="true" autocomplete="Off">
+									<input type="text" class="form-control" id="first_name" name="first_name" {if $id} value="{$project['first_name']}" {else} value="{set_value('first_name')}" {/if} required autocomplete="Off">
 									{form_error("first_name")}
 								</div>
 							</div>
@@ -75,7 +75,7 @@
 									<label class="bmd-label-floating">
 										Last Name
 									</label>
-									<input type="text" class="form-control" id="last_name" name="last_name" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} required="true" autocomplete="Off">
+									<input type="text" class="form-control" id="last_name" name="last_name" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} required autocomplete="Off">
 									{form_error("last_name")}
 								</div>
 							</div>

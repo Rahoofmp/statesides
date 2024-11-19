@@ -57,7 +57,7 @@
 
                         <ul class="navbar-nav"> 
                             
-                            <li class="nav-item dropdown">
+                          <!--   <li class="nav-item dropdown">
                                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">notifications</i>
                                     <span class="notification">{$unread_mail}</span>
@@ -67,9 +67,9 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="{base_url()}{log_user_type()}/mail/inbox">Internal Mails</a>
-                                    {* <a class="dropdown-item" href="{base_url()}{log_user_type()}/support/overview">Support Tickets sddd</a>  *}  
+                                    <a class="dropdown-item" href="{base_url()}{log_user_type()}/support/overview">Support Tickets sddd</a>  
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">person</i>
