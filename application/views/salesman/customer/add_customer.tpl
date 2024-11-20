@@ -132,7 +132,7 @@
 									<label class="bmd-label-floating">
 										Age
 									</label>
-									<input type="text" class="form-control" id="last_name" name="age"  value="{$customer['age']}" required="true" autocomplete="Off">
+									<input type="text" class="form-control" id="last_name" name="age"  value="{$customer['age']}"  autocomplete="Off">
 									{form_error("last_name")}
 								</div>
 							</div>
@@ -153,7 +153,7 @@
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
-									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Gender" id="gender" name="gender" required="" >
+									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Gender" id="gender" name="gender"  >
 										<option value="male" {if $customer['gender'] == 'male'} selected="" {/if}>Male</option>
 										<option value="femaile" {if $customer['gender'] == 'femaile'} selected="" {/if}>Femaile</option>
 										<option value="others" {if $customer['status'] == 'others'} selected="" {/if}>Others</option>
@@ -175,7 +175,7 @@
 								<div class="form-group">
 									<label class="bmd-label-floating"> Current Job </label>
 
-									<input type="text" id="current_job" class="form-control " name="current_job"  value="{$customer['current_job']}"  required="true" autocomplete="Off">
+									<input type="text" id="current_job" class="form-control " name="current_job"  value="{$customer['current_job']}"   autocomplete="Off">
 									<input type="hidden" id="advance_amount" class="form-control " name="advance_amount"  value="{$customer['advance']}"  autocomplete="Off">
                                     <input type="hidden" id="total_amount" class="form-control " name="total_amount"  value="{$customer['total_amount']}"   autocomplete="Off">
 									{form_error("current_job")} 
@@ -212,7 +212,8 @@
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
-									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Emmigration" id="emmigration" name="emmigration" required="" >
+									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Emmigration" id="emmigration" name="emmigration" 
+									 >
 										<option value="none" {if $customer['immigration_status'] == 'none'} selected="" {/if}>None</option>
 										<option value="pending" {if $customer['immigration_status'] == 'pending'} selected="" {/if}>Pending</option>
 

@@ -75,7 +75,7 @@
 									<label class="bmd-label-floating">
 										Last Name
 									</label>
-									<input type="text" class="form-control" id="last_name" name="last_name" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} required autocomplete="Off">
+									<input type="text" class="form-control" id="last_name" name="last_name" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} autocomplete="Off">
 									{form_error("last_name")}
 								</div>
 							</div>
@@ -127,7 +127,7 @@
 									<label class="bmd-label-floating">
 										Age
 									</label>
-									<input type="text" class="form-control" id="last_name" name="age" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} required="true" autocomplete="Off">
+									<input type="text" class="form-control" id="last_name" name="age" {if $id} value="{$project['last_name']}" {else} value="{set_value('last_name')}" {/if} autocomplete="Off">
 									{form_error("last_name")}
 								</div>
 							</div>
@@ -149,9 +149,9 @@
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
-									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Gender" id="gender" name="gender" required="" >
+									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Gender" id="gender" name="gender" >
 										<option value="male" {if $project['gender'] == 'male'} selected="" {/if}>Male</option>
-										<option value="femaile" {if $project['gender'] == 'femaile'} selected="" {/if}>Femaile</option>
+										<option value="femaile" {if $project['gender'] == 'femaile'} selected="" {/if}>Female</option>
 										<option value="others" {if $project['status'] == 'others'} selected="" {/if}>Others</option>
 									</select> 
 									{form_error('gender')}
@@ -190,7 +190,7 @@
 								<div class="form-group">
 									<label class="bmd-label-floating"> Total Amount </label>
 
-									<input type="text" id="total_amount" class="form-control " name="total_amount"  autocomplete="Off" required>
+									<input type="text" id="total_amount" class="form-control " name="total_amount"  autocomplete="Off">
 									{form_error("total_amount")} 
 								</div>
 							</div>
@@ -209,7 +209,7 @@
 								<div class="form-group">
 									<label class="bmd-label-floating"> Current Job </label>
 
-									<input type="text" id="current_job" class="form-control " name="current_job" {if $id} value="{$project['current_job']}"{else}value="{set_value('current_job')}"{/if} required="true" autocomplete="Off">
+									<input type="text" id="current_job" class="form-control " name="current_job" {if $id} value="{$project['current_job']}"{else}value="{set_value('current_job')}"{/if}  autocomplete="Off">
 									{form_error("current_job")} 
 								</div>
 							</div>
@@ -243,7 +243,7 @@
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
-									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Emmigration" id="emmigration" name="emmigration" required="" >
+									<select class="selectpicker col-12" data-size="7" data-style="select-with-transition" title="Emmigration" id="emmigration" name="emmigration">
 										<option value="none" {if $project['immigration_status'] == 'none'} selected="" {/if}>None</option>
 										<option value="applied" {if $project['immigration_status'] == 'applied'} selected="" {/if}>Applied</option>
 

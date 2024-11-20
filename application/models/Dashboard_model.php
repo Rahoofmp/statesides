@@ -57,6 +57,14 @@ class Dashboard_model extends Base_model {
 		return $res;
 
 	}
+	public function getAllEnquiryDetailsCount(){
+		$this->db->select('id');
+		$this->db->from('customer_info');
+		$res = $this->db->get()->num_rows();
+		
+		return $res;
+
+	}
 	public function getTotalDeliveryNotesCount($user_id='',$sup_id='')
 	{
 		$this->db->select('id');
@@ -112,7 +120,7 @@ class Dashboard_model extends Base_model {
 			$details[]=$row;
 		}
 		return $details;
-	}
+	} 
 	public function getRecentDeliveries($user_id='',$sup_id='')
 	{
 		$details=array();

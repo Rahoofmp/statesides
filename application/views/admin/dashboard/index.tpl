@@ -28,41 +28,105 @@
 			{/if}
 		</div>
 	</div>
+	
 	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
 		<div class="card card-stats">
-			<div class="card-header card-header-icon card-header-icon">
+			<div class="card-header card-header-primary card-header-icon">
 				<div class="card-icon">
 					<i class="material-icons">people</i>
 				</div>
 				<p class="card-category">Total Leads</p>
-				<h4 class="card-title">{$total_leads}</h4>
+				<h4 class="card-title">{$count_delivery_notes}</h4>
 			</div>
 			{if log_user_type() =="admin"}
 
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}admin/delivery/delivery-list" > View Details</a>
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
 				</div>
 			</div>
 			{/if}
 		</div>
 	</div>
 
-
 	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
 		<div class="card card-stats">
-			<div class="card-header card-header-success card-header-icon">
+			<div class="card-header card-header-primary card-header-icon">
 				<div class="card-icon">
 					<i class="material-icons">people</i>
 				</div>
-				<p class="card-category">Total Staffs</p>
-				<h4 class="card-title">{$staff_count}</h4>
+				<p class="card-category">Total Staff</p>
+				<h4 class="card-title">{$count_delivery_notes}</h4>
 			</div>
+			{if log_user_type() =="admin"}
+
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}admin/delivery/delivery-list" > {lang('text_view_more')}</a>
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
 				</div>
 			</div>
+			{/if}
+		</div>
+	</div>
+
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">people</i>
+				</div>
+				<p class="card-category">Immigration Approved Customers</p>
+				<h4 class="card-title">{$count_delivery_notes}</h4>
+			</div>
+			{if log_user_type() =="admin"}
+
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+				</div>
+			</div>
+			{/if}
+		</div>
+	</div>
+
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">people</i>
+				</div>
+				<p class="card-category">Advanced Paid Customers</p>
+				<h4 class="card-title">{$count_delivery_notes}</h4>
+			</div>
+			{if log_user_type() =="admin"}
+
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+				</div>
+			</div>
+			{/if}
+		</div>
+	</div>
+
+	
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">people</i>
+				</div>
+				<p class="card-category">Full Paid Customers</p>
+				<h4 class="card-title">{$count_delivery_notes}</h4>
+			</div>
+			{if log_user_type() =="admin"}
+
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+				</div>
+			</div>
+			{/if}
 		</div>
 	</div>
 </div>
@@ -74,7 +138,7 @@
 				<div class="card-icon">
 					<i class="material-icons">assignment</i>
 				</div>
-				<h4 class="card-title">Recent Enquiry</h4>
+				<h4 class="card-title">Recent Leads</h4>
 			</div>
 			<div class="card-body">
 				{if $details}
@@ -83,13 +147,13 @@
 						<thead class="bg-light text-warning">
 							<tr>
 								<th class="text-center">#</th>
-								<th>Code</th>
-								<th>Project Name</th>
-								<th>Driver</th>
-								<th>Vehicle</th>
-								<th>Status</th>
-								<th>Created On</th>
-								<th>Action</th>
+								<th>Name</th>
+								<th>Enquiry Status</th>
+								<th>Immigration Status</th>
+								<th>Mobile</th>
+								<th>Email</th>
+								<th>Due Date</th>
+								<!-- <th>Action</th> -->
 								
 							</tr>
 						</thead>
@@ -99,18 +163,13 @@
 
 							<tr>
 								<td >{counter}</td>
-								<td>{$v.code}</td>
-								<td>{$v.project_name}</td>
-								<td>{$v.driver_name}</td>
-								<td>{$v.vehicle}</td>
-								<td>{ucfirst($v.status)|replace:'_':' '}</td>
-								<td>{$v.date_created}</td>   
-								<td class="td-actions text-right ">
-									{if $v.status == 'pending'}
-									<a rel="tooltip" title="Edit" href="javascript:edit_delivery_note('{$v.enc_id}')" class="btn btn-success btn-link"><i class="material-icons">edit</i></i></a>
-									{/if}
-									<a rel="tooltip" title="View" href="{base_url()}admin/delivery/delivery_details/{$v.enc_id}" class="btn btn-info btn-link"><i class="material-icons">local_see</i></a>  
-								</td> 
+								<td>{$v.firstname}</td>
+								<td>{$v.enquiry_status}</td>
+								<td>{$v.immigration_status}</td>
+								<td>{$v.mobile}</td>
+								<td>{$v.email}</td>
+								<td>{$v.date}</td>
+								
 							</tr>
 							{/foreach}
 						</tbody>
@@ -118,23 +177,20 @@
 				</div>
 				<div class="card-footer"> 
 					<div class="stats">
-						<i class="material-icons">local_offer</i><a href="{base_url()}{log_user_type()}/delivery/delivery-list" > {lang('text_view_more')}</a>
+						<i class="material-icons">local_offer</i><a href="{base_url()}{log_user_type()}/packages/list-leads" > {lang('text_view_more')}</a>
 					</div>
 				</div>
 				{else}
 				<div class="card-body">
 					<p>
 						<h4 class="text-center"> 
-							<i class="fa fa-exclamation"> No Delivery 	Details Found</i>
+							<i class="fa fa-exclamation"> No Details Found</i>
 						</h4>
 					</p>
 				</div>
 				{/if}
 			</div>
 		</div>
-	</div>
-</div>
-
 
 {/if}
 {/block}

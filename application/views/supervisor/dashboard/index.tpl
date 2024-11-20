@@ -43,34 +43,34 @@
 	</div>
 
 
-	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+	
+		<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
 		<div class="card card-stats">
-			<div class="card-header card-header-success card-header-icon">
+			<div class="card-header card-header-primary card-header-icon">
 				<div class="card-icon">
-					<i class="material-icons">message</i>
+					<i class="material-icons">format_align_right</i>
 				</div>
 				<p class="card-category">Total Leads</p>
 				<h4 class="card-title">{$leads}</h4>
-			</div>
+			</div> 
 			<div class="card-footer">
 				<div class="stats">
 					<i class="material-icons">local_offer</i><a href="{base_url(log_user_type())}/packages/list-leads" > View Details</a>
 				</div>
-			</div>
+			</div> 
 		</div>
 	</div>
 
 
 	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
 		<div class="card card-stats">
-			<div class="card-header card-header-icon card-header-icon">
+			<div class="card-header card-header-primary card-header-icon">
 				<div class="card-icon">
-					<i class="material-icons">cloud_done</i>
+					<i class="material-icons">format_align_right</i>
 				</div>
-				<p class="card-category">Totoal Customers</p>
-				<h4 class="card-title">{$customers}</h4>
+				<p class="card-category">Total Customers</p>
+				<h4 class="card-title">{$leads}</h4>
 			</div> 
-
 			<div class="card-footer">
 				<div class="stats">
 					<i class="material-icons">local_offer</i><a href="{base_url(log_user_type())}/packages/list-leads" > View Details</a>
@@ -79,6 +79,56 @@
 		</div>
 	</div>
 
+
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">format_align_right</i>
+				</div>
+				<p class="card-category">Total Staffs</p>
+				<h4 class="card-title">{$leads}</h4>
+			</div> 
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="{base_url(log_user_type())}/packages/list-leads" > View Details</a>
+				</div>
+			</div> 
+		</div>
+	</div>
+
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">format_align_right</i>
+				</div>
+				<p class="card-category">Immigration Approved Customers </p>
+				<h4 class="card-title">{$leads}</h4>
+			</div> 
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="{base_url(log_user_type())}/packages/list-leads" > View Details</a>
+				</div>
+			</div> 
+		</div>
+	</div>
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">format_align_right</i>
+				</div>
+				<p class="card-category">Total Remainders</p>
+				<h4 class="card-title">{$leads}</h4>
+			</div> 
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="{base_url(log_user_type())}/packages/list-leads" > View Details</a>
+				</div>
+			</div> 
+		</div>
+	</div>
 
 
 
@@ -90,7 +140,7 @@
 				<div class="card-icon">
 					<i class="material-icons">assignment</i>
 				</div>
-				<h4 class="card-title">Recent Leads(Latest 10)</h4>
+				<h4 class="card-title">Recent Leads</h4>
 			</div>
 			<div class="card-body">
 				{if $details}
@@ -136,7 +186,7 @@
 				<div class="card-body">
 					<p>
 						<h4 class="text-center"> 
-							<i class="fa fa-exclamation"> No Delivery 	Details Found</i>
+							<i class="fa fa-exclamation"> No Details Found</i>
 						</h4>
 					</p>
 				</div>

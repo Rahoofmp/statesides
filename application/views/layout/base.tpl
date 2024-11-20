@@ -99,9 +99,9 @@
 
                     <div class="copyright ">
                         {$smarty.now|date_format:"%Y"} &copy; 
-                        <a href="{base_url()}" target="_blank">{$site_details['name']}</a>, 
+                        <a href="{base_url()}" target="_blank">Statesside Group</a>, 
                         Developed By: 
-                        <a href="{base_url()}" target="_blank">TechMagic</a>
+                        <a href="{base_url()}" target="_blank">TechMagic Technologies</a>
                     </div>
                 </div>
             </footer>

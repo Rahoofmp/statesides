@@ -3,9 +3,6 @@
 {block name="body"}  
 
 
-
-
-
 <div class="row">
 
 	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
@@ -14,7 +11,7 @@
 				<div class="card-icon">
 					<i class="material-icons">format_align_right</i>
 				</div>
-				<p class="card-category">Total Projects</p>
+				<p class="card-category">Total Leads</p>
 				<h4 class="card-title">{$project_count}</h4>
 			</div>
 			
@@ -29,41 +26,101 @@
 	</div>
 	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
 		<div class="card card-stats">
-			<div class="card-header card-header-icon card-header-icon">
+			<div class="card-header card-header-primary card-header-icon">
 				<div class="card-icon">
-					<i class="material-icons">cloud_done</i>
+					<i class="material-icons">format_align_right</i>
 				</div>
-				<p class="card-category">Pending Deliveries</p>
-				<h4 class="card-title">{$pending_delivery_count}</h4>
+				<p class="card-category">Total Customers</p>
+				<h4 class="card-title">{$project_count}</h4>
 			</div>
 			
 
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}store_keeper/delivery/delivery-list" > View Details</a>
+					<i class="material-icons">local_offer</i><a href="#" > View Details</a>
 				</div>
 			</div>
 			
 		</div>
 	</div>
-
-
 	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
 		<div class="card card-stats">
-			<div class="card-header card-header-success card-header-icon">
+			<div class="card-header card-header-primary card-header-icon">
 				<div class="card-icon">
-					<i class="material-icons">message</i>
+					<i class="material-icons">format_align_right</i>
 				</div>
-				<p class="card-category">Send To Delivery</p>
-				<h4 class="card-title">{$sendto_delivery_count}</h4>
+				<p class="card-category">Total Staffs</p>
+				<h4 class="card-title">{$project_count}</h4>
 			</div>
+			
+
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}store_keeper/delivery/delivery-list" > {lang('text_view_more')}</a>
+					<i class="material-icons">local_offer</i><a href="#" > View Details</a>
 				</div>
 			</div>
+			
 		</div>
 	</div>
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">format_align_right</i>
+				</div>
+				<p class="card-category">Total Customers</p>
+				<h4 class="card-title">{$project_count}</h4>
+			</div>
+			
+
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="#" > View Details</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">format_align_right</i>
+				</div>
+				<p class="card-category">Total Customers</p>
+				<h4 class="card-title">{$project_count}</h4>
+			</div>
+			
+
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="#" > View Details</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+		<div class="card card-stats">
+			<div class="card-header card-header-primary card-header-icon">
+				<div class="card-icon">
+					<i class="material-icons">format_align_right</i>
+				</div>
+				<p class="card-category">Total Customers</p>
+				<h4 class="card-title">{$project_count}</h4>
+			</div>
+			
+
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">local_offer</i><a href="#" > View Details</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	
 </div>
 
 <div class="row">
@@ -74,7 +131,7 @@
 				<div class="card-icon">
 					<i class="material-icons">assignment</i>
 				</div>
-				<h4 class="card-title">Recent Deliveries</h4>
+				<h4 class="card-title">Recent Leads</h4>
 			</div> 
 
 			<div class="card-body table-responsive">
@@ -129,14 +186,7 @@
 					</div>
 				</div>
 				{else}
-				<div class="alert alert-warning">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<i class="material-icons">close</i>
-					</button>
-					<span>
-						<b> Warning - </b> No Details found
-					</span>
-				</div>
+				
 				{/if}
 			</div>
 

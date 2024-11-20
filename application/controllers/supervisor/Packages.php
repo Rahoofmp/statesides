@@ -370,10 +370,10 @@ class Packages extends Base_Controller {
 		$this->form_validation->set_rules('first_name', lang('first_name'), 'required');
 		$this->form_validation->set_rules('last_name', lang('last_name'), 'required');
 		$this->form_validation->set_rules('mobile', lang('mobile'), 'required');
-		$this->form_validation->set_rules('gender', lang('gender'), 'required');
+		$this->form_validation->set_rules('gender', lang('gender'));
 		$this->form_validation->set_rules('date', lang('date'), 'required');
-		$this->form_validation->set_rules('emmigration', lang('emmigration'), 'required');
-		$this->form_validation->set_rules('total_amount', lang('total_amount'), 'required');
+		$this->form_validation->set_rules('emmigration', lang('emmigration'));
+		$this->form_validation->set_rules('total_amount', lang('total_amount'));
 
 
 		$result = $this->form_validation->run();

@@ -64,7 +64,7 @@
 				<div class="card-icon">
 					<i class="material-icons">assignment</i>
 				</div>
-				<h4 class="card-title">Recent Leads(Latest 10)</h4>
+				<h4 class="card-title">Recent Remainders</h4>
 			</div>
 			<div class="card-body">
 				{if $current_reminders}
