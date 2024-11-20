@@ -102,7 +102,7 @@
 				<div class="card-body">
 					<p>
 						<h4 class="text-center"> 
-							<i class="fa fa-exclamation"> No Delivery 	Details Found</i>
+							<i class="fa fa-exclamation"> No Reminders  Found</i>
 						</h4>
 					</p>
 				</div>
