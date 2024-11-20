@@ -135,27 +135,6 @@ class Member extends Base_Controller {
 		$this->loadView($data);
 	}
 
-	function follow_messages()
-	{ 
-
-		$user_id = log_user_id();
-		$user_name = log_user_name(); 
-		$search_arr=array();
-
-		if ($this->input->post()) {
-
-			$post_arr=$this->input->post();
-
-			$search_arr['type'] = $post_arr['type'];
-
-		}
-
-		$data['search_arr']=$search_arr;
-
-		$data['title'] = 'Follow-up Messages'; 
-		$this->loadView($data);
-	}
-
 	function reminder_settings()
 	{ 
 
@@ -163,6 +142,8 @@ class Member extends Base_Controller {
 		$user_name = log_user_name(); 
 
 		$data['current_reminders'] = $this->Member_model->getcurrentreminders($user_id);
+
+	
 
 
 		if($this->input->post() && $this->validate_reminder())
@@ -182,8 +163,8 @@ class Member extends Base_Controller {
 
 
 		}
-
-
+		
+		
 		$data['title'] = 'Reminder Settings'; 
 		$this->loadView($data);
 	}
@@ -207,27 +188,6 @@ class Member extends Base_Controller {
 		$this->form_validation->set_rules( 'message', lang( 'message' ), 'trim|required' );
 		$result = $this->form_validation->run(); 
 		return $result;
-	}
-
-
-	public function get_messages_list_ajax() {
-		if ($this->input->is_ajax_request()) {
-			$draw = $this->input->post('draw');
-			$post_arr = $this->input->post();
-			$count_without_filter = $this->Member_model->getMessageCount();
-			$count_with_filter = $this->Member_model->getAllMessageAjax($post_arr, 1);
-			$details = $this->Member_model->getAllMessageAjax( $post_arr,'');
-			// echo $this->db->last_query();
-			// die();
-			$response = array(
-				"draw" => intval($draw),
-				"iTotalRecords" => $count_without_filter,
-				"iTotalDisplayRecords" => $count_with_filter,
-				"aaData" => $details,
-			);
-
-			echo json_encode($response);
-		}
 	}
 
 }

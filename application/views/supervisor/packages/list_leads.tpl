@@ -100,6 +100,7 @@
 		</div>
 	</div> 
 </div> 
+</div>
 
 {/block}
 
@@ -207,7 +208,7 @@
 			{ data: 'email'},
 			{ data: 'immigration_status'},
 			{ data: 'enquiry_status'},
-	
+			
 			{ data: 'created_date'},
 			{ data: 'customer_username',
 			mRender: function(data, type, row) {

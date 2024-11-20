@@ -5,6 +5,26 @@
 
 <div class="row">
 
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Reminder</h5>
+					<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button> -->
+				</div>
+				<div class="modal-body">
+					<p>{$today_reminder['message']}</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
 		<div class="card card-stats">
 			<div class="card-header card-header-primary card-header-icon">
@@ -124,79 +144,111 @@
 </div>
 
 <div class="row">
-	<div class="col-lg-12 col-md-12">
+	<div class="col-md-12">
 		<div class="card">
-
 			<div class="card-header card-header-rose card-header-icon">
 				<div class="card-icon">
 					<i class="material-icons">assignment</i>
 				</div>
 				<h4 class="card-title">Recent Leads</h4>
-			</div> 
+			</div>
+			<div class="card-body">
+				{if $details}
+				<div class="table-responsive">
+					<table class="table">
+						<thead class="bg-light text-warning">
+							<tr>
+								<th class="text-center">#</th>
+								<th>Name</th>
+								<th>Enquiry Status</th>
+								<th>Immigration Status</th>
+								<th>Mobile</th>
+								<th>Email</th>
+								<th>Due Date</th>
+								<!-- <th>Action</th> -->
+								
+							</tr>
+						</thead>
+						<tbody>
 
-			<div class="card-body table-responsive">
-				{if $recent_deliveries} 
+							{foreach $details as $v} 
 
-
-				<table class="table table-hover">
-					<thead class="text-warning">						
-						
-						<th>Code</th>
-						<th>Project Name</th>
-						<th>Driver</th>
-						<th>Status</th>
-						<th>Vehicle</th>
-						<th>Created On</th>					
-						<th>Action</th>					
-					</thead>
-					<tbody> 
-						{foreach $recent_deliveries as $p}
-						<tr>
-							
-							<td>{$p.code}</td>
-							<td>{$p.project_name}</td>
-							<td>{$p.driver_name}</td>
-							<td>{ucfirst($p.status)|replace:'_':' '}</td>
-							<td>{$p.vehicle}</td>
-							<td>{$p.date_created}</td> 
-
-							<td class="td-actions text-right ">
-								{if $p.packages}
-								<a rel="tooltip" title="QRcode" onClick="printQrCode(this)" class="btn btn-default btn-link"><i class="material-icons">grid_view</i></a>
-
-								{include file="{log_user_type()}/delivery/show_qrcode.tpl"}
-								{/if}
-
-								{if $p.status == 'pending'}
-								<a rel="tooltip" title="Edit" href="javascript:edit_delivery_note('{$p.enc_id}')" class="btn btn-success btn-link"><i class="material-icons">edit</i></i></a>
-								{/if} 
-
-								<a rel="tooltip" title="View" href="{base_url(log_user_type())}/delivery/delivery_details/{$p.enc_id}" class="btn btn-info btn-link"><i class="material-icons">local_see</i></a>
-							</td>   
-							
-						</tr>
-						{/foreach}
-
-					</tbody>
-				</table>
-
+							<tr>
+								<td >{counter}</td>
+								<td>{$v.firstname}</td>
+								<td>{$v.enquiry_status}</td>
+								<td>{$v.immigration_status}</td>
+								<td>{$v.mobile}</td>
+								<td>{$v.email}</td>
+								<td>{$v.date}</td>
+								
+							</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
 				<div class="card-footer"> 
 					<div class="stats">
-						<i class="material-icons">local_offer</i><a href="{base_url()}store_keeper/delivery/delivery-list" > {lang('text_view_more')}</a>
+						<i class="material-icons">local_offer</i><a href="{base_url()}{log_user_type()}/customer/customer-list" > {lang('text_view_more')}</a>
 					</div>
 				</div>
 				{else}
-				
+				<div class="card-body">
+					<p>
+						<h4 class="text-center"> 
+							<i class="fa fa-exclamation"> No Details Found</i>
+						</h4>
+					</p>
+				</div>
 				{/if}
 			</div>
-
 		</div>
+
 	</div>
 </div>
 
 {/block}
 
 {block name="footer"}
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		var todayReminder = '{$today_reminder}';
+		var reminderId = '{$reminder_id}';
+
+
+		if (todayReminder) {
+			$('#exampleModal .modal-body p').text(todayReminder);
+			$('#exampleModal').modal('show');
+		}
+
+		$('#exampleModal .btn-secondary').click(function() {
+
+
+
+			$.ajax({
+				url: '{base_url()}login/reminder_change',
+				type: 'POST',
+				data: {
+					id: reminderId,        
+					status: 'closed'        
+				},
+				success: function(response) {
+					console.log('Status updated successfully:', response);
+
+					$('#exampleModal').modal('hide');
+				},
+				error: function(xhr, status, error) {
+					console.error('Error updating status:', error);
+				}
+			});
+		});
+	});
+</script>
+
+
 <script type="text/javascript">
 
 	function edit_delivery_note(id)

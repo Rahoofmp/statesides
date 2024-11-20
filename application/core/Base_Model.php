@@ -1189,7 +1189,7 @@ class Base_Model extends CI_Model
     function getCustomerInfoField($field_name, $customer_id){
         $field_value = NULL;
         $this->db->select($field_name);
-        $this->db->where('customer_id', $customer_id);
+        $this->db->where('id', $customer_id);
         $this->db->from('customer_info');
         $query = $this->db->get();
         foreach ($query->result() as $row) {
@@ -2012,6 +2012,7 @@ class Base_Model extends CI_Model
         $user_details = array(); 
         $this->db->select('*');
         $this->db->from("customer_info");
+        $this->db->where('status','pending');
         if($staff_id){
 
             $this->db->where("salesman_id", $staff_id);
@@ -2052,6 +2053,17 @@ class Base_Model extends CI_Model
         $result=$this->db->update("reminders");
         return $result;
     }
+
+    public function inactivateLead($id) 
+    {
+
+        $this->db->set('status','inactive');
+        $this->db->where('id',$id);
+        $result=$this->db->update("customer_info");
+        return $result;
+    }
+
+
 
 }
 

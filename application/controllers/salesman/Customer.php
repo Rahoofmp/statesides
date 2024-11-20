@@ -9,7 +9,7 @@ class Customer extends Base_Controller {
 
 	function add_customer($enc_id='')
 	{   	
-
+		
 		
 		if( $enc_id ){
 
@@ -25,6 +25,67 @@ class Customer extends Base_Controller {
 			$data['id']=$customer_id;
 			$search_arr['customer_username']=$customer_id;
 			$data['customer'] = element(0,$this->Customer_model->getAllCustomers( $search_arr ));
+
+
+		}
+		else{
+			$this->redirect('No Access', 'dashboard', FALSE);
+		}
+
+		if ($this->input->post('follow_up')) {
+
+			$post_arr=$this->input->post();
+			$enc_id=$post_arr['enc_id'];
+			$customer_id=$this->Base_model->encrypt_decrypt('decrypt',$enc_id);
+			if ($customer_id) {
+				$this->load->model('Member_model');
+				$post_arr['customer_id']=$customer_id;
+				$post_arr['user_id']=log_user_id();
+				$post_arr['type']='follow';
+				$post_arr['date']=date('Y-m-d');
+				$create_follow=$this->Member_model->createReminder($post_arr);
+
+				if ($create_follow) {
+					$this->redirect('Fowllow-up Added successfully', 'customer/add-customer/'.$enc_id, true);
+				}
+				else{
+					$this->redirect('Error On Adding Fowllow-up', 'customer/add-customer/'.$enc_id, true);
+				}
+			}
+			else
+			{
+				$this->redirect('Invalid Lead/cusomer', 'add-customer', FALSE);
+			}
+			
+		}
+
+		if ($this->input->post('inactive')) {
+
+			$post_arr=$this->input->post();
+			$enc_id=$post_arr['enc_id'];
+			$customer_id=$this->Base_model->encrypt_decrypt('decrypt',$enc_id);
+			if ($customer_id) {
+				$this->load->model('Member_model');
+				$post_arr['customer_id']=$customer_id;
+				$post_arr['user_id']=log_user_id();
+				$post_arr['type']='inactive';
+				$post_arr['date']=date('Y-m-d');
+				$post_arr['message']=$post_arr['reason'];
+				$create_follow=$this->Member_model->createReminder($post_arr);
+				$inactive_lead=$this->Base_model->inactivateLead($post_arr['customer_id']);
+
+				if ($inactive_lead) {
+					$this->redirect('Lead Inactivated Successfully', 'customer/customer-list', true);
+				}
+				else{
+					$this->redirect('inactivation Failed', 'customer/customer-list', true);
+				}
+			}
+			else
+			{
+				$this->redirect('Invalid Lead/cusomer', 'add-customer', FALSE);
+			}
+			
 		}
 
 
@@ -39,7 +100,7 @@ class Customer extends Base_Controller {
 			$config['remove_spaces'] = true;
 			$config['overwrite'] = false;
 			$config['encrypt_name'] = TRUE;
-           
+
 			if($_FILES['ss_cirtifcate']['error']!=4)
 			{
 				
@@ -57,7 +118,7 @@ class Customer extends Base_Controller {
 				}
 			}
 
-		
+
 
 			
 			if($_FILES['police_clearence']['error']!=4)
@@ -76,7 +137,7 @@ class Customer extends Base_Controller {
 				}
 			}
 
-			 
+
 			if($_FILES['job_cirtificate']['error']!=4)
 			{
 				$this->load->library('upload', $config);
@@ -93,7 +154,7 @@ class Customer extends Base_Controller {
 				}
 			}
 
-		   
+
 			if($_FILES['passport_copy']['error']!=4)
 			{
 				$this->load->library('upload', $config);
@@ -126,7 +187,7 @@ class Customer extends Base_Controller {
 
 			if (element('advance_amount',$post_arr)) {
 
-								
+
 				$post_arr['due_amount']=$post_arr['total_amount']-$post_arr['advance_amount'];
 			}
 			else{
@@ -140,7 +201,7 @@ class Customer extends Base_Controller {
 
 
 			// if ($post_arr['enquiry_status']=='customer') {
-				
+
 			// 	$this->load->model('Signup_model');
 
 			// }
@@ -157,13 +218,13 @@ class Customer extends Base_Controller {
 			}
 
 
-		
-	}
+
+		}
 		$data['title'] = 'Modify Customer';
 		$this->loadView($data);
-}
+	}
 
-		protected function validate_leads(){
+	protected function validate_leads(){
 
 		
 		$this->form_validation->set_rules('first_name', lang('first_name'), 'required');
@@ -220,7 +281,9 @@ class Customer extends Base_Controller {
 	{ 
 
 		$details = $search_arr = $post_arr=[];
-		if( $this->input->post('submit') )
+		// print_r($this->input->post());
+		// die();
+		if( $this->input->post() )
 		{
 			if( $this->input->post('submit') == 'reset')
 			{
@@ -251,6 +314,7 @@ class Customer extends Base_Controller {
 
 		}
 
+
 		$data['search_arr'] = $search_arr; 
 		$data['details'] = $details; 
 
@@ -265,10 +329,10 @@ class Customer extends Base_Controller {
 			$count_without_filter = $this->Customer_model->getOrderCount();
 			$count_with_filter = $this->Customer_model->getAllCustomersAjax($post_arr, 1);
 			$post_arr['salesman_id'] = log_user_id();
-		
+
 			$details = $this->Customer_model->getAllCustomersAjax( $post_arr,'');
 
-		
+
 			// echo $this->db->last_query();
 			// die();
 			$response = array(

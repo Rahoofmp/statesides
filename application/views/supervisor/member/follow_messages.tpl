@@ -42,10 +42,10 @@
 							
 							<div class="col-md-2" style="max-width: 237px;">
 								<div class="form-group">
-									<select class="selectpicker" data-size="7" data-style="select-with-transition" title="ALL" name="enquiry" id="enquiry" >
+									<select class="selectpicker" data-size="7" data-style="select-with-transition" title="ALL" name="type" id="type" >
 										<option value='all'>--ALL--</option>
-										<option value="customer" {if $search_arr['enquiry']=='customer'} selected {/if}>Customer</option>
-										<option value="lead" {if $search_arr['enquiry']=='lead'} selected {/if}>Lead</option>
+										<option value="follow" {if $search_arr['type']=='follow'} selected {/if}>Follow-up</option>
+										<option value="inactive" {if $search_arr['type']=='inactive'} selected {/if}>Inactive</option>
 									</select>
 								</div>
 							</div>
@@ -94,14 +94,12 @@
 						<thead class="bg-light text-warning">
 							<tr>
 								<th>#</th> 
-								<th>{lang('fullname')}</th>
+								<th>{lang('Name')}</th>
 								
-								<th>Mobile</th>
-								<th>Email</th>
-
-								<th>Emigration</th>
-								<th>Enquiry</th>  
-								<th>Created date</th>  
+								<th>Type</th>
+								<th>Message/Reason</th>
+								<th>Added by</th>  
+								<th>date</th>  
 
 								<th class="text-center">{lang('action')}</th>   
 							</tr>
@@ -202,14 +200,14 @@
 			}],
 
 			'ajax': {
-				'url':'{base_url()}salesman/customer/get_customer_list_ajax',
+				'url':'{base_url()}supervisor/member/get_messages_list_ajax',
 				"type": "POST", 
 				"data" : {
 					'customer_username' : '{$search_arr['customer_username']}',
 					// 'name' : '{$search_arr['name']}',
 					// 'email' : '{$search_arr['email']}',
 					// 'mobile' : '{$search_arr['mobile']}',
-					'enquiry' : '{$search_arr['enquiry']}',
+					'type' : '{$search_arr['type']}',
 				}
 
 			},
@@ -218,13 +216,13 @@
 
 
 			{ data: 'index'},
-			{ data: 'fullname'},
-			{ data: 'mobile'},
-			{ data: 'email'},
-			{ data: 'immigration_status'},
-			{ data: 'enquiry_status'},
+			{ data: 'first_name'},
+			{ data: 'type'},
+			{ data: 'message'},
+			
+			{ data: 'added_by'},
 
-			{ data: 'created_date'},
+			{ data: 'date'},
 			{ data: 'customer_username',
 			mRender: function(data, type, row) {
 				var link = '<a href = "add-customer/' + row.enc_customerid +'" class="btn-sm btn btn-info btn-link" data-placement="top" title ="Edit" target="_blank"><i class="material-icons" aria-hidden="true">person</i></a>';

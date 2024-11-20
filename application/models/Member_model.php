@@ -927,15 +927,15 @@ class Member_model extends Base_model {
 
     public function EmailDetails($user_name)
     {
-       $details='';
-       $this->db->select('email');
-       $this->db->where('user_name' , $user_name);
-       $this->db->from('supplier_info');
-       $this->db->where("product_name LIKE '%{$filter_params['search_products']}%'");
+     $details='';
+     $this->db->select('email');
+     $this->db->where('user_name' , $user_name);
+     $this->db->from('supplier_info');
+     $this->db->where("product_name LIKE '%{$filter_params['search_products']}%'");
 
-       $res=$this->db->get();
-       foreach($res->result_array() as $row)
-       {
+     $res=$this->db->get();
+     foreach($res->result_array() as $row)
+     {
         $details=$row['email'];
     }
     return $details;
@@ -944,36 +944,37 @@ class Member_model extends Base_model {
 
 public function getcurrentreminders($user_id)
 {
-   $details=array();
-   $this->db->select('*');
-   $this->db->where('user_id' , $user_id);
-   $this->db->where('status' , 'pending');
-   $this->db->from('reminders');
-   $this->db->order_by('date ASC');
-   $this->db->limit('10');
-   $res=$this->db->get();
-   foreach($res->result_array() as $row)
-   {
-     $details[]=$row;
- }
- return $details;
+ $details=array();
+ $this->db->select('*');
+ $this->db->where('user_id' , $user_id);
+ $this->db->where('status' , 'pending');
+ $this->db->from('reminders');
+ $this->db->order_by('date ASC');
+ $this->db->limit('10');
+ $res=$this->db->get();
+ foreach($res->result_array() as $row)
+ {
+   $details[]=$row;
+}
+return $details;
 
 }
 
 public function getTodayreminders($user_id,$date)
 {
-   $details=array();
-   $this->db->select('*');
-   $this->db->where('user_id' , $user_id);
-   $this->db->where('date' , $date);
-   $this->db->where('status' , 'pending');
-   $this->db->from('reminders');
-   $res=$this->db->get();
-   foreach($res->result_array() as $row)
-   {
-     $details=$row;
- }
- return $details;
+ $details=array();
+ $this->db->select('*');
+ $this->db->where('user_id' , $user_id);
+ $this->db->where('date' , $date);
+ $this->db->where('status' , 'pending');
+ $this->db->where('type' , 'reminder');
+ $this->db->from('reminders');
+ $res=$this->db->get();
+ foreach($res->result_array() as $row)
+ {
+   $details=$row;
+}
+return $details;
 
 }
 
@@ -984,8 +985,71 @@ public function createReminder($post_arr){
     $this->db->set('message' , $post_arr['message']);
     $this->db->set('date' , $post_arr['date']);
     $this->db->set('created_date' , $date);
+    if (element('customer_id',$post_arr)) {
+        $this->db->set('source_user' , $post_arr['customer_id']);
+        $this->db->set('type' , $post_arr['type']);
+
+    }
     $res=$this->db->insert('reminders');
     return $res;
+}
+
+public function getMessageCount()
+{
+    $this->db->select('*');
+    $this->db->from('reminders');
+    $this->db->where('type !=','reminder');
+    $count = $this->db->count_all_results();
+    return $count;
+}
+
+public function getAllMessageAjax($search_arr =[],$count = 0) 
+{
+ $row = $search_arr['start'];
+ $rowperpage = $search_arr['length'];
+
+ $this->db->select('ms.*');
+ $searchValue = $search_arr['search']['value']; 
+//  if('' != $searchValue) { 
+//     $where = "(ms.message LIKE '%$searchValue%' 
+//     OR ms.date LIKE '%$searchValue%'
+//     OR ms.type LIKE '%$searchValue%')"; 
+//     $this->db->where($where);
+// }
+
+if( $type =  element('type', $search_arr) ){
+    $this->db->like('ms.type', $type);
+}
+
+
+$this->db->from('reminders ms')
+->join('customer_info ci', 'ms.source_user = ci.id', 'left')
+->order_by( 'ms.created_date', 'DESC' )
+->where( 'ms.status', 'pending' )
+->where( 'ms.type !=', 'reminder' );
+
+
+if($count) {
+    return $this->db->count_all_results();
+}
+$this->db->limit($rowperpage, $row);
+$query = $this->db->get(); 
+
+
+$details = [] ;
+$i=1;
+foreach ($query->result_array() as $row) {
+    $row['index'] =$search_arr['start']+$i;
+    $row['first_name'] =$this->Base_model->getCustomerInfoField('firstname',$row['source_user']);
+    $row['added_by'] =$this->Base_model->getUserName($row['user_id']);
+    $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
+    $row['date'] = date('Y-m-d',strtotime($row['date']));
+    $details[] = $row;
+    $i++;
+}
+
+return $details;
+
 }
 
 
