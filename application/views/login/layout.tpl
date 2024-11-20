@@ -74,7 +74,7 @@
     <!-- End Navbar -->
     <div class="wrapper wrapper-full-page">
 
-        <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('{assets_url()}bootv4/img/login.jpg'); background-size: cover; background-position: top center;"> 
+        <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('{assets_url()}bootv4/img/login5.jpg'); background-size: cover; background-position: top center;"> 
             <div class="container">
                 {include file="layout/flash_message.tpl"}
                 {block name=body}{/block}
