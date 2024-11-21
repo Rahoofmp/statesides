@@ -18,7 +18,12 @@ class Dashboard extends Base_Controller {
 		$data['staff_count'] = $this->Dashboard_model->getUserCount();
 		$data['total_leads'] =$this->Dashboard_model->getCustomerinfo('lead');
 		$data['customers'] =$this->Dashboard_model->getCustomerinfo('customer');
+		$data['staffs'] =$this->Dashboard_model->getUserCount();
+		$data['immigration_approved'] =$this->Dashboard_model->getImmigrationCount();
+		$data['advance_customers'] =$this->Dashboard_model->getAdvanceCustomers();
+		
 
+		
 		// $data['admin']	=$this->dashboard_model->getUserCount('Customer');
 		$details = $this->Base_model->getEnquiryDetails();
 		if ($details) {

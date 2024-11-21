@@ -22,6 +22,7 @@ class Dashboard_model extends Base_model {
 		$count = $this->db->count_all_results();
 		return $count;
 	}
+	
 	public function getTotalProjectCount($user_id='',$status='',$customer_id='')
 	{
 		$this->db->select('id');
@@ -40,7 +41,23 @@ class Dashboard_model extends Base_model {
 		return $res;
 
 	}
-
+		public function getAdvanceCustomers() {
+			$this->db->select(); 
+			$this->db->from('customer_info'); 
+			$this->db->where('advance !=', 500); 
+			$res = $this->db->get()->num_rows(); 
+			return $res; 
+		}
+		
+	
+	public function getImmigrationCount() {
+		$this->db->select();
+		$this->db->from('customer_info');
+		$this->db->where('immigration_status', 'approved'); 
+		$res = $this->db->get()->num_rows(); 
+		return $res; 
+	}
+	
 	public function getTotalJobOrderCount($order_id='',$status='')
 	{
 		$this->db->select('id');
