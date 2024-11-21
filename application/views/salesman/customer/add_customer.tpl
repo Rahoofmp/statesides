@@ -156,6 +156,27 @@
 					<div class="col-sm-11">
 						<div class="form-group">
 							<label class="bmd-label-floating">
+								Source User
+							</label>
+							<input type="text" class="form-control" id="source_user" name="source_user" disabled=""  value="{$customer['source_user']}"  required="true" autocomplete="Off">
+							{form_error("source_user")}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="col-lg-12">
+				<div class="input-group form-control-lg">
+					<div class="input-group-prepend">
+						<span class="input-group-text"><i class="material-icons">person</i>
+						</span>
+					</div>
+
+					<div class="col-sm-11">
+						<div class="form-group">
+							<label class="bmd-label-floating">
 								First Name
 							</label>
 							<input type="text" class="form-control" id="first_name" name="first_name"  value="{$customer['firstname']}"  required="true" autocomplete="Off">

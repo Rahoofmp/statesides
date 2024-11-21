@@ -191,6 +191,7 @@ class Customer extends Base_Controller {
 		if ($this->input->is_ajax_request()) {
 			$draw = $this->input->post('draw');
 			$post_arr = $this->input->post();
+			
 			$count_without_filter = $this->Customer_model->getOrderCount();
 			$count_with_filter = $this->Customer_model->getAllCustomersAjax($post_arr, 1);
 			$details = $this->Customer_model->getAllCustomersAjax( $post_arr,'');

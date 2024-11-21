@@ -296,6 +296,12 @@ class Customer extends Base_Controller {
 					$post_arr['customer_username'] = '';
 				} 
 
+				if(element('source_id',$post_arr)){
+					$search_arr['source_user'] =$this->Base_model->getSourceName($post_arr['source_id']);
+
+
+				} 
+
 				if(!element('salesman_id',$post_arr)){
 					$post_arr['salesman_id'] = '';
 				}else{
@@ -306,6 +312,7 @@ class Customer extends Base_Controller {
 				
 				// $search_arr['name'] = $post_arr['name'];
 				$search_arr['enquiry'] = $post_arr['enquiry'];
+				$search_arr['source_id'] = $post_arr['source_id'];
 				$search_arr['customer_username'] = $post_arr['customer_username'];
 				$search_arr['salesman_id'] = $post_arr['salesman_id'];
 
@@ -318,7 +325,7 @@ class Customer extends Base_Controller {
 		$data['search_arr'] = $search_arr; 
 		$data['details'] = $details; 
 
-		// print_r($data['details']);die();
+		// print_r($data);die();
 		$data['title'] = lang('customers_list'); 
 		$this->loadView($data);
 	}

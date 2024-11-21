@@ -20,51 +20,71 @@
 		text-align: left !important;
 	}
 </style>
-<div class="row">
-	<div class="col-md-12">
-		<!-- <div class="card"> 
-			<div class="card-content collapse show">
-				<div class="card-body">
-					{form_open('','class="form" ')}
+
+<div class="row "> 
+	<div class="col-sm-12 hidden-print"> 
+		<div class="card"> 
+			<div class="card-content">
+				<div class="card-body"> 
+					{form_open('','')}
 					<div class="form-body">
 						<div class="row">
-							<div class="col-sm-4">
 
+						
+
+							<div class="col-md-3">
 								<div class="form-group">
-							
+									<select id="source" name="source_id" class="source_ajax form-control" >
 
-						<select id="type" name="type" class="selectpicker" data-style="select-with-transition" title="Type" >
-
-						<option value="customer" }>Customer</option>
-						<option value="lead" }>Lead</option>
-							
-
-						</select> 
-								
+										{if $post_arr['source_id']}
+										<option value="{$post_arr['source_id']}">{$post_arr['source_user']}</option>
+										{/if} 
+									</select>  
+								</div> 
 							</div> 
 							
 							
+							<div class="col-md-2" style="max-width: 237px;">
+								<div class="form-group">
+									<select class="selectpicker" data-size="7" data-style="select-with-transition" title="ALL" name="enquiry" id="enquiry" >
+										<option value='all'>--ALL--</option>
+										<option value="customer" {if $search_arr['enquiry']=='customer'} selected {/if}>Customer</option>
+										<option value="lead" {if $search_arr['enquiry']=='lead'} selected {/if}>Lead</option>
+									</select>
+								</div>
+							</div>
 
+
+							<!-- <div class="col-md-3">
+								<div class="form-group">
+									<label for="issueinput3">From Date</label>
+									<input type="text"  class="form-control datepicker" name="start_date" value="{$post_arr['start_date']}">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="issueinput3">To Date</label>
+									<input type="text"  class="form-control datepicker" name="end_date" value="{$post_arr['end_date']}">
+								</div>
+							</div> -->
+							<div class="col-md-4"> 
+								<button type="submit" class="btn btn-primary" name="submit" value="filter">
+									<i class="fa fa-filter"></i> {lang('button_filter')}
+								</button>
+								<button type="submit" class="btn btn-warning mr-1" name="submit" value="reset">
+									<i class="fa fa-refresh"></i>  {lang('button_reset')}
+								</button> 
+							</div>
 						</div>
 					</div>
-						<div class="row mt-2"> 
-							<div class="col-sm-3"> 
-								<button type="submit" class="btn btn-primary col-sm-6" name="submit" value="filter">
-									<i class="fa fa-filter"></i> Filter
-								</button>
-							</div>
-							<div class="col-sm-3"> 
-								<button type="submit" class="btn btn-warning col-sm-6  pull-right" name="submit" value="reset">
-									<i class="fa fa-refresh"></i> Reset
-								</button>  
-							</div>
-						</div>
-					
 					{form_close()}
 				</div>
 			</div>
-		</div>
-	</div> -->
+		</div> 
+	</div> 
+</div>
+
+<div class="row">
 	<div class="col-md-12">
 		<div class="card"> 
 			<div class="card-header card-header-rose card-header-icon">
@@ -80,9 +100,10 @@
 							<tr>
 								<th>#</th> 
 								<th>{lang('fullname')}</th>
-								
+
 								<th>Mobile</th>
 								<th>Email</th>
+								<th>Source</th>
 
 								<th>Emigration</th>
 								<th>Enquiry</th>  
@@ -99,7 +120,7 @@
 			<ul class="pagination start-links"></ul> 
 		</div>
 	</div> 
-</div> 
+
 </div>
 
 {/block}
@@ -122,6 +143,26 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){ 
+
+		$('.source_ajax').select2({
+
+			placeholder: 'Select a Source',
+			ajax: {
+				url:'{base_url()}admin/autocomplete/source_ajax',
+
+				type: 'post',
+				dataType: 'json',
+				delay:250,
+				processResults: function(data) {
+					return {
+						results: data
+					};
+				}
+			},
+
+		});
+
+
 
 		$('.salesman_ajax').select2({
 
@@ -150,6 +191,8 @@
 			},
 
 		});
+
+
 		$('.customer_ajax').select2({
 
 			placeholder: 'Select a customer',
@@ -195,6 +238,8 @@
 					'name' : '{$search_arr['name']}',
 					'email' : '{$search_arr['email']}',
 					'mobile' : '{$search_arr['mobile']}',
+					'enquiry' : '{$search_arr['enquiry']}',
+					'source_id' : '{$post_arr['source_id']}',
 				}
 
 			},
@@ -206,6 +251,7 @@
 			{ data: 'fullname'},
 			{ data: 'mobile'},
 			{ data: 'email'},
+			{ data: 'source_name'},
 			{ data: 'immigration_status'},
 			{ data: 'enquiry_status'},
 			

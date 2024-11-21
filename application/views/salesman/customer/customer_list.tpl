@@ -38,6 +38,18 @@
 									</select> 
 								</div> 
 							</div> -->
+
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<select id="source" name="source_id" class="source_ajax form-control" >
+
+										{if $search_arr['source_id']}
+										<option value="{$search_arr['source_id']}">{$search_arr['source_user']}</option>
+										{/if} 
+									</select>  
+								</div> 
+							</div> 
 							
 							
 							<div class="col-md-2" style="max-width: 237px;">
@@ -98,7 +110,7 @@
 								
 								<th>Mobile</th>
 								<th>Email</th>
-
+								<th>Source</th>
 								<th>Emigration</th>
 								<th>Enquiry</th>  
 								<th>Created date</th>  
@@ -137,38 +149,11 @@
 
 	$(document).ready(function(){ 
 
-		$('.salesman_ajax').select2({
+		$('.source_ajax').select2({
 
-			placeholder: 'Select a Salesman',
+			placeholder: 'Select a Source',
 			ajax: {
-				url:'{base_url()}{log_user_type()}/autocomplete/salesman_ajax',
-
-				type: 'post',
-				dataType: 'json',
-				delay:250,
-				data: function (params) {
-
-					var searchString = $( "select#customer_id option:checked" ).val() ;
-
-					var query = {
-						customer_id: searchString,
-						type: 'public'
-					}
-					return query;
-				},
-				processResults: function(data) {
-					return {
-						results: data
-					};
-				}
-			},
-
-		});
-		$('.customer_ajax').select2({
-
-			placeholder: 'Select a customer',
-			ajax: {
-				url:'{base_url()}salesman/autocomplete/customer_ajax',
+				url:'{base_url()}admin/autocomplete/source_ajax',
 
 				type: 'post',
 				dataType: 'json',
@@ -181,6 +166,51 @@
 			},
 
 		});
+
+		// $('.salesman_ajax').select2({
+
+		// 	placeholder: 'Select a Salesman',
+		// 	ajax: {
+		// 		url:'{base_url()}{log_user_type()}/autocomplete/salesman_ajax',
+
+		// 		type: 'post',
+		// 		dataType: 'json',
+		// 		delay:250,
+		// 		data: function (params) {
+
+		// 			var searchString = $( "select#customer_id option:checked" ).val() ;
+
+		// 			var query = {
+		// 				customer_id: searchString,
+		// 				type: 'public'
+		// 			}
+		// 			return query;
+		// 		},
+		// 		processResults: function(data) {
+		// 			return {
+		// 				results: data
+		// 			};
+		// 		}
+		// 	},
+
+		// });
+		// $('.customer_ajax').select2({
+
+		// 	placeholder: 'Select a customer',
+		// 	ajax: {
+		// 		url:'{base_url()}salesman/autocomplete/customer_ajax',
+
+		// 		type: 'post',
+		// 		dataType: 'json',
+		// 		delay:250,
+		// 		processResults: function(data) {
+		// 			return {
+		// 				results: data
+		// 			};
+		// 		}
+		// 	},
+
+		// });
 
 		var order = $('#customer_list').DataTable({
 
@@ -210,6 +240,7 @@
 					// 'email' : '{$search_arr['email']}',
 					// 'mobile' : '{$search_arr['mobile']}',
 					'enquiry' : '{$search_arr['enquiry']}',
+					'source_id' : '{$search_arr['source_id']}',
 				}
 
 			},
@@ -221,6 +252,7 @@
 			{ data: 'fullname'},
 			{ data: 'mobile'},
 			{ data: 'email'},
+			{ data: 'source_name'},
 			{ data: 'immigration_status'},
 			{ data: 'enquiry_status'},
 

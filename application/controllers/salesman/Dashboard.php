@@ -28,6 +28,7 @@ class Dashboard extends Base_Controller {
 		}
 
 		$details = $this->Dashboard_model->getEnquiryDetails();
+		
 		$total_count = $this->Dashboard_model->getAllEnquiryDetailsCount();
 		if ($details) {
 			foreach ($details as $key => $value) {

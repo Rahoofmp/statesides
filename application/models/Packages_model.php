@@ -684,11 +684,42 @@ class Packages_model extends Base_model {
 			
 			$this->db->set('dob_certificate',$post_arr['dob_certificate']);
 		}
+
 		
-		$result = $this->db->insert('customer_info');
+		
+		$this->db->insert('customer_info');
+		$result=$this->db->insert_id();
+		
 
 		return $result;
 		
+	}
+
+	public function insertSource($post_arr)
+	{
+		$date =date('Y-m-d');
+		$this->db->set('source_name',$post_arr['source_user']);
+		$this->db->set('date',$date);
+		$this->db->insert('source_details');
+		$result=$this->db->insert_id();
+		if ($result) {
+			$post_arr['source_id']=$result;
+			$this->updateCustomer($post_arr);
+		}
+		return $result;
+
+	}
+
+	public function updateCustomer($post_arr){
+
+
+		$this->db->set('source_id',$post_arr['source_id']);
+		$this->db->where('id',$post_arr['insert_id']);
+		$res=$this->db->update('customer_info');
+		
+
+
+		return $res;
 	}
 
 }

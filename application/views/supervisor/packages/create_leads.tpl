@@ -25,7 +25,7 @@
 								</span>
 							</div>
 
-								<div class="col-sm-11">
+							<div class="col-sm-11">
 								<div class="form-group">
 									<label class="bmd-label-floating">
 										Sales Man
@@ -40,7 +40,7 @@
 									{form_error("sales_man")}
 								</div>
 							</div>
-						
+
 						</div>
 					</div>
 					<div class="col-lg-12">
@@ -50,7 +50,27 @@
 								</span>
 							</div>
 
-								<div class="col-sm-11">
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="bmd-label-floating">
+										Source User
+									</label>
+									<input type="text" class="form-control" id="source_user" name="source_user" {if $id} value="{$project['source_user']}" {else} value="{set_value('source_user')}" {/if} required autocomplete="Off">
+									{form_error("source_user")}
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">person</i>
+								</span>
+							</div>
+
+							<div class="col-sm-11">
 								<div class="form-group">
 									<label class="bmd-label-floating">
 										First Name
@@ -59,7 +79,7 @@
 									{form_error("first_name")}
 								</div>
 							</div>
-						
+
 						</div>
 					</div>
 
@@ -70,7 +90,7 @@
 								</span>
 							</div>
 
-								<div class="col-sm-11">
+							<div class="col-sm-11">
 								<div class="form-group">
 									<label class="bmd-label-floating">
 										Last Name
@@ -79,10 +99,10 @@
 									{form_error("last_name")}
 								</div>
 							</div>
-						
+
 						</div>
 					</div>
-					 <div class="col-lg-12">
+					<div class="col-lg-12">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="material-icons">call</i>
@@ -122,7 +142,7 @@
 								</span>
 							</div>
 
-								<div class="col-sm-11">
+							<div class="col-sm-11">
 								<div class="form-group">
 									<label class="bmd-label-floating">
 										Age
@@ -131,12 +151,12 @@
 									{form_error("last_name")}
 								</div>
 							</div>
-						
+
 						</div>
 					</div>
 					
 
-				
+
 				</div>
 
 				<div class="row">
@@ -159,7 +179,7 @@
 							</div>
 						</div>
 					</div>
-				
+
 
 					<div class="col-lg-6">
 						<div class="input-group form-control-lg">
@@ -198,7 +218,7 @@
 					</div>
 
 
-						
+
 					<div class="col-lg-6">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
@@ -236,7 +256,7 @@
 					</div>
 
 					<div class="col-lg-6">
-							<div class="input-group form-control-lg">
+						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="material-icons">list</i>
 								</span>
@@ -285,107 +305,107 @@
 				</div>
 			</div>
 
-                  <div class="row">
-	                <div class=" col-md-3 px-5">
-						
-						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
-							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
-							</div>
-							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
-							<div>
-								<span class="btn btn-round btn-info btn-file">
-									<span class="fileinput-new">SSLC-Cirtificate</span>
-									<span class="fileinput-exists">{lang('change')}</span>
-									<input type="file" name="ss_cirtifcate" />
-								</span>
-								<br />
-								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
-							</div>
+			<div class="row">
+				<div class=" col-md-3 px-5">
+
+					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+						<div class="fileinput-new thumbnail img-circle">
+							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+						</div>
+						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+						<div>
+							<span class="btn btn-round btn-info btn-file">
+								<span class="fileinput-new">SSLC-Cirtificate</span>
+								<span class="fileinput-exists">{lang('change')}</span>
+								<input type="file" name="ss_cirtifcate" />
+							</span>
+							<br />
+							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
 					</div>
+				</div>
 
 
-				    <div class="col-md-3">
-						
-						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
-							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
-							</div>
-							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
-							<div>
-								<span class="btn btn-round btn-info btn-file">
-									<span class="fileinput-new">Police Clearence</span>
-									<span class="fileinput-exists">{lang('change')}</span>
-									<input type="file" name="police_clearence" />
-								</span>
-								<br />
-								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
-							</div>
+				<div class="col-md-3">
+
+					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+						<div class="fileinput-new thumbnail img-circle">
+							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+						</div>
+						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+						<div>
+							<span class="btn btn-round btn-info btn-file">
+								<span class="fileinput-new">Police Clearence</span>
+								<span class="fileinput-exists">{lang('change')}</span>
+								<input type="file" name="police_clearence" />
+							</span>
+							<br />
+							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
 					</div>
+				</div>
 
-					 <div class="col-md-3">
-						
-						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
-							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
-							</div>
-							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
-							<div>
-								<span class="btn btn-round btn-info btn-file">
-									<span class="fileinput-new">Job Cirtificate</span>
-									<span class="fileinput-exists">{lang('change')}</span>
-									<input type="file" name="job_cirtificate" />
-								</span>
-								<br />
-								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
-							</div>
+				<div class="col-md-3">
+
+					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+						<div class="fileinput-new thumbnail img-circle">
+							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+						</div>
+						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+						<div>
+							<span class="btn btn-round btn-info btn-file">
+								<span class="fileinput-new">Job Cirtificate</span>
+								<span class="fileinput-exists">{lang('change')}</span>
+								<input type="file" name="job_cirtificate" />
+							</span>
+							<br />
+							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
 					</div>
+				</div>
 
-					 <div class="col-md-3">
-						
-						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
-							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
-							</div>
-							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
-							<div>
-								<span class="btn btn-round btn-info btn-file">
-									<span class="fileinput-new">Passport Copy</span>
-									<span class="fileinput-exists">{lang('change')}</span>
-									<input type="file" name="passport_copy" />
-								</span>
-								<br />
-								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
-							</div>
+				<div class="col-md-3">
+
+					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+						<div class="fileinput-new thumbnail img-circle">
+							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+						</div>
+						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+						<div>
+							<span class="btn btn-round btn-info btn-file">
+								<span class="fileinput-new">Passport Copy</span>
+								<span class="fileinput-exists">{lang('change')}</span>
+								<input type="file" name="passport_copy" />
+							</span>
+							<br />
+							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
 					</div>
+				</div>
 
-						 <div class="col-md-3 px-5">
-						
-						<div class="fileinput fileinput-new text-center" data-provides="fileinput">
-							<div class="fileinput-new thumbnail img-circle">
-								<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
-							</div>
-							<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
-							<div>
-								<span class="btn btn-round btn-info btn-file">
-									<span class="fileinput-new">DOB Cirtificate</span>
-									<span class="fileinput-exists">{lang('change')}</span>
-									<input type="file" name="dob_certificate" />
-								</span>
-								<br />
-								<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
-							</div>
+				<div class="col-md-3 px-5">
+
+					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+						<div class="fileinput-new thumbnail img-circle">
+							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
+						</div>
+						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
+						<div>
+							<span class="btn btn-round btn-info btn-file">
+								<span class="fileinput-new">DOB Cirtificate</span>
+								<span class="fileinput-exists">{lang('change')}</span>
+								<input type="file" name="dob_certificate" />
+							</span>
+							<br />
+							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
 					</div>
+				</div>
 
 
-                   </div>
+			</div>
 
-				   
+
 
 
 
@@ -443,98 +463,98 @@
 <script>
 
 
-	 (function () {
-        'use strict'
+	(function () {
+		'use strict'
 
-        var forms = document.querySelectorAll('.needs-validation')
-        Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
+		var forms = document.querySelectorAll('.needs-validation')
+		Array.prototype.slice.call(forms)
+		.forEach(function (form) {
+			form.addEventListener('submit', function (event) {
+				if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				}
 
-                form.classList.add('was-validated')
-            }, false)
-        })
-    })()
-    
+				form.classList.add('was-validated')
+			}, false)
+		})
+	})()
+
 	$(document).ready(function() { 
 		md.initFormExtendedDatetimepickers();
 	});
 </script>
 {* <script
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtmmOPB_Ngkkmq8u_bZcpkp-w_1gvpslk&callback=initMap&libraries=&v=weekly"
-async
-></script> 
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtmmOPB_Ngkkmq8u_bZcpkp-w_1gvpslk&callback=initMap&libraries=&v=weekly"
+	async
+	></script> 
 
-<script type="text/javascript">
-
-
+	<script type="text/javascript">
 
 
-	function initMap() {
-		const myLatlng = { lat: 25.20388676754449, lng: 55.26983662798098 };
-		const map = new google.maps.Map(document.getElementById("map"), {
-			zoom: 10,
-			center: myLatlng,
-		});
 
-		let infoWindow = new google.maps.InfoWindow({
-			content: "Click the map to get Lat/Lng!",
-			position: myLatlng,
-		});
-		infoWindow.open(map);
 
-		map.addListener("click", (mapsMouseEvent) => {
-			infoWindow.close();
-			infoWindow = new google.maps.InfoWindow({
-				position: mapsMouseEvent.latLng,
+		function initMap() {
+			const myLatlng = { lat: 25.20388676754449, lng: 55.26983662798098 };
+			const map = new google.maps.Map(document.getElementById("map"), {
+				zoom: 10,
+				center: myLatlng,
 			});
-			infoWindow.setContent(
-				JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2),
-				console.log(mapsMouseEvent),
-				$('#location').val(mapsMouseEvent.latLng)
-				);
+
+			let infoWindow = new google.maps.InfoWindow({
+				content: "Click the map to get Lat/Lng!",
+				position: myLatlng,
+			});
 			infoWindow.open(map);
-		});
-	}
 
-	$("#sort_order").keypress(function(e)
-	{
-		var msg20 = "{lang('digits_only')}";
-		if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57))
-		{
-			$("#error_sort_order").html(msg20).show().fadeOut(2200, 0);
-			return false;
+			map.addListener("click", (mapsMouseEvent) => {
+				infoWindow.close();
+				infoWindow = new google.maps.InfoWindow({
+					position: mapsMouseEvent.latLng,
+				});
+				infoWindow.setContent(
+					JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2),
+					console.log(mapsMouseEvent),
+					$('#location').val(mapsMouseEvent.latLng)
+					);
+				infoWindow.open(map);
+			});
 		}
-	});  
-	$(document).ready(function() {
-		setFormValidation('.ValidateForm'); 
-	});
-</script> *}
-<script type="text/javascript">
 
-	$(document).ready(function(){ 
-
-		$('.salesman_ajax').select2({
-
-			placeholder: 'Select  Salesman',
-			ajax: {
-				url:'{base_url()}admin/autocomplete/salesman_ajax',
-
-				type: 'post',
-				dataType: 'json',
-				delay:250,
-				processResults: function(data) {
-					return {
-						results: data
-					};
-				}
-			},
-
+		$("#sort_order").keypress(function(e)
+		{
+			var msg20 = "{lang('digits_only')}";
+			if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57))
+			{
+				$("#error_sort_order").html(msg20).show().fadeOut(2200, 0);
+				return false;
+			}
+		});  
+		$(document).ready(function() {
+			setFormValidation('.ValidateForm'); 
 		});
-	});
-</script>
-{/block}
+	</script> *}
+	<script type="text/javascript">
+
+		$(document).ready(function(){ 
+
+			$('.salesman_ajax').select2({
+
+				placeholder: 'Select  Salesman',
+				ajax: {
+					url:'{base_url()}admin/autocomplete/salesman_ajax',
+
+					type: 'post',
+					dataType: 'json',
+					delay:250,
+					processResults: function(data) {
+						return {
+							results: data
+						};
+					}
+				},
+
+			});
+		});
+	</script>
+	{/block}

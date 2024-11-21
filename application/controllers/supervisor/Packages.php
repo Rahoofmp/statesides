@@ -125,7 +125,7 @@ class Packages extends Base_Controller {
 				
 			}
 
-			
+			$this->Packages_model->begin();
 
 			$create_lead =  $this->Packages_model->createLeads($post_arr);
 
@@ -133,6 +133,12 @@ class Packages extends Base_Controller {
 
 			if($create_lead)
 			{
+				if (element('source_user',$post_arr)) {
+					$post_arr['insert_id']=$create_lead;
+					$post_arr['source_id']=$this->Packages_model->insertSource($post_arr);
+					$this->Packages_model->commit();
+				}
+
 				$this->redirect( 'Lead created successfully', "packages/create-leads", true );
 			}
 			else{
@@ -158,8 +164,18 @@ class Packages extends Base_Controller {
 
 			}elseif( $this->input->post('submit') == 'filter'){
 				$post_arr = $this->input->post();
+				// print_r($post_arr);
+				// die();
+
+
 				if(!element('customer_username',$post_arr)){
 					$post_arr['customer_username'] = '';
+				}
+
+				if(element('source_id',$post_arr)){
+					$post_arr['source_user'] =$this->Base_model->getSourceName($post_arr['source_id']);
+
+
 				} 
 
 				if(!element('salesman_id',$post_arr)){
@@ -170,10 +186,12 @@ class Packages extends Base_Controller {
 
 				}
 				
-				$search_arr['name'] = $post_arr['name'];
-				$search_arr['email'] = $post_arr['email'];
-				$search_arr['customer_username'] = $post_arr['customer_username'];
-				$search_arr['salesman_id'] = $post_arr['salesman_id'];
+				$search_arr['enquiry'] = $post_arr['enquiry'];
+
+				// $search_arr['name'] = $post_arr['name'];
+				// $search_arr['email'] = $post_arr['email'];
+				// $search_arr['customer_username'] = $post_arr['customer_username'];
+				// $search_arr['salesman_id'] = $post_arr['salesman_id'];
 
 			}
 			// $details = $this->Customer_model->getAllCustomers( $search_arr );
@@ -181,9 +199,10 @@ class Packages extends Base_Controller {
 		}
 
 		$data['search_arr'] = $search_arr; 
+		$data['post_arr'] = $post_arr; 
 		// $data['details'] = $details; 
 
-		// print_r($data['details']);die();
+		// print_r($data);die();
 		$data['title'] = 'Leads Details'; 
 		$this->loadView($data);
 	}
@@ -225,7 +244,7 @@ class Packages extends Base_Controller {
 			$config['remove_spaces'] = true;
 			$config['overwrite'] = false;
 			$config['encrypt_name'] = TRUE;
-           
+
 			if($_FILES['ss_cirtifcate']['error']!=4)
 			{
 				
@@ -243,7 +262,7 @@ class Packages extends Base_Controller {
 				}
 			}
 
-		
+
 
 			
 			if($_FILES['police_clearence']['error']!=4)
@@ -262,7 +281,7 @@ class Packages extends Base_Controller {
 				}
 			}
 
-			 
+
 			if($_FILES['job_cirtificate']['error']!=4)
 			{
 				$this->load->library('upload', $config);
@@ -279,7 +298,7 @@ class Packages extends Base_Controller {
 				}
 			}
 
-		   
+
 			if($_FILES['passport_copy']['error']!=4)
 			{
 				$this->load->library('upload', $config);
@@ -312,7 +331,7 @@ class Packages extends Base_Controller {
 
 			if (element('advance_amount',$post_arr)) {
 
-								
+
 				$post_arr['due_amount']=$post_arr['total_amount']-$post_arr['advance_amount'];
 			}
 			else{
@@ -334,8 +353,8 @@ class Packages extends Base_Controller {
 			}
 
 
-		
-	}
+
+		}
 		// print_r($this->input->post());
 		// die();
 

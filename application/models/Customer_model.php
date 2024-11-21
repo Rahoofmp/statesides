@@ -111,10 +111,11 @@ class Customer_model extends Base_model {
         $query = $this->db->get();
         // print_r($this->db->last_query());
         // die();
-      
+
         $details = [] ;
         foreach ($query->result_array() as $row) {
             $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
+            $row['source_user']=$this->Base_model->getSourceName($row['source_id']);
             $details[] = $row;
         }
         return $details;
@@ -126,6 +127,7 @@ class Customer_model extends Base_model {
         $rowperpage = $search_arr['length'];
 
         $this->db->select('ci.*');
+        $this->db->select('sd.source_name');
         $searchValue = $search_arr['search']['value']; 
         if('' != $searchValue) { 
             $where = "(ci.firstname LIKE '%$searchValue%' 
@@ -139,7 +141,7 @@ class Customer_model extends Base_model {
             $this->db->like('ci.name', $name);
         }
 
-         if( $enquiry =  element('enquiry', $search_arr) ){
+        if( $enquiry =  element('enquiry', $search_arr) ){
             $this->db->like('ci.enquiry_status', $enquiry);
         }
 
@@ -163,8 +165,13 @@ class Customer_model extends Base_model {
             $this->db->where('ci.created_by', $created_by);
         } 
 
+        if( $source_id =  element('source_id', $search_arr) ){
+            $this->db->where('ci.source_id', $source_id);
+        } 
+
         $this->db->from('customer_info ci')
         ->join('login_info lis', 'lis.user_id = ci.salesman_id', 'left')
+        ->join('source_details sd', 'ci.source_id = sd.id', 'left')
         ->order_by( 'ci.created_date', 'DESC' )
         ->where( 'ci.status', 'pending' );
 
@@ -186,7 +193,7 @@ class Customer_model extends Base_model {
             $details[] = $row;
             $i++;
         }
-      
+
         return $details;
     }
 
@@ -225,10 +232,10 @@ class Customer_model extends Base_model {
     }
 
 
-     public function updateLead($post_arr='')
+    public function updateLead($post_arr='')
     {
         $date=date('Y-m-d H:i:s');
-       
+
         $this->db->set('firstname',$post_arr['first_name']);
         $this->db->set('lastname',$post_arr['last_name']);
         $this->db->set('gender',$post_arr['gender']);
@@ -237,41 +244,41 @@ class Customer_model extends Base_model {
 
         $this->db->set('date',$post_arr['date']);
         $this->db->set('immigration_status',$post_arr['emmigration']);
-       
+
         $this->db->set('age',$post_arr['age']);
         $this->db->set('current_job',$post_arr['current_job']);
         $this->db->set('enquiry_status',$post_arr['enquiry_status']);
 
         if (element('ss_cirtifcate',$post_arr)) {
-          
-        $this->db->set('sslc_certificate',$post_arr['ss_cirtifcate']);
+
+            $this->db->set('sslc_certificate',$post_arr['ss_cirtifcate']);
         }   
 
         if (element('police_clearence',$post_arr)) {
-          
-       $this->db->set('police_certificate',$post_arr['police_clearence']);
-        }
 
-        if (element('job_cirtificate',$post_arr)) {
-          
-         $this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
-        }
+         $this->db->set('police_certificate',$post_arr['police_clearence']);
+     }
 
-        if (element('passport_copy',$post_arr)) {
-          
-          $this->db->set('passport_copy',$post_arr['passport_copy']);
-        }
+     if (element('job_cirtificate',$post_arr)) {
 
-        if (element('dob_certificate',$post_arr)) {
-          
-           $this->db->set('dob_certificate',$post_arr['dob_certificate']);
-        }
-        $this->db->where('id',$post_arr['id']);
+       $this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
+   }
 
-       
-        $result = $this->db->update('customer_info');
+   if (element('passport_copy',$post_arr)) {
 
-        return $result;
-        
-    }
+      $this->db->set('passport_copy',$post_arr['passport_copy']);
+  }
+
+  if (element('dob_certificate',$post_arr)) {
+
+     $this->db->set('dob_certificate',$post_arr['dob_certificate']);
+ }
+ $this->db->where('id',$post_arr['id']);
+
+
+ $result = $this->db->update('customer_info');
+
+ return $result;
+
+}
 }

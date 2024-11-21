@@ -18,8 +18,8 @@
 				{form_open_multipart('','id="file_form" name="file_form" class="form-add-project ValidateForm needs-validation" enctype="multipart/form-data"')}
 				<div class="row">
 
-							<div class="col-sm-11">
-									<div class="input-group form-control-lg">
+					<div class="col-sm-11">
+						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
 								<label for="from_date"> Enquiry Status</label>
 							</div>
@@ -34,7 +34,7 @@
 								</div>
 							</div>
 						</div>
-							</div>
+					</div>
 
 					<div class="col-lg-12">
 						<div class="input-group form-control-lg">
@@ -43,7 +43,7 @@
 								</span>
 							</div>
 
-					
+
 
 							<div class="col-sm-11">
 								<div class="form-group">
@@ -65,6 +65,28 @@
 
 						</div>
 					</div>
+
+					<div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">person</i>
+								</span>
+							</div>
+
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="bmd-label-floating">
+										Source User
+									</label>
+									<input type="text" class="form-control" id="source_user" name="source_user" disabled=""  value="{$customer['source_user']}"  required="true" autocomplete="Off">
+									{form_error("source_user")}
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
 					<div class="col-lg-12">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
@@ -393,7 +415,7 @@
 				<button class="btn btn-primary pull-right" type="submit" id="update_customer" name="update_customer" value="update_customer">
 					Update Lead <i class="fa fa-arrow-circle-right"></i>
 				</button>
-						
+
 			</div>
 
 			

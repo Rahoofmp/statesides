@@ -991,6 +991,27 @@ class Base_Model extends CI_Model
         return $output;
     }
 
+    public function getSourceAuto($term='') {
+
+        $output = [];
+        $this->db->select('id,source_name');
+        $this->db->from('source_details');
+        // $this->db->where('status', 1);
+        // $this->db->where('user_type', 'salesman');
+        if($term)
+            $this->db->where("source_name LIKE '$term%'");
+        $this->db->limit(10);
+        $this->db->order_by('source_name','ASC');
+        $res = $this->db->get();
+        foreach($res->result_array() as $row) {
+            $output[] = ['id'=>$row['id'], 
+
+            'text'=>$row['source_name']];
+        }
+
+        return $output;
+    }
+
     public function getCustomerSalesmanIdAuto($search_arr=[]) {
 
         $output = [];
@@ -2022,7 +2043,7 @@ class Base_Model extends CI_Model
         foreach ($query->result_array() as $row) 
         {
 
-
+            $row['source_name']=$this->getSourceName($row['source_id']);
             $user_details[]=$row;
 
 
@@ -2061,6 +2082,21 @@ class Base_Model extends CI_Model
         $this->db->where('id',$id);
         $result=$this->db->update("customer_info");
         return $result;
+    }
+
+    public function getSourceName($id) 
+    {
+
+        $source_name = NULL;
+        $this->db->select('source_name');
+        $this->db->from('source_details');
+        $this->db->where('id', $id);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $source_name = $row->source_name;
+        }
+        return $source_name;
     }
 
 
