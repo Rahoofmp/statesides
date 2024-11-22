@@ -657,7 +657,10 @@ class Packages_model extends Base_model {
 		$this->db->set('total_amount',$post_arr['total_amount']);
 		$this->db->set('advance',$post_arr['advance_amount']);
 		$this->db->set('age',$post_arr['age']);
-		$this->db->set('current_job',$post_arr['current_job']);
+		if (element('current_job',$post_arr)) {
+			$this->db->set('current_job',$post_arr['current_job']);
+			
+		}
 		$this->db->set('created_date',$date);
 
 		if (element('ss_cirtifcate',$post_arr)) {
@@ -698,6 +701,16 @@ class Packages_model extends Base_model {
 	public function insertSource($post_arr)
 	{
 		$date =date('Y-m-d');
+		$source=$this->Base_model->getSourceInfoField('source_name','',$post_arr['source_user']);
+		
+		if ($source['id']) {
+
+			$post_arr['source_id']=$source['id'];
+			$result=$this->updateCustomer($post_arr);
+			return $result;
+			
+		}
+
 		$this->db->set('source_name',$post_arr['source_user']);
 		$this->db->set('date',$date);
 		$this->db->insert('source_details');

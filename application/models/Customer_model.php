@@ -237,6 +237,7 @@ class Customer_model extends Base_model {
         $date=date('Y-m-d H:i:s');
 
         $this->db->set('firstname',$post_arr['first_name']);
+        $this->db->set('salesman_id',$post_arr['sales_man']);
         $this->db->set('lastname',$post_arr['last_name']);
         $this->db->set('gender',$post_arr['gender']);
         $this->db->set('email',$post_arr['email']);

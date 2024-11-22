@@ -150,7 +150,9 @@ class Customer extends Base_Controller {
 	{ 
 
 		$details = $search_arr = $post_arr=[];
-		if( $this->input->post('submit') )
+
+
+		if( $this->input->post() )
 		{
 			if( $this->input->post('submit') == 'reset')
 			{
@@ -158,8 +160,18 @@ class Customer extends Base_Controller {
 
 			}elseif( $this->input->post('submit') == 'filter'){
 				$post_arr = $this->input->post();
+
 				if(!element('customer_username',$post_arr)){
 					$post_arr['customer_username'] = '';
+				} 
+
+				if(element('source_id',$post_arr)){
+					$search_arr['source_user'] =$this->Base_model->getSourceName($post_arr['source_id']);
+
+					$search_arr['source_id'] = $post_arr['source_id'];
+
+
+
 				} 
 
 				if(!element('salesman_id',$post_arr)){
@@ -170,20 +182,21 @@ class Customer extends Base_Controller {
 
 				}
 				
-				$search_arr['name'] = $post_arr['name'];
-				$search_arr['email'] = $post_arr['email'];
+				
+				$search_arr['enquiry'] = $post_arr['enquiry'];
 				$search_arr['customer_username'] = $post_arr['customer_username'];
 				$search_arr['salesman_id'] = $post_arr['salesman_id'];
 
 			}
-			// $details = $this->Customer_model->getAllCustomers( $search_arr );
+			;
 
 		}
 
-		$data['search_arr'] = $search_arr; 
-		// $data['details'] = $details; 
 
-		// print_r($data['details']);die();
+		$data['search_arr'] = $search_arr; 
+		$data['details'] = $details;
+
+		
 		$data['title'] = lang('customers_list'); 
 		$this->loadView($data);
 	}

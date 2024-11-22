@@ -2099,6 +2099,28 @@ class Base_Model extends CI_Model
         return $source_name;
     }
 
+    function getSourceInfoField($field_name, $id='',$name=''){
+
+        $source = array();
+        $this->db->select('id,source_name');
+        if ($name) {
+
+            $this->db->like('source_name', $name, 'both');
+
+        }
+        if ($id) {
+
+            $this->db->where('id', $id);
+
+        }
+        $this->db->from('source_details');
+        $query = $this->db->get();
+        foreach ($query->result_array() as $row) {
+            $source = $row;
+        }
+        return $source;
+    }
+
 
 
 }

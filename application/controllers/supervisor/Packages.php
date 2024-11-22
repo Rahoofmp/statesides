@@ -129,13 +129,16 @@ class Packages extends Base_Controller {
 
 			$create_lead =  $this->Packages_model->createLeads($post_arr);
 
+			// print_r($create_lead);
+			// die();
+
 			
 
 			if($create_lead)
 			{
 				if (element('source_user',$post_arr)) {
 					$post_arr['insert_id']=$create_lead;
-					$post_arr['source_id']=$this->Packages_model->insertSource($post_arr);
+					$this->Packages_model->insertSource($post_arr);
 					$this->Packages_model->commit();
 				}
 
@@ -341,6 +344,8 @@ class Packages extends Base_Controller {
 			}
 
 			$post_arr['id']=$customer_id;
+
+		
 			
 			$update_lead =  $this->Customer_model->updateLead($post_arr);
 

@@ -29,7 +29,7 @@ $route['sub-admin/(:any)/(:any)/(:any)/(:any)'] = 'supervisor/$1/$2/$3/$4';
 
 
 
-// $route['index'] 				= 'website/index';
+$route['customer-registration'] 				= 'website/customer_registration';
 // $route['contact-us'] 		= 'website/contact';
 // $route['about-us.php'] 			= 'website/about';
 // $route['sign-up.php'] 			= 'website/register';

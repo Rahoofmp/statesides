@@ -20,6 +20,80 @@
 		text-align: left !important;
 	}
 </style>
+
+
+<div class="row "> 
+	<div class="col-sm-12 hidden-print"> 
+		<div class="card"> 
+			<div class="card-content">
+				<div class="card-body"> 
+					{form_open('','')}
+					<div class="form-body">
+						<div class="row">
+							<!-- <div class="col-md-3">
+								<div class="form-group">
+									<select id="packager" name="packager_id" class="packager_ajax form-control" >
+										{if $post_arr['packager_id']}
+										<option value="{$post_arr['packager_id']}">{$post_arr['packager_name']}</option>
+										{/if} 
+									</select> 
+								</div> 
+							</div> -->
+
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<select id="source" name="source_id" class="source_ajax form-control" >
+
+										{if $search_arr['source_id']}
+										<option value="{$search_arr['source_id']}">{$search_arr['source_user']}</option>
+										{/if} 
+									</select>  
+								</div> 
+							</div> 
+							
+							
+							<div class="col-md-2" style="max-width: 237px;">
+								<div class="form-group">
+									<select class="selectpicker" data-size="7" data-style="select-with-transition" title="ALL" name="enquiry" id="enquiry" >
+										<option value='all'>--ALL--</option>
+										<option value="customer" {if $search_arr['enquiry']=='customer'} selected {/if}>Customer</option>
+										<option value="lead" {if $search_arr['enquiry']=='lead'} selected {/if}>Lead</option>
+									</select>
+								</div>
+							</div>
+
+
+							<!-- <div class="col-md-3">
+								<div class="form-group">
+									<label for="issueinput3">From Date</label>
+									<input type="text"  class="form-control datepicker" name="start_date" value="{$post_arr['start_date']}">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="issueinput3">To Date</label>
+									<input type="text"  class="form-control datepicker" name="end_date" value="{$post_arr['end_date']}">
+								</div>
+							</div> -->
+							<div class="col-md-4"> 
+								<button type="submit" class="btn btn-primary" name="submit" value="filter">
+									<i class="fa fa-filter"></i> {lang('button_filter')}
+								</button>
+								<button type="submit" class="btn btn-warning mr-1" name="submit" value="reset">
+									<i class="fa fa-refresh"></i>  {lang('button_reset')}
+								</button> 
+							</div>
+						</div>
+					</div>
+					{form_close()}
+				</div>
+			</div>
+		</div> 
+	</div> 
+</div> 
+
+
 <div class="row">
 	<div class="col-md-12">
 		<!-- <div class="card"> 
@@ -122,38 +196,12 @@
 
 	$(document).ready(function(){ 
 
-		$('.salesman_ajax').select2({
 
-			placeholder: 'Select a Salesman',
+		$('.source_ajax').select2({
+
+			placeholder: 'Select a Source',
 			ajax: {
-				url:'{base_url()}{log_user_type()}/autocomplete/salesman_ajax',
-
-				type: 'post',
-				dataType: 'json',
-				delay:250,
-				data: function (params) {
-
-					var searchString = $( "select#customer_id option:checked" ).val() ;
-
-					var query = {
-						customer_id: searchString,
-						type: 'public'
-					}
-					return query;
-				},
-				processResults: function(data) {
-					return {
-						results: data
-					};
-				}
-			},
-
-		});
-		$('.customer_ajax').select2({
-
-			placeholder: 'Select a customer',
-			ajax: {
-				url:'{base_url()}salesman/autocomplete/customer_ajax',
+				url:'{base_url()}admin/autocomplete/source_ajax',
 
 				type: 'post',
 				dataType: 'json',
@@ -166,6 +214,8 @@
 			},
 
 		});
+
+
 
 		var order = $('#customer_list').DataTable({
 
@@ -194,6 +244,8 @@
 					'name' : '{$search_arr['name']}',
 					'email' : '{$search_arr['email']}',
 					'mobile' : '{$search_arr['mobile']}',
+					'enquiry' : '{$search_arr['enquiry']}',
+					'source_id' : '{$search_arr['source_id']}',
 				}
 
 			},
@@ -207,7 +259,7 @@
 			{ data: 'email'},
 			{ data: 'immigration_status'},
 			{ data: 'enquiry_status'},
-	
+
 			{ data: 'created_date'},
 			{ data: 'customer_username',
 			mRender: function(data, type, row) {
