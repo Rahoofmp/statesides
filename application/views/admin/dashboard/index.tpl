@@ -22,7 +22,7 @@
 
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/customer/customer-list" > View Details</a>
 				</div>
 			</div>
 			{/if}
@@ -42,7 +42,7 @@
 
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/customer/customer-list" > View Details</a>
 				</div>
 			</div>
 			{/if}
@@ -62,7 +62,7 @@
 
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/member/all-members" > View Details</a>
 				</div>
 			</div>
 			{/if}
@@ -82,7 +82,7 @@
 
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/customer/customer-list" > View Details</a>
 				</div>
 			</div>
 			{/if}
@@ -102,7 +102,7 @@
 
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/customer/customer-list" > View Details</a>
 				</div>
 			</div>
 			{/if}
@@ -123,7 +123,7 @@
 
 			<div class="card-footer">
 				<div class="stats">
-					<i class="material-icons">local_offer</i><a href="{base_url()}admin/project/project-list" > View Details</a>
+					<i class="material-icons">local_offer</i><a href="{base_url()}admin/customer/customer-list" > View Details</a>
 				</div>
 			</div>
 			{/if}
@@ -177,7 +177,7 @@
 				</div>
 				<div class="card-footer"> 
 					<div class="stats">
-						<i class="material-icons">local_offer</i><a href="{base_url()}{log_user_type()}/packages/list-leads" > {lang('text_view_more')}</a>
+						<i class="material-icons">local_offer</i><a href="{base_url()}{log_user_type()}/customer/customer-list" > {lang('text_view_more')}</a>
 					</div>
 				</div>
 				{else}

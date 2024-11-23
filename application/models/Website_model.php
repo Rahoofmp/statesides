@@ -25,7 +25,7 @@ class Website_model extends Base_Model {
 		$this->db->set('gender',$post_arr['gender']);
 		$this->db->set('email',$post_arr['email']);
 		$this->db->set('mobile',$post_arr['mobile']);
-		// $this->db->set('date',$post_arr['date']);
+		$this->db->set('by_using','SocialMedia');
 		$this->db->set('age',$post_arr['age']);
 
 		if (element('current_job',$post_arr)) {

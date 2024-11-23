@@ -2048,7 +2048,7 @@ class Base_Model extends CI_Model
 
 
         }
-
+       
         return $user_details;
     }
 

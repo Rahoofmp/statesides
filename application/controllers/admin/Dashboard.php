@@ -40,6 +40,7 @@ class Dashboard extends Base_Controller {
 				}
 			}
 		}
+		
 		$data['details']=$details;
 		
 		
@@ -53,7 +54,7 @@ class Dashboard extends Base_Controller {
  		
 		// $data['recent_projects'] = $this->Dashboard_model->getRecentProjectName();
 		$id=log_user_id();
-		$data['details'] = $this->Dashboard_model->getRecentDeliveries();
+		
 		$data['count_delivery_notes']=$this->Dashboard_model->getTotalDeliveryNotesCount();
 		$data['log_user_name'] = log_user_name();
 		$this->loadView($data);

@@ -513,6 +513,12 @@
 			},
 
 		});
+
+		$(document).ready(function() { 
+			md.initFormExtendedDatetimepickers();
+		});
+
+		
 	});
 
 

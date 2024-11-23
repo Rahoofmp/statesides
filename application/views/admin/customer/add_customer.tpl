@@ -410,33 +410,12 @@
 				},
 
 			});
+			
+			$(document).ready(function() { 
+				md.initFormExtendedDatetimepickers();
+			});
 		});
-		function initMap() {
-			const myLatlng = { lat: 25.20388676754449, lng: 55.26983662798098 };
-			const map = new google.maps.Map(document.getElementById("map"), {
-				zoom: 10,
-				center: myLatlng,
-			});
 
-			let infoWindow = new google.maps.InfoWindow({
-				content: "Click the map to get Lat/Lng!",
-				position: myLatlng,
-			});
-			infoWindow.open(map);
-
-			map.addListener("click", (mapsMouseEvent) => {
-				infoWindow.close();
-				infoWindow = new google.maps.InfoWindow({
-					position: mapsMouseEvent.latLng,
-				});
-				infoWindow.setContent(
-					JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2),
-					console.log(mapsMouseEvent),
-					$('#location').val(mapsMouseEvent.latLng)
-					);
-				infoWindow.open(map);
-			});
-		}
 
 		$("#sort_order").keypress(function(e)
 		{

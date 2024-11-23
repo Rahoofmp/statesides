@@ -101,7 +101,7 @@
                         {$smarty.now|date_format:"%Y"} &copy; 
                         <a href="{base_url()}" target="_blank">Statesside Group</a>, 
                         Developed By: 
-                        <a href="{base_url()}" target="_blank">TechMagic Technologies</a>
+                        <a href="https://techmagictechnologies.com/" target="_blank">TechMagic Technologies</a>
                     </div>
                 </div>
             </footer>
