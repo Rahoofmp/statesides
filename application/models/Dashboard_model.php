@@ -19,7 +19,7 @@ class Dashboard_model extends Base_model {
 		$this->db->from('login_info');
 		
 		$this->db->where('status' , 1);
-		$count = $this->db->count_all_results();
+		$count = $this->db->count_all_results();	
 		return $count;
 	}
 	
@@ -41,10 +41,18 @@ class Dashboard_model extends Base_model {
 		return $res;
 
 	}
-		public function getAdvanceCustomers() {
+
+	public function getAdvanceCustomers() {
+		$this->db->select(); 
+		$this->db->from('customer_info'); 
+		$this->db->where('advance !=', 500); 
+		$res = $this->db->get()->num_rows(); 
+		return $res; 
+	}
+		public function getFullPaidcustomers() {
 			$this->db->select(); 
 			$this->db->from('customer_info'); 
-			$this->db->where('advance !=', 500); 
+			$this->db->where('total_amount >=', 500); 
 			$res = $this->db->get()->num_rows(); 
 			return $res; 
 		}

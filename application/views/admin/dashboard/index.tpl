@@ -56,7 +56,7 @@
 					<i class="material-icons">people</i>
 				</div>
 				<p class="card-category">Total Staff</p>
-				<h4 class="card-title">{$staffs}</h4>
+				<h4 class="card-title">{$staff_count}</h4>
 			</div>
 			{if log_user_type() =="admin"}
 
@@ -76,7 +76,7 @@
 					<i class="material-icons">people</i>
 				</div>
 				<p class="card-category">Immigration Approved Customers</p>
-				<h4 class="card-title">{$immigration_approved}</h4>
+				<h4 class="card-title">{$getImmigrationCount}</h4>
 			</div>
 			{if log_user_type() =="admin"}
 
@@ -117,7 +117,7 @@
 					<i class="material-icons">people</i>
 				</div>
 				<p class="card-category">Full Paid Customers</p>
-				<h4 class="card-title">{$count_delivery_notes}</h4>
+				<h4 class="card-title">{$Full_Paid_Customers}</h4>
 			</div>
 			{if log_user_type() =="admin"}
 

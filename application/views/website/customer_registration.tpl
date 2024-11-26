@@ -34,7 +34,7 @@
 									<label class="bmd-label-floating">
 										Source User
 									</label>
-									<input type="text" class="form-control" id="source_user" name="source_user" required  autocomplete="Off">
+									<input type="text" class="form-control" id="source_user" name="source_user" value="Marketing"  autocomplete="Off">
 									{form_error("source_user")}
 								</div>
 							</div>
@@ -176,7 +176,7 @@
 						</div>
 					</div> -->
 
-					<div class="col-lg-6">
+					<!-- <div class="col-lg-6">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="material-icons">list</i>
@@ -197,7 +197,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="row">
 
@@ -209,7 +209,7 @@
 			<div class="row">
 				<div class=" col-md-3 px-5">
 
-					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+					<!-- <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
 							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
 						</div>
@@ -223,13 +223,13 @@
 							<br />
 							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 
 				<div class="col-md-3">
 
-					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+					<!-- <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
 							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
 						</div>
@@ -244,11 +244,11 @@
 							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="col-md-3">
 
-					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+					<!-- <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
 							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
 						</div>
@@ -263,11 +263,11 @@
 							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="col-md-3">
 
-					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+					<!-- <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
 							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
 						</div>
@@ -282,11 +282,11 @@
 							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="col-md-3 px-5">
 
-					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+					<!-- <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
 							<img src="{assets_url('images/profile_pic/no_file')}" alt="{$user_name}">
 						</div>
@@ -300,7 +300,7 @@
 							<br />
 							<a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {lang('remove')}</a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 

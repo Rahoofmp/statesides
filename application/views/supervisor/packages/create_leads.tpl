@@ -421,7 +421,7 @@
 				</button>
 				{else}	
 				<button class="btn btn-primary pull-right" type="submit" id="add_project" name="add_project" value="add_project">
-					Add Project <i class="fa fa-arrow-circle-right"></i>
+					Add Lead<i class="fa fa-arrow-circle-right"></i>
 				</button>
 				{/if}			
 			</div>
