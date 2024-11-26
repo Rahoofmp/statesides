@@ -27,7 +27,7 @@ class Dashboard extends Base_Controller {
 			$data['reminder_id']=$today_reminder['id'];
 		}
 
-		$details = $this->Dashboard_model->getEnquiryDetails();
+		$details = $this->Dashboard_model->getEnquiryDetails($user_id);
 		
 		$total_count = $this->Dashboard_model->getAllEnquiryDetailsCount();
 		if ($details) {

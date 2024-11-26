@@ -114,16 +114,24 @@ class Packages extends Base_Controller {
 				}
 			}
 
+			$total_amount=0;
+			$advance_amount=0;
+			$due_amount=0;
+
+			if (element('total_amount',$post_arr)) {
+
+				$total_amount=$post_arr['total_amount'];
+			}
+
 			if (element('advance_amount',$post_arr)) {
 
+				$advance_amount=$post_arr['advance_amount'];
+			}
 
-				$post_arr['due_amount']=$post_arr['total_amount']-$post_arr['advance_amount'];
-			}
-			else{
-				$post_arr['due_amount']=0;
-				$post_arr['advance_amount']=0;
-				
-			}
+			$post_arr['due_amount']=$total_amount-$advance_amount;
+
+
+
 
 			$this->Packages_model->begin();
 
@@ -141,6 +149,8 @@ class Packages extends Base_Controller {
 					$this->Packages_model->insertSource($post_arr);
 					$this->Packages_model->commit();
 				}
+
+
 
 				$this->redirect( 'Lead created successfully', "packages/create-leads", true );
 			}
@@ -345,7 +355,7 @@ class Packages extends Base_Controller {
 
 			$post_arr['id']=$customer_id;
 
-		
+
 			
 			$update_lead =  $this->Customer_model->updateLead($post_arr);
 

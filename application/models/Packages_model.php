@@ -704,7 +704,7 @@ class Packages_model extends Base_model {
 		$date =date('Y-m-d');
 		$source=$this->Base_model->getSourceInfoField('source_name','',$post_arr['source_user']);
 		
-		if ($source['id']) {
+		if (element('id',$source)) {
 
 			$post_arr['source_id']=$source['id'];
 			$result=$this->updateCustomer($post_arr);
