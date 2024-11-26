@@ -154,6 +154,7 @@
 							<tr>
 								<th>#</th> 
 								<th>{lang('fullname')}</th>
+								<th>Source Name</th>
 								
 								<th>Mobile</th>
 								<th>Email</th>
@@ -255,6 +256,7 @@
 
 			{ data: 'index'},
 			{ data: 'fullname'},
+			{ data: 'source_user_name'},
 			{ data: 'mobile'},
 			{ data: 'email'},
 			{ data: 'immigration_status'},

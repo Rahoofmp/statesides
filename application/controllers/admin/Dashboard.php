@@ -30,7 +30,7 @@ class Dashboard extends Base_Controller {
 		$data['sendto_delivery_count'] = $this->Dashboard_model->getDeliveryCount('','send_to_delivery');
  		
 		$id=log_user_id();
-		$data['details'] =  $this->Dashboard_model->getEnquiryDetails();;
+		$data['details'] =  $this->Dashboard_model->getEnquiryDetails();
 	
 		
 		$data['count_delivery_notes']=$this->Dashboard_model->getTotalDeliveryNotesCount();

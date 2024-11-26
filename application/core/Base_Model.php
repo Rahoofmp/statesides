@@ -2123,6 +2123,7 @@ class Base_Model extends CI_Model
         foreach ($query->result() as $row) {
             $source_name = $row->source_name;
         }
+       
         return $source_name;
     }
 
