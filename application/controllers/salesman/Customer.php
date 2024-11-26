@@ -302,6 +302,10 @@ class Customer extends Base_Controller {
 
 				} 
 
+				if(!element('source_id',$post_arr)){
+					$post_arr['source_id'] = '';
+				}
+
 				if(!element('salesman_id',$post_arr)){
 					$post_arr['salesman_id'] = '';
 				}else{
