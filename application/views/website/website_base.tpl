@@ -79,15 +79,15 @@
                     {block name=body}{/block}
                 </div>
             </div>
-            <footer class="footer hidden-print">
+            <footer class="footer hidden-print text-center">
                 <div class="container-fluid">
 
-                    <div class="copyright ">
+                   <!--  <div class="copyright ">
                         {$smarty.now|date_format:"%Y"} &copy; 
                         <a href="{base_url()}" target="_blank">Statesside Group</a>, 
                         Developed By: 
                         <a href="https://techmagictechnologies.com/" target="_blank">TechMagic Technologies</a>
-                    </div>
+                    </div> -->
                 </div>
             </footer>
         </div>

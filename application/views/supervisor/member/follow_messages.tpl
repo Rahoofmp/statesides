@@ -225,14 +225,21 @@
 			{ data: 'date'},
 			{ data: 'customer_username',
 			mRender: function(data, type, row) {
-				var link = '<a href = "add-customer/' + row.enc_customerid +'" class="btn-sm btn btn-info btn-link" data-placement="top" title ="Edit" target="_blank"><i class="material-icons" aria-hidden="true">person</i></a>';
 
-				return link;
-			}}, 
-			],
-			success: function(response) { 
-			} 
-		});  
+				if (row.type === 'inactive') {
+					var link = '<a href="inactive-leads/' + row.enc_customerid + '/' + row.enc_reminder_id+'" class="btn-sm btn btn-info btn-link" data-placement="top" title="Edit" target="_blank"><i class="material-icons" aria-hidden="true">person</i></a>';
+					return link;
+				} else {
+                    return ''; // Return empty if not 'inactive'
+                }
+                // var link = '<a href = "add-customer/' + row.enc_customerid +'" class="btn-sm btn btn-info btn-link" data-placement="top" title ="Edit" target="_blank"><i class="material-icons" aria-hidden="true">person</i></a>';
+
+                return link;
+            }}, 
+            ],
+            success: function(response) { 
+            } 
+        });  
 
 	});  
 </script>

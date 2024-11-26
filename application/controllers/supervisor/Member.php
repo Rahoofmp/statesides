@@ -230,4 +230,59 @@ class Member extends Base_Controller {
 		}
 	}
 
+	function inactive_leads($enc_id='',$enc_row='')
+	{   	
+		// print_r($enc_id);
+		// die();
+		$this->load->model('Customer_model');
+		$customer_id=false;
+		if( $enc_id ){
+
+
+			// $customer_username =  $this->input->get( 'customer_username' ); 
+			$customer_id = $this->Base_model->encrypt_decrypt('decrypt',$enc_id);
+		
+			if (!$customer_id) {
+				$msg = lang('text_invalid_customer_username');
+				$this->redirect($msg, 'customer/add-customer', FALSE);
+			}
+			$data['id']=$customer_id;
+			$search_arr['customer_username']=$customer_id;
+			$data['customer'] = element(0,$this->Customer_model->getAllCustomers( $search_arr ));
+
+
+			
+
+		}
+
+
+
+		if ($this->input->post('inactive_lead') ) {
+			$post_arr = $this->input->post();
+			$id=$this->Base_model->encrypt_decrypt('decrypt',$enc_row);
+			$inactive_lead=$this->Base_model->inactivateLead($customer_id);
+			$inactive_lead=$this->Base_model->changeReminder($id);
+
+			
+			
+
+			if($inactive_lead)
+			{
+				$this->redirect( 'Lead inactivated successfully', "member/follow-messages", true );
+			}
+			else{
+				$this->redirect( 'Error on inactiving lead', "member/follow-messages/".$enc_id, false );
+			}
+
+
+
+		}
+		// print_r($this->input->post());
+		// die();
+
+		
+		$data['title'] = 'Modify Leads';
+		$this->loadView($data);
+	}
+
 }

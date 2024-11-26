@@ -73,13 +73,13 @@ class Customer extends Base_Controller {
 				$post_arr['date']=date('Y-m-d');
 				$post_arr['message']=$post_arr['reason'];
 				$create_follow=$this->Member_model->createReminder($post_arr);
-				$inactive_lead=$this->Base_model->inactivateLead($post_arr['customer_id']);
+				// $inactive_lead=$this->Base_model->inactivateLead($post_arr['customer_id']);
 
-				if ($inactive_lead) {
-					$this->redirect('Lead Inactivated Successfully', 'customer/customer-list', true);
+				if ($create_follow) {
+					$this->redirect('Lead inactive request  send successfully', 'customer/customer-list', true);
 				}
 				else{
-					$this->redirect('inactivation Failed', 'customer/customer-list', true);
+					$this->redirect('Error on sending request', 'customer/customer-list', true);
 				}
 			}
 			else

@@ -22,6 +22,10 @@ class Website extends Base_Controller
 	{
 
 		$data['title']='Create Leads';
+		if (log_user_id()) {
+			
+			$data['user_name']=$this->Base_model->getUserName(log_user_id());
+		}
 
 		if ($this->input->post() && $this->validate_leads()) {
 			$post_arr = $this->input->post();
@@ -40,14 +44,14 @@ class Website extends Base_Controller
 
 			// if($_FILES['ss_cirtifcate']['error']!=4)
 			// {
-				
+
 
 			// 	$this->load->library('upload', $config);
 			// 	$msg = '';
 			// 	if (!$this->upload->do_upload('ss_cirtifcate')) {
 			// 		$msg = lang('image_not_selected');
 			// 		$error = $this->upload->display_errors();
-					
+
 			// 		$this->redirect( $error, "customer-registration", false );
 			// 	} else {
 			// 		$image_arr = $this->upload->data();  
@@ -62,7 +66,7 @@ class Website extends Base_Controller
 			// {
 			// 	$this->load->library('upload', $config);
 
-				
+
 			// 	$msg = '';
 			// 	if (!$this->upload->do_upload('police_clearence')) {
 			// 		$msg = lang('image_not_selected');
@@ -79,7 +83,7 @@ class Website extends Base_Controller
 			// {
 			// 	$this->load->library('upload', $config);
 
-				
+
 			// 	$msg = '';
 			// 	if (!$this->upload->do_upload('job_cirtificate')) {
 			// 		$msg = lang('image_not_selected');
@@ -95,7 +99,7 @@ class Website extends Base_Controller
 			// if($_FILES['passport_copy']['error']!=4)
 			// {
 			// 	$this->load->library('upload', $config);
-				
+
 			// 	$msg = '';
 			// 	if (!$this->upload->do_upload('passport_copy')) {
 			// 		$msg = lang('image_not_selected');
@@ -110,7 +114,7 @@ class Website extends Base_Controller
 			// if($_FILES['dob_certificate']['error']!=4)
 			// {
 			// 	$this->load->library('upload', $config);
-				
+
 			// 	$msg = '';
 			// 	if (!$this->upload->do_upload('dob_certificate')) {
 			// 		$msg = lang('image_not_selected');

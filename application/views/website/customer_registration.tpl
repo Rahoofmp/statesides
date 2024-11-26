@@ -34,7 +34,7 @@
 									<label class="bmd-label-floating">
 										Source User
 									</label>
-									<input type="text" class="form-control" id="source_user" name="source_user" value="Marketing"  autocomplete="Off">
+									<input type="text" class="form-control" id="source_user" name="source_user" {if $user_name} value="{$user_name}" {else} value="Marketing"{/if} autocomplete="Off">
 									{form_error("source_user")}
 								</div>
 							</div>

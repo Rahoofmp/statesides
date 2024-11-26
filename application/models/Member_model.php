@@ -1005,10 +1005,13 @@ public function getMessageCount()
 
 public function getAllMessageAjax($search_arr =[],$count = 0) 
 {
+
  $row = $search_arr['start'];
  $rowperpage = $search_arr['length'];
 
  $this->db->select('ms.*');
+ $this->db->select('li.sub_id');
+ $this->db->from('login_info li');
  $searchValue = $search_arr['search']['value']; 
 //  if('' != $searchValue) { 
 //     $where = "(ms.message LIKE '%$searchValue%' 
@@ -1026,6 +1029,7 @@ $this->db->from('reminders ms')
 ->join('customer_info ci', 'ms.source_user = ci.id', 'left')
 ->order_by( 'ms.created_date', 'DESC' )
 ->where( 'ms.status', 'pending' )
+->where( 'li.sub_id', log_user_id() )
 ->where( 'ms.type !=', 'reminder' );
 
 
@@ -1039,10 +1043,14 @@ $query = $this->db->get();
 $details = [] ;
 $i=1;
 foreach ($query->result_array() as $row) {
+
+
+
     $row['index'] =$search_arr['start']+$i;
     $row['first_name'] =$this->Base_model->getCustomerInfoField('firstname',$row['source_user']);
     $row['added_by'] =$this->Base_model->getUserName($row['user_id']);
-    $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
+    $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['source_user']);
+    $row['enc_reminder_id']=$this->encrypt_decrypt('encrypt',$row['id']);
     $row['date'] = date('Y-m-d',strtotime($row['date']));
     $details[] = $row;
     $i++;
