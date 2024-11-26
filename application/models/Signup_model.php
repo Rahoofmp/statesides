@@ -72,8 +72,8 @@ class Signup_model extends Base_Model {
         $this->db->set('password', $hashed_password );  
         $this->db->set('joining_date', $register['joining_date']); 
         $this->db->set('user_type',$register['user_type']);
-        if (array_key_exists('department', $register)) {
-            $this->db->set('department_id',$register['department']);
+        if (array_key_exists('subadmin', $register)) {
+            $this->db->set('sub_id',$register['subadmin']);
         }
         $this->db->set('reg_log_id',log_user_id());
         $this->db->set('status', '1');

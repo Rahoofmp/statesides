@@ -210,6 +210,7 @@ class Packages extends Base_Controller {
 			// $details = $this->Customer_model->getAllCustomers( $search_arr );
 
 		}
+		
 
 		$data['search_arr'] = $search_arr; 
 		$data['post_arr'] = $post_arr; 

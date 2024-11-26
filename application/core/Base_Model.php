@@ -2048,7 +2048,34 @@ class Base_Model extends CI_Model
 
 
         }
-       
+
+        return $user_details;
+    }
+
+    public function getEnquiryDetailsSubadmin($sub_id) 
+    {
+        $user_details = array(); 
+        $this->db->select('ci.*');
+        $this->db->select('li.sub_id,li.user_id');
+        $this->db->from("customer_info ci");
+        $this->db->join('login_info li', 'li.user_id = ci.salesman_id');
+        $this->db->where('ci.status','pending');
+        $this->db->where('li.sub_id',$sub_id);
+
+
+        $query = $this->db->get();
+        //  echo($this->db->last_query());
+        // die();
+
+        foreach ($query->result_array() as $row) 
+        {
+
+            $row['source_name']=$this->getSourceName($row['source_id']);
+            $user_details[]=$row;
+
+
+        }
+
         return $user_details;
     }
 
@@ -2119,6 +2146,29 @@ class Base_Model extends CI_Model
             $source = $row;
         }
         return $source;
+    }
+
+    public function getSalesmanIdSub($term='') {
+
+        $output = [];
+        $sub_id=log_user_id();
+        $this->db->select('user_id,user_name');
+        $this->db->from('login_info');
+        $this->db->where('status', 1);
+        $this->db->where('user_type', 'salesman');
+        $this->db->where('sub_id', $sub_id);
+        if($term)
+            $this->db->where("user_name LIKE '$term%'");
+        $this->db->limit(10);
+        $this->db->order_by('user_name','ASC');
+        $res = $this->db->get();
+        foreach($res->result_array() as $row) {
+            $output[] = ['id'=>$row['user_id'], 
+
+            'text'=>$row['user_name']];
+        }
+
+        return $output;
     }
 
 

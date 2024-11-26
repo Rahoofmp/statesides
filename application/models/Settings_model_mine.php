@@ -68,6 +68,8 @@ class Settings_model extends Base_model {
         return $details;
     }
 
+
+
     public function updateDepartmentMaster($post_arr,$id)
     {
         $this->db->set('dep_id',$post_arr['department_id']);

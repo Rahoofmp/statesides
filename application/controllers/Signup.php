@@ -11,7 +11,8 @@ class Signup extends Base_Controller
 
 		$this->load->model('Settings_model');
 		$data['title'] = 'Signup a user';
-		$data['department'] = $this->Settings_model->getDepartmentMaster();
+		$data['subadmins'] = $this->Settings_model->getSubadmin();
+		
 		if ($this->input->post('register') && $this->validate_signup()) {
 			$register = $this->input->post();
 			$this->Signup_model->begin();

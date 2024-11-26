@@ -542,7 +542,7 @@
 
 				placeholder: 'Select  Salesman',
 				ajax: {
-					url:'{base_url()}admin/autocomplete/salesman_ajax',
+					url:'{base_url()}supervisor/autocomplete/superSalesman_ajax',
 
 					type: 'post',
 					dataType: 'json',

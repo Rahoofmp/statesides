@@ -38,7 +38,9 @@
 						</div>
 
 					</div>
-					<div class="col-lg-6 department" style="display: none;">
+
+
+					<div class="col-lg-6 subadmin" style="display: none;">
 						<div class="input-group form-control-lg">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="material-icons">build</i>
@@ -46,12 +48,12 @@
 							</div>
 							<div class="col-sm-10">
 								<div class="form-group">
-									<select class="selectpicker col-12" data-size="7" data-style=" select-with-transition" title="Department" id="department" name="department">
-										{foreach $department as $v}
-										<option value="{$v.id}">{$v.name} - {$v.dep_id}</option>
+									<select class="selectpicker col-12" data-size="7" data-style=" select-with-transition" title="Sub-Admin" id="subadmin" name="subadmin">
+										{foreach $subadmins as $v}
+										<option value="{$v.user_id}">{$v.user_name}</option>
 										{/foreach}
 									</select> 
-									{form_error('department')}
+									{form_error('subadmin')}
 								</div> 
 							</div>
 						</div>
@@ -181,13 +183,13 @@
 		setFormValidation('#RegisterValidation'); 
 		$("#user_type").on('change', function() {
 			var selected=$(this).val();
-			if (selected == 'dept_supervisor') {
-				$(".department").show();
-				$("#department").attr('required','true');
+			if (selected == 'salesman') {
+				$(".subadmin").show();
+				$("#subadmin").attr('required','true');
 			}
 			else {
-				$(".department").hide();
-				$("#department").removeAttr('required');
+				$(".subadmin").hide();
+				$("#subadmin").removeAttr('required');
 			}
 
 		})

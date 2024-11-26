@@ -123,6 +123,7 @@ class Customer_model extends Base_model {
 
     public function getAllCustomersAjax( $search_arr =[],$count = 0) 
     {
+        $subadmin=log_user_id();
         $row = $search_arr['start'];
         $rowperpage = $search_arr['length'];
 
@@ -173,7 +174,8 @@ class Customer_model extends Base_model {
         ->join('login_info lis', 'lis.user_id = ci.salesman_id', 'left')
         ->join('source_details sd', 'ci.source_id = sd.id', 'left')
         ->order_by( 'ci.created_date', 'DESC' )
-        ->where( 'ci.status', 'pending' );
+        ->where( 'ci.status', 'pending' )
+        ->where('lis.sub_id',$subadmin);
 
         
         if($count) {
@@ -257,29 +259,29 @@ class Customer_model extends Base_model {
 
         if (element('police_clearence',$post_arr)) {
 
-         $this->db->set('police_certificate',$post_arr['police_clearence']);
+           $this->db->set('police_certificate',$post_arr['police_clearence']);
+       }
+
+       if (element('job_cirtificate',$post_arr)) {
+
+         $this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
      }
 
-     if (element('job_cirtificate',$post_arr)) {
-
-       $this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
-   }
-
-   if (element('passport_copy',$post_arr)) {
+     if (element('passport_copy',$post_arr)) {
 
       $this->db->set('passport_copy',$post_arr['passport_copy']);
   }
 
   if (element('dob_certificate',$post_arr)) {
 
-     $this->db->set('dob_certificate',$post_arr['dob_certificate']);
- }
- $this->db->where('id',$post_arr['id']);
+   $this->db->set('dob_certificate',$post_arr['dob_certificate']);
+}
+$this->db->where('id',$post_arr['id']);
 
 
- $result = $this->db->update('customer_info');
+$result = $this->db->update('customer_info');
 
- return $result;
+return $result;
 
 }
 }

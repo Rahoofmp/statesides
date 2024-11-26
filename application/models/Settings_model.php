@@ -83,52 +83,69 @@ class Settings_model extends Base_model {
         }
         return $details;
     }
-     public function getDepartments()
+    public function getDepartments()
     {
         $details = array();
         $this->db->select('*');
         $this->db->from('department');
-       $this->db->where('status',1);
+        $this->db->where('status',1);
 
         $query = $this->db->get();
         foreach($query->result_array() as $row)
-       $details[]=$row;
-        return $details;
-    }
-    public function getDepartmentID($department_name='') {
-        $id = array();
-        $this->db->select('dep_id');
-        $this->db->from('department');
-        if($department_name)
-        {
-
-            $this->db->where('name', $department_name);
-        }
-
-        $query = $this->db->get();
-        foreach ($query->result_array() as $row) {
-            $dep_id[]= $row['dep_id'];
-        }
-        return $dep_id;
-    }
-    public function updateDepartmentMaster($post_arr,$id)
+         $details[]=$row;
+     return $details;
+ }
+ public function getDepartmentID($department_name='') {
+    $id = array();
+    $this->db->select('dep_id');
+    $this->db->from('department');
+    if($department_name)
     {
-        $this->db->set('dep_id',$post_arr['department_id']);
-        $this->db->set('name',$post_arr['department_name']);
-        $this->db->set('cost_per_hour',$post_arr['cost_per_hour']);
-        $this->db->set('date_updated',date('Y-m-d H:i:s'));
-        $this->db->set('status',$post_arr['status']);
-        $this->db->where('id',$id);
-        $update = $this->db->update('department');
-        return $update;
+
+        $this->db->where('name', $department_name);
     }
 
-    public function updateDepartmentStatus($id)
-    {
-        $this->db->set('status',0);
-        $this->db->where('id',$id);
-        $update = $this->db->update('department');
-        return $update;
+    $query = $this->db->get();
+    foreach ($query->result_array() as $row) {
+        $dep_id[]= $row['dep_id'];
     }
+    return $dep_id;
+}
+public function updateDepartmentMaster($post_arr,$id)
+{
+    $this->db->set('dep_id',$post_arr['department_id']);
+    $this->db->set('name',$post_arr['department_name']);
+    $this->db->set('cost_per_hour',$post_arr['cost_per_hour']);
+    $this->db->set('date_updated',date('Y-m-d H:i:s'));
+    $this->db->set('status',$post_arr['status']);
+    $this->db->where('id',$id);
+    $update = $this->db->update('department');
+    return $update;
+}
+
+public function updateDepartmentStatus($id)
+{
+    $this->db->set('status',0);
+    $this->db->where('id',$id);
+    $update = $this->db->update('department');
+    return $update;
+}
+
+public function getSubadmin()
+{
+    $details = array();
+    $this->db->select('user_id,user_name');
+    $this->db->from('login_info');
+    $this->db->where('user_type','supervisor');
+    $this->db->where('status',1);
+    $query = $this->db->get();
+    foreach($query->result_array() as $row)
+    {
+
+        $details[] = $row;
+        
+    }
+    return $details;
+}
 
 }
