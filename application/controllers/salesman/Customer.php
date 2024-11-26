@@ -27,6 +27,7 @@ class Customer extends Base_Controller {
 			$data['customer'] = element(0,$this->Customer_model->getAllCustomers( $search_arr ));
 
 
+
 		}
 		else{
 			$this->redirect('No Access', 'dashboard', FALSE);
@@ -198,7 +199,7 @@ class Customer extends Base_Controller {
 
 			$post_arr['id']=$customer_id;
 
-
+			$this->Customer_model->begin();
 
 			// if ($post_arr['enquiry_status']=='customer') {
 
@@ -209,6 +210,7 @@ class Customer extends Base_Controller {
 			
 			$update_lead =  $this->Customer_model->updateLead($post_arr);
 
+	
 			if($update_lead)
 			{
 				$this->redirect( 'Lead updated successfully', "customer/customer-list", true );
@@ -342,6 +344,7 @@ class Customer extends Base_Controller {
 			$post_arr['salesman_id'] = log_user_id();
 
 			$details = $this->Customer_model->getAllCustomersAjax( $post_arr,'');
+
 
 
 			// echo $this->db->last_query();

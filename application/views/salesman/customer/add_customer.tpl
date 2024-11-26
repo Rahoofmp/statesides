@@ -158,6 +158,8 @@
 							<label class="bmd-label-floating">
 								Source User
 							</label>
+
+
 							<input type="text" class="form-control" id="source_user" name="source_user" disabled=""  value="{$customer['source_user']}"  required="true" autocomplete="Off">
 							{form_error("source_user")}
 						</div>
@@ -297,6 +299,8 @@
 							<input type="text" id="current_job" class="form-control " name="current_job"  value="{$customer['current_job']}"   autocomplete="Off">
 							<input type="hidden" id="advance_amount" class="form-control " name="advance_amount"  value="{$customer['advance']}"  autocomplete="Off">
 							<input type="hidden" id="total_amount" class="form-control " name="total_amount"  value="{$customer['total_amount']}"   autocomplete="Off">
+
+							<input type="hidden" id="total_amount" class="form-control " name="salesman_id"  value="{$customer['salesman_id']}"   autocomplete="Off">
 							{form_error("current_job")} 
 						</div>
 					</div>
