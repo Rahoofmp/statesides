@@ -150,6 +150,7 @@
 								<th>Name</th>
 								<th>Enquiry Status</th>
 								<th>Immigration Status</th>
+								<th>Source User</th>
 								<th>Mobile</th>
 								<th>Email</th>
 								<th>Due Date</th>
@@ -166,6 +167,7 @@
 								<td>{$v.firstname}</td>
 								<td>{$v.enquiry_status}</td>
 								<td>{$v.immigration_status}</td>
+								<td>{$v.source_name}</td>
 								<td>{$v.mobile}</td>
 								<td>{$v.email}</td>
 								<td>{$v.date}</td>

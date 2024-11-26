@@ -132,7 +132,7 @@ class Customer_model extends Base_model {
         $rowperpage = $search_arr['length'];
 
         $this->db->select('ci.*');
-        // $this->db->select('sd.source_name');
+        $this->db->select('sd.source_name');
         $searchValue = $search_arr['search']['value']; 
         if('' != $searchValue) { 
             $where = "(ci.firstname LIKE '%$searchValue%' 
@@ -180,7 +180,7 @@ class Customer_model extends Base_model {
 
         $this->db->from('customer_info ci')
         ->join('login_info lis', 'lis.user_id = ci.salesman_id', 'left')
-        // ->join('source_details sd', 'ci.source_id = sd.id', 'left')
+        ->join('source_details sd', 'ci.source_id = sd.id', 'left')
         ->order_by( 'ci.created_date', 'DESC' )
         ->where( 'ci.status', 'pending' );
 
