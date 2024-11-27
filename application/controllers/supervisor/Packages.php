@@ -360,6 +360,7 @@ class Packages extends Base_Controller {
 			
 			$update_lead =  $this->Customer_model->updateLead($post_arr);
 
+
 			if($update_lead)
 			{
 				$this->redirect( 'Lead updated successfully', "packages/list-leads", true );

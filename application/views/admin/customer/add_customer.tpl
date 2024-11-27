@@ -23,9 +23,6 @@
 								<span class="input-group-text"><i class="material-icons">grading</i>
 								</span>
 							</div>
-
-
-
 						</div>
 					</div>
 					<div class="col-lg-12">
@@ -256,7 +253,14 @@
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
-							<img src="{assets_url('images/leads_data/')}{$customer['sslc_certificate']}" alt="{$user_name}">
+							<!-- <img src="{assets_url('images/leads_data/')}{$customer['sslc_certificate']}" alt="{$user_name}"> -->
+
+							{if {$customer['sslc_certificate']}}
+							<a href="{assets_url('images/leads_data/')}{$customer['sslc_certificate']}" target="_blank">
+								<i class="fa fa-file"></i> View Document
+							</a>
+							{/if}
+
 						</div>
 						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 						<div>
@@ -276,7 +280,14 @@
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
-							<img src="{assets_url('images/leads_data/')}{$customer['police_certificate']}" alt="{$user_name}">
+							<!-- <img src="{assets_url('images/leads_data/')}{$customer['police_certificate']}" alt="{$user_name}"> -->
+
+							{if {$customer['police_certificate']}}
+							<a href="{assets_url('images/leads_data/')}{$customer['police_certificate']}" target="_blank">
+								<i class="fa fa-file"></i> View Document
+							</a>
+							{/if}
+
 						</div>
 						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 						<div>
@@ -295,7 +306,15 @@
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
-							<img src="{assets_url('images/leads_data/')}{$customer['job_cirtificate']}" alt="{$user_name}">
+							<!-- <img src="{assets_url('images/leads_data/')}{$customer['job_cirtificate']}" alt="{$user_name}"> -->
+
+							{if {$customer['job_cirtificate']}}
+							<a href="{assets_url('images/leads_data/')}{$customer['job_cirtificate']}" target="_blank">
+								<i class="fa fa-file"></i> View Document
+							</a>
+							{/if}
+
+
 						</div>
 						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 						<div>
@@ -314,7 +333,16 @@
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
-							<img src="{assets_url('images/leads_data/')}{$customer['passport_copy']}" alt="{$user_name}">
+							<!-- <img src="{assets_url('images/leads_data/')}{$customer['passport_copy']}" alt="{$user_name}">
+ -->
+
+							{if {$customer['passport_copy']}}
+							<a href="{assets_url('images/leads_data/')}{$customer['passport_copy']}" target="_blank">
+								<i class="fa fa-file"></i> View Document
+							</a>
+							{/if}
+
+
 						</div>
 						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 						<div>
@@ -333,7 +361,15 @@
 
 					<div class="fileinput fileinput-new text-center" data-provides="fileinput">
 						<div class="fileinput-new thumbnail img-circle">
-							<img src="{assets_url('images/leads_data/')}{$customer['dob_certificate']}" alt="{$user_name}">
+							<!-- <img src="{assets_url('images/leads_data/')}{$customer['dob_certificate']}" alt="{$user_name}"> -->
+
+							{if {$customer['dob_certificate']}}
+							<a href="{assets_url('images/leads_data/')}{$customer['dob_certificate']}" target="_blank">
+								<i class="fa fa-file"></i> View Document
+							</a>
+							{/if}
+
+							
 						</div>
 						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 						<div>
