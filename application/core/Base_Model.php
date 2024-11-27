@@ -2057,11 +2057,9 @@ class Base_Model extends CI_Model
     {
         $user_details = array(); 
         $this->db->select('ci.*');
-        $this->db->select('li.sub_id,li.user_id');
         $this->db->from("customer_info ci");
-        $this->db->join('login_info li', 'li.user_id = ci.salesman_id');
         $this->db->where('ci.status','pending');
-        $this->db->where('li.sub_id',$sub_id);
+        $this->db->where('ci.created_by',$sub_id);
 
 
         $query = $this->db->limit('6');

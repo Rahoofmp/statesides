@@ -658,6 +658,7 @@ class Packages_model extends Base_model {
 		$this->db->set('advance',$post_arr['advance_amount']);
 		$this->db->set('age',$post_arr['age']);
 		$this->db->set('by_using','Sub-Admin');
+		$this->db->set('created_by',log_user_id());
 		if (element('current_job',$post_arr)) {
 			$this->db->set('current_job',$post_arr['current_job']);
 			

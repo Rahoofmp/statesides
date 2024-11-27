@@ -25,7 +25,7 @@ class Dashboard extends Base_Controller {
 		}
 	
 
-		$details = $this->Dashboard_model->getEnquiryDetailsSubadmin($user_id);
+		$details = $this->Base_model->getEnquiryDetailsSubadmin($user_id);
 		
 		$total_count = $this->Dashboard_model->getAllEnquiryDetailsCount();
 		if ($details) {
