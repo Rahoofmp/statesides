@@ -2038,6 +2038,7 @@ class Base_Model extends CI_Model
 
             $this->db->where("salesman_id", $staff_id);
         }
+        $query = $this->db->limit('6');
         $query = $this->db->get();
 
         foreach ($query->result_array() as $row) 
@@ -2063,6 +2064,7 @@ class Base_Model extends CI_Model
         $this->db->where('li.sub_id',$sub_id);
 
 
+        $query = $this->db->limit('6');
         $query = $this->db->get();
         //  echo($this->db->last_query());
         // die();
