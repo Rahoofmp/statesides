@@ -126,6 +126,10 @@ class Website extends Base_Controller
 			// 	}
 			// }
 
+			if (log_user_id()) {
+				$post_arr['created_by']=$this->Base_model->getLoginInfoField('sub_id',log_user_id());
+				$post_arr['salesman_id']=log_user_id();
+			}
 
 			$this->load->model('Packages_model');
 			$this->Packages_model->begin();
@@ -145,6 +149,11 @@ class Website extends Base_Controller
 					$this->Packages_model->insertSource($post_arr);
 					$this->Packages_model->commit();
 					$this->Website_model->commit();
+				}
+
+				if (log_user_id()) {
+
+					$this->redirect( 'Registration completed', "dashboard", true );
 				}
 				
 

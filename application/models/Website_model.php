@@ -58,6 +58,15 @@ class Website_model extends Base_Model {
 			
 			$this->db->set('dob_certificate',$post_arr['dob_certificate']);
 		}
+		if (element('salesman_id',$post_arr)) {
+			
+			$this->db->set('salesman_id',$post_arr['salesman_id']);
+		}
+
+		if (element('created_by',$post_arr)) {
+			
+			$this->db->set('created_by',$post_arr['created_by']);
+		}
 
 		
 		$this->db->insert('customer_info');
