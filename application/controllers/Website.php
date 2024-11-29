@@ -176,8 +176,9 @@ class Website extends Base_Controller
 		
 		$this->form_validation->set_rules('first_name', lang('first_name'), 'required');
 		$this->form_validation->set_rules('last_name', lang('last_name'), 'required');
-		$this->form_validation->set_rules('mobile', lang('mobile'), 'required');
+		$this->form_validation->set_rules('mobile', lang('mobile'), 'trim|required');
 		$this->form_validation->set_rules('gender', lang('gender'));
+		$this->form_validation->set_rules('email', lang('email'),'trim|required|is_unique[customer_info.email]');
 		
 		
 

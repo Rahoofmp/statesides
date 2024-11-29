@@ -737,4 +737,13 @@ class Packages_model extends Base_model {
 		return $res;
 	}
 
+	public function addAdditionalImages($item_id='',$image='')
+	{
+		// print_r($item_id);die();
+		$this->db->set('customer_id',$item_id)
+		->set('image',$image)
+		->set('date',date('Y-m-d H:i:s'));
+		return $this->db->insert('customer_images');
+	}
+
 }

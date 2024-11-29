@@ -247,13 +247,14 @@ class Packages extends Base_Controller {
 
 
 
-		if ($this->input->post('update_customer') && $this->validate_leads()) {
+		if ($this->input->post('update_customer') && $this->validate_leads_update()) {
 			$post_arr = $this->input->post();
 
-
+			print_r($_FILES);
+			die();
 
 			$config['upload_path'] = './assets/images/leads_data/';
-			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx|zip';
 			$config['max_size'] = '2000000';
 			$config['remove_spaces'] = true;
 			$config['overwrite'] = false;
@@ -269,7 +270,7 @@ class Packages extends Base_Controller {
 					$msg = lang('image_not_selected');
 					$error = $this->upload->display_errors();
 					
-					$this->redirect( $error, "packages/create-leads", false );
+					$this->redirect( $error, "packages/modify-leads", false );
 				} else {
 					$image_arr = $this->upload->data();  
 					$post_arr['ss_cirtifcate']=$image_arr['file_name'];
@@ -288,7 +289,7 @@ class Packages extends Base_Controller {
 				if (!$this->upload->do_upload('police_clearence')) {
 					$msg = lang('image_not_selected');
 					$error = $this->upload->display_errors();
-					$this->redirect( $error, "packages/create-leads", false );
+					$this->redirect( $error, "packages/modify-leads", false );
 				} else {
 					$image_arr = $this->upload->data();  
 					$post_arr['police_clearence']=$image_arr['file_name'];
@@ -305,7 +306,7 @@ class Packages extends Base_Controller {
 				if (!$this->upload->do_upload('job_cirtificate')) {
 					$msg = lang('image_not_selected');
 					$error = $this->upload->display_errors();
-					$this->redirect( $error, "packages/create-leads", false );
+					$this->redirect( $error, "packages/modify-leads", false );
 				} else {
 					$image_arr = $this->upload->data();  
 					$post_arr['job_cirtificate']=$image_arr['file_name'];
@@ -321,7 +322,7 @@ class Packages extends Base_Controller {
 				if (!$this->upload->do_upload('passport_copy')) {
 					$msg = lang('image_not_selected');
 					$error = $this->upload->display_errors();
-					$this->redirect( $error, "packages/create-leads", false );
+					$this->redirect( $error, "packages/modify-leads", false );
 				} else {
 					$image_arr = $this->upload->data();  
 					$post_arr['passport_copy']=$image_arr['file_name'];
@@ -336,7 +337,7 @@ class Packages extends Base_Controller {
 				if (!$this->upload->do_upload('dob_certificate')) {
 					$msg = lang('image_not_selected');
 					$error = $this->upload->display_errors();
-					$this->redirect( $error, "packages/create-leads", false );
+					$this->redirect( $error, "packages/modify-leads", false );
 				} else {
 					$image_arr = $this->upload->data();  
 					$post_arr['dob_certificate']=$image_arr['file_name'];
@@ -410,9 +411,31 @@ class Packages extends Base_Controller {
 		$this->form_validation->set_rules('date', lang('date'), 'required');
 		$this->form_validation->set_rules('emmigration', lang('emmigration'));
 		$this->form_validation->set_rules('total_amount', lang('total_amount'));
+		$this->form_validation->set_rules('email', lang('email'),'trim|required|is_unique[customer_info.email]');
 
 
 		$result = $this->form_validation->run();
+		return $result;
+
+
+	}
+	protected function validate_leads_update( ){
+
+		$this->form_validation->set_rules('sales_man', lang('sales_man'), 'required');
+		$this->form_validation->set_rules('first_name', lang('first_name'), 'required');
+		$this->form_validation->set_rules('last_name', lang('last_name'), 'required');
+		$this->form_validation->set_rules('mobile', lang('mobile'), 'trim|required');
+		$this->form_validation->set_rules('gender', lang('gender'));
+		$this->form_validation->set_rules('date', lang('date'), 'required');
+		$this->form_validation->set_rules('emmigration', lang('emmigration'));
+		$this->form_validation->set_rules('total_amount', lang('total_amount'));
+		$this->form_validation->set_rules('email', lang('email'),'trim|required');
+
+
+
+
+		$result = $this->form_validation->run();
+
 		return $result;
 
 

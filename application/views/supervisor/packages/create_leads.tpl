@@ -392,7 +392,7 @@
 						<div class="fileinput-preview fileinput-exists thumbnail img-circle" ></div>
 						<div>
 							<span class="btn btn-round btn-info btn-file">
-								<span class="fileinput-new">DOB Cirtificate</span>
+								<span class="fileinput-new">Other Document File</span>
 								<span class="fileinput-exists">{lang('change')}</span>
 								<input type="file" name="dob_certificate" />
 							</span>
