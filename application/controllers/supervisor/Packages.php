@@ -250,9 +250,7 @@ class Packages extends Base_Controller {
 		if ($this->input->post('update_customer') && $this->validate_leads_update()) {
 			$post_arr = $this->input->post();
 
-			print_r($_FILES);
-			die();
-
+		
 			$config['upload_path'] = './assets/images/leads_data/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx|zip';
 			$config['max_size'] = '2000000';
