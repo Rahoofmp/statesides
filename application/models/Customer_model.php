@@ -198,7 +198,7 @@ class Customer_model extends Base_model {
            
             $row['index'] =$search_arr['start']+$i;
             $row['source_user_name'] =$this->Base_model->getSourceName($row['source_id']);
-            $row['fullname'] =$row['firstname'].$row['lastname'];
+            $row['fullname'] =$row['firstname'].' '.$row['lastname'];
             $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
             $row['date'] = date('Y-m-d',strtotime($row['date']));
             $details[] = $row;
