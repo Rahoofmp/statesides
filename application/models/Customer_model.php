@@ -126,7 +126,7 @@ class Customer_model extends Base_model {
         $subadmin=false;
         if (log_user_type()=='supervisor') {
             $subadmin=log_user_id();
-          
+
         }
         $row = $search_arr['start'];
         $rowperpage = $search_arr['length'];
@@ -176,122 +176,131 @@ class Customer_model extends Base_model {
 
         if ($subadmin) {
            $this->db->where('lis.sub_id',$subadmin);
-        }
+       }
 
-        $this->db->from('customer_info ci')
-        ->join('login_info lis', 'lis.user_id = ci.salesman_id', 'left')
-        ->join('source_details sd', 'ci.source_id = sd.id', 'left')
-        ->order_by( 'ci.created_date', 'DESC' )
-        ->where( 'ci.status', 'pending' );
+       $this->db->from('customer_info ci')
+       ->join('login_info lis', 'lis.user_id = ci.salesman_id', 'left')
+       ->join('source_details sd', 'ci.source_id = sd.id', 'left')
+       ->order_by( 'ci.created_date', 'DESC' )
+       ->where( 'ci.status', 'pending' );
 
+
+       if($count) {
+        return $this->db->count_all_results();
+    }
+    $this->db->limit($rowperpage, $row);
+    $query = $this->db->get(); 
+
+
+    $details = [] ;
+    $i=1;
+    foreach ($query->result_array() as $row) {
+
+        $row['index'] =$search_arr['start']+$i;
+        $row['source_user_name'] =$this->Base_model->getSourceName($row['source_id']);
+        $row['fullname'] =$row['firstname'].' '.$row['lastname'];
+        $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
+        $row['date'] = date('Y-m-d',strtotime($row['date']));
+        $details[] = $row;
+        $i++;
+    }
+
+    return $details;
+}
+
+public function getOrderCount()
+{
+    $this->db->select('*');
+    $this->db->from('customer_info');
+    $count = $this->db->count_all_results();
+    return $count;
+}
+public function check_exists($field='',$data='')
+{
+    $count = 0;
+    $this->db->select("COUNT($field) as count");
+    $this->db->from("customer_info");
+    $this->db->where($field, $data);
+    $query = $this->db->get();
+    foreach ($query->result() AS $row) {
+        $count = $row->count;
+    }
+    return $count;
+}
+
+public function getEmailtoCustomerID($email)
+{
+    $customer_id = 0;
+    $this->db->select('customer_id');
+    $this->db->from('customer_info');
+    $this->db->where('email',$email);
+    $get = $this->db->get();
+    foreach($get->result() as $row)
+    {
+        $customer_id = $row->customer_id;
+    }
+    return $customer_id;
+}
+
+
+public function updateLead($post_arr='')
+{
+
+    $date=date('Y-m-d H:i:s');
+
+    $this->db->set('firstname',$post_arr['first_name']);
+    $this->db->set('salesman_id',$post_arr['salesman_id']);
+    $this->db->set('lastname',$post_arr['last_name']);
+    $this->db->set('gender',$post_arr['gender']);
+    $this->db->set('email',$post_arr['email']);
+    $this->db->set('mobile',$post_arr['mobile']);
+
+    if (element('total_amount',$post_arr)) {
+        $this->db->set('total_amount',$post_arr['total_amount']);
+
+    }
+    if (element('due_amount',$post_arr)) {
         
-        if($count) {
-            return $this->db->count_all_results();
-        }
-        $this->db->limit($rowperpage, $row);
-        $query = $this->db->get(); 
-
-
-        $details = [] ;
-        $i=1;
-        foreach ($query->result_array() as $row) {
-           
-            $row['index'] =$search_arr['start']+$i;
-            $row['source_user_name'] =$this->Base_model->getSourceName($row['source_id']);
-            $row['fullname'] =$row['firstname'].' '.$row['lastname'];
-            $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
-            $row['date'] = date('Y-m-d',strtotime($row['date']));
-            $details[] = $row;
-            $i++;
-        }
-
-        return $details;
+        $this->db->set('due_amount',$post_arr['due_amount']);
     }
 
-    public function getOrderCount()
-    {
-        $this->db->select('*');
-        $this->db->from('customer_info');
-        $count = $this->db->count_all_results();
-        return $count;
-    }
-    public function check_exists($field='',$data='')
-    {
-        $count = 0;
-        $this->db->select("COUNT($field) as count");
-        $this->db->from("customer_info");
-        $this->db->where($field, $data);
-        $query = $this->db->get();
-        foreach ($query->result() AS $row) {
-            $count = $row->count;
-        }
-        return $count;
-    }
+    $this->db->set('date',$post_arr['date']);
+    $this->db->set('immigration_status',$post_arr['emmigration']);
 
-    public function getEmailtoCustomerID($email)
-    {
-        $customer_id = 0;
-        $this->db->select('customer_id');
-        $this->db->from('customer_info');
-        $this->db->where('email',$email);
-        $get = $this->db->get();
-        foreach($get->result() as $row)
-        {
-            $customer_id = $row->customer_id;
-        }
-        return $customer_id;
-    }
+    $this->db->set('age',$post_arr['age']);
+    $this->db->set('current_job',$post_arr['current_job']);
+    $this->db->set('enquiry_status',$post_arr['enquiry_status']);
 
+    if (element('ss_cirtifcate',$post_arr)) {
 
-    public function updateLead($post_arr='')
-    {
-       
-        $date=date('Y-m-d H:i:s');
+        $this->db->set('sslc_certificate',$post_arr['ss_cirtifcate']);
+    }   
 
-        $this->db->set('firstname',$post_arr['first_name']);
-        $this->db->set('salesman_id',$post_arr['salesman_id']);
-        $this->db->set('lastname',$post_arr['last_name']);
-        $this->db->set('gender',$post_arr['gender']);
-        $this->db->set('email',$post_arr['email']);
-        $this->db->set('mobile',$post_arr['mobile']);
+    if (element('police_clearence',$post_arr)) {
 
-        $this->db->set('date',$post_arr['date']);
-        $this->db->set('immigration_status',$post_arr['emmigration']);
-
-        $this->db->set('age',$post_arr['age']);
-        $this->db->set('current_job',$post_arr['current_job']);
-        $this->db->set('enquiry_status',$post_arr['enquiry_status']);
-
-        if (element('ss_cirtifcate',$post_arr)) {
-
-            $this->db->set('sslc_certificate',$post_arr['ss_cirtifcate']);
-        }   
-
-        if (element('police_clearence',$post_arr)) {
-
-         $this->db->set('police_certificate',$post_arr['police_clearence']);
-     }
-
-     if (element('job_cirtificate',$post_arr)) {
-
-       $this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
-   }
-
-   if (element('passport_copy',$post_arr)) {
-
-      $this->db->set('passport_copy',$post_arr['passport_copy']);
-  }
-
-  if (element('dob_certificate',$post_arr)) {
-
-     $this->db->set('dob_certificate',$post_arr['dob_certificate']);
+     $this->db->set('police_certificate',$post_arr['police_clearence']);
  }
- $this->db->where('id',$post_arr['id']);
+
+ if (element('job_cirtificate',$post_arr)) {
+
+   $this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
+}
+
+if (element('passport_copy',$post_arr)) {
+
+  $this->db->set('passport_copy',$post_arr['passport_copy']);
+}
+
+if (element('dob_certificate',$post_arr)) {
+
+ $this->db->set('dob_certificate',$post_arr['dob_certificate']);
+}
+$this->db->where('id',$post_arr['id']);
 
 
- $result = $this->db->update('customer_info');
+$result = $this->db->update('customer_info');
 
- return $result;
+return $result;
 
 }
 }
