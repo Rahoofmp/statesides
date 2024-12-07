@@ -120,12 +120,12 @@ class Packages extends Base_Controller {
 
 			if (element('total_amount',$post_arr)) {
 
-				$total_amount=$post_arr['total_amount'];
+				$post_arr['total_amount']=$post_arr['total_amount'];
 			}
 
 			if (element('advance_amount',$post_arr)) {
 
-				$advance_amount=$post_arr['advance_amount'];
+				$post_arr['advance_amount']=$post_arr['advance_amount'];
 			}
 
 			$post_arr['due_amount']=$total_amount-$advance_amount;
@@ -250,7 +250,7 @@ class Packages extends Base_Controller {
 		if ($this->input->post('update_customer') && $this->validate_leads_update()) {
 			$post_arr = $this->input->post();
 
-		
+
 			$config['upload_path'] = './assets/images/leads_data/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|doc|docx|zip';
 			$config['max_size'] = '2000000';
@@ -342,18 +342,24 @@ class Packages extends Base_Controller {
 				}
 			}
 
-			if (element('advance_amount',$post_arr)) {
-
-
-				$post_arr['due_amount']=$post_arr['total_amount']-$post_arr['advance_amount'];
-			}
-			else{
-				$post_arr['due_amount']=0;
-				$post_arr['advance_amount']=0;
-				
-			}
 
 			$post_arr['id']=$customer_id;
+
+			$total_amount=0;
+			$advance_amount=0;
+			$due_amount=0;
+
+			if (element('total_amount',$post_arr)) {
+
+				$post_arr['total_amount']=$post_arr['total_amount'];
+			}
+
+			if (element('advance_amount',$post_arr)) {
+
+				$post_arr['advance_amount']=$post_arr['advance_amount'];
+			}
+
+			$post_arr['due_amount']=$total_amount-$advance_amount;
 
 
 			

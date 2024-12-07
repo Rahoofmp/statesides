@@ -19,6 +19,13 @@
 	{
 		text-align: left !important;
 	}
+	.dataTables_length select {
+		width: 80px;
+		padding: 5px;
+		font-size: 14px;
+	}
+
+
 </style>
 
 <div class="row "> 
@@ -214,22 +221,32 @@
 
 		var order = $('#customer_list').DataTable({
 
+			
 			'processing': true,
 			'serverSide': true,
 			"autoWidth": false,
 			'serverMethod': 'post', 
 			"pagingType": "full_numbers",
-			"pageLength": 10,
-			"sortable": true,
+			"pageLength": 10, 
+			"lengthMenu": [
+			 [10, 25, 50, 100, 150, 200, 250, 300, 350, 400], 
+			 [10, 25, 50, 100, 150, 200, 250, 300, 350, 400]  
+			 ],
 
-			"aaSorting": [],
-			"order": [],
 
-			"columnDefs": [{
-				"targets": 'no-sort',
-				"orderable": false,
-				"order": [],
-			}],
+			 "sortable": true,
+
+			 "aaSorting": [],
+			 "order": [],
+			 "aoColumnDefs": [
+			 { "bSortable": false, "aTargets": [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+			 ],
+
+			 "columnDefs": [{
+			 	"targets": 'no-sort',
+			 	"orderable": false,
+			 	"order": [],
+			 }],
 
 			'ajax': {
 				'url':'{base_url()}salesman/customer/get_customer_list_ajax',
@@ -264,6 +281,28 @@
 				return link;
 			}}, 
 			],
+
+			dom: '<"top"lBf>rt<"bottom"ip>',
+			buttons: [
+			{
+				extend: 'excelHtml5',
+				title: 'Exported Data',
+				className: 'btn btn-success',
+				exportOptions: {
+					columns: ':visible'
+				}
+			},
+			{
+				extend: 'print',
+				title: 'Exported Data',
+				className: 'btn btn-primary',
+				exportOptions: {
+					columns: ':visible'
+				}
+			},
+			
+			],
+
 			success: function(response) { 
 			} 
 		});  

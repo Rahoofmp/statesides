@@ -254,6 +254,7 @@ public function updateLead($post_arr='')
     $this->db->set('gender',$post_arr['gender']);
     $this->db->set('email',$post_arr['email']);
     $this->db->set('mobile',$post_arr['mobile']);
+    $this->db->set('advance',$post_arr['advance_amount']);
 
     if (element('total_amount',$post_arr)) {
         $this->db->set('total_amount',$post_arr['total_amount']);

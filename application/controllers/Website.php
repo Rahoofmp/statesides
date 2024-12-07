@@ -129,6 +129,23 @@ class Website extends Base_Controller
 			if (log_user_id()) {
 				$post_arr['created_by']=$this->Base_model->getLoginInfoField('sub_id',log_user_id());
 				$post_arr['salesman_id']=log_user_id();
+
+				$total_amount=0;
+				$advance_amount=0;
+				$due_amount=0;
+
+				if (element('total_amount',$post_arr)) {
+
+					$post_arr['total_amount']=$post_arr['total_amount'];
+				}
+
+				if (element('advance_amount',$post_arr)) {
+
+					$post_arr['advance_amount']=$post_arr['advance_amount'];
+				}
+
+				$post_arr['due_amount']=$total_amount-$advance_amount;
+				
 			}
 
 			$this->load->model('Packages_model');

@@ -68,6 +68,15 @@ class Website_model extends Base_Model {
 			$this->db->set('created_by',$post_arr['created_by']);
 		}
 
+		if (element('total_amount',$post_arr)) {
+			$this->db->set('total_amount',$post_arr['total_amount']);
+
+		}
+		if (element('due_amount',$post_arr)) {
+			
+			$this->db->set('due_amount',$post_arr['due_amount']);
+		}
+
 		
 		$this->db->insert('customer_info');
 		$result=$this->db->insert_id();

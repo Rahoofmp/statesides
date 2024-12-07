@@ -19,6 +19,13 @@
 	{
 		text-align: left !important;
 	}
+	.dataTables_length select {
+		width: 80px;
+		padding: 5px;
+		font-size: 14px;
+	}
+
+
 </style>
 
 
@@ -171,7 +178,7 @@
 			</div> 
 		</div>
 		<div class="d-flex justify-content-center">  
-			<ul class="pagination start-links"></ul> 
+			<!-- <ul class="pagination start-links"></ul>  -->
 		</div>
 	</div> 
 </div> 
@@ -187,11 +194,9 @@
 <script src="{assets_url('js/tables/datatable/dataTables.fixedColumns.min.js')}"></script>
 <script src="{assets_url('js/tables/datatable/dataTables.select.min.js')}"></script>
 <script src="{assets_url('js/scripts/tables/datatables-extensions/datatable-autofill.min.js')}"></script>
-<script src="{assets_url('vendors/js/pagination/jquery.twbsPagination.min.js')}"></script>  
-<script src="{assets_url('js/scripts/pagination/pagination.js')}"></script>
+
 <script src="{assets_url('bootv4/js/plugins/bootstrap-selectpicker.js')}"></script> 
 <script src="{assets_url()}plugins/select2/js/select2.min.js"></script>
-
 
 <script type="text/javascript">
 
@@ -225,17 +230,26 @@
 			"autoWidth": false,
 			'serverMethod': 'post', 
 			"pagingType": "full_numbers",
-			"pageLength": 10,
-			"sortable": true,
+			"pageLength": 10, 
+			"lengthMenu": [
+			 [10, 25, 50, 100, 150, 200, 250, 300, 350, 400], 
+			 [10, 25, 50, 100, 150, 200, 250, 300, 350, 400]  
+			 ],
 
-			"aaSorting": [],
-			"order": [],
 
-			"columnDefs": [{
-				"targets": 'no-sort',
-				"orderable": false,
-				"order": [],
-			}],
+			 "sortable": true,
+
+			 "aaSorting": [],
+			 "order": [],
+			 "aoColumnDefs": [
+			 { "bSortable": false, "aTargets": [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+			 ],
+
+			 "columnDefs": [{
+			 	"targets": 'no-sort',
+			 	"orderable": false,
+			 	"order": [],
+			 }],
 
 			'ajax': {
 				'url':'{base_url()}admin/customer/get_customer_list_ajax',
@@ -270,6 +284,29 @@
 				return link;
 			}}, 
 			],
+
+
+			 dom: '<"top"lBf>rt<"bottom"ip>',
+			 buttons: [
+			 {
+			 	extend: 'excelHtml5',
+			 	title: 'Exported Data',
+			 	className: 'btn btn-success',
+			 	exportOptions: {
+			 		columns: ':visible'
+			 	}
+			 },
+
+			 {
+			 	extend: 'print',
+			 	title: 'Exported Data',
+			 	className: 'btn btn-primary',
+			 	exportOptions: {
+			 		columns: ':visible'
+			 	}
+			 }
+			 ],
+
 			success: function(response) { 
 			} 
 		});  
