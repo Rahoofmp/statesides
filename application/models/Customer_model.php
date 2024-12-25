@@ -116,6 +116,7 @@ class Customer_model extends Base_model {
         foreach ($query->result_array() as $row) {
             $row['enc_customerid']=$this->encrypt_decrypt('encrypt',$row['id']);
             $row['source_user']=$this->Base_model->getSourceName($row['source_id']);
+            $row['country_name']=$this->Base_model->getCountryName($row['country']);
             $details[] = $row;
         }
         return $details;
@@ -123,6 +124,7 @@ class Customer_model extends Base_model {
 
     public function getAllCustomersAjax( $search_arr =[],$count = 0) 
     {
+
         $subadmin=false;
         if (log_user_type()=='supervisor') {
             $subadmin=log_user_id();
@@ -145,6 +147,7 @@ class Customer_model extends Base_model {
         if( $name =  element('name', $search_arr) ){
             $this->db->like('ci.name', $name);
         }
+
 
         if( $enquiry =  element('enquiry', $search_arr) ){
             $this->db->like('ci.enquiry_status', $enquiry);
@@ -174,18 +177,22 @@ class Customer_model extends Base_model {
             $this->db->where('ci.source_id', $source_id);
         } 
 
+        if( $country =  element('country', $search_arr) ){
+            $this->db->where('ci.country', $country);
+        } 
+
         if ($subadmin) {
-           $this->db->where('lis.sub_id',$subadmin);
-       }
+         $this->db->where('lis.sub_id',$subadmin);
+     }
 
-       $this->db->from('customer_info ci')
-       ->join('login_info lis', 'lis.user_id = ci.salesman_id', 'left')
-       ->join('source_details sd', 'ci.source_id = sd.id', 'left')
-       ->order_by( 'ci.created_date', 'DESC' )
-       ->where( 'ci.status', 'pending' );
+     $this->db->from('customer_info ci')
+     ->join('login_info lis', 'lis.user_id = ci.salesman_id', 'left')
+     ->join('source_details sd', 'ci.source_id = sd.id', 'left')
+     ->order_by( 'ci.created_date', 'DESC' )
+     ->where( 'ci.status', 'pending' );
 
 
-       if($count) {
+     if($count) {
         return $this->db->count_all_results();
     }
     $this->db->limit($rowperpage, $row);
@@ -261,7 +268,7 @@ public function updateLead($post_arr='')
 
     }
     if (element('due_amount',$post_arr)) {
-        
+
         $this->db->set('due_amount',$post_arr['due_amount']);
     }
 
@@ -279,22 +286,27 @@ public function updateLead($post_arr='')
 
     if (element('police_clearence',$post_arr)) {
 
-     $this->db->set('police_certificate',$post_arr['police_clearence']);
+       $this->db->set('police_certificate',$post_arr['police_clearence']);
+   }
+
+   if (element('job_cirtificate',$post_arr)) {
+
+     $this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
  }
 
- if (element('job_cirtificate',$post_arr)) {
-
-   $this->db->set('job_cirtificate',$post_arr['job_cirtificate']);
-}
-
-if (element('passport_copy',$post_arr)) {
+ if (element('passport_copy',$post_arr)) {
 
   $this->db->set('passport_copy',$post_arr['passport_copy']);
 }
 
+if (element('country',$post_arr)) {
+
+    $this->db->set('country',$post_arr['country']);
+}
+
 if (element('dob_certificate',$post_arr)) {
 
- $this->db->set('dob_certificate',$post_arr['dob_certificate']);
+   $this->db->set('dob_certificate',$post_arr['dob_certificate']);
 }
 $this->db->where('id',$post_arr['id']);
 

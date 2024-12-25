@@ -690,6 +690,11 @@ class Packages_model extends Base_model {
 			$this->db->set('dob_certificate',$post_arr['dob_certificate']);
 		}
 
+		if (element('country',$post_arr)) {
+			
+			$this->db->set('country',$post_arr['country']);
+		}
+
 		
 		
 		$this->db->insert('customer_info');

@@ -40,7 +40,31 @@
 									{form_error("sales_man")}
 								</div>
 							</div>
+						</div>
+					</div>
 
+					<div class="col-lg-12">
+						<div class="input-group form-control-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="material-icons">grading</i>
+								</span>
+							</div>
+
+							<div class="col-sm-11">
+								<div class="form-group">
+									<label class="bmd-label-floating">
+										Country
+									</label>
+									<select id="country" name="country" class="country_ajax form-control" >
+										{if $id}
+										{if $project['country']}
+										<option value="{$project['country']}">{$project['country_name']}</option>
+										{/if}
+										{/if}
+									</select> 
+									{form_error("country")}
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-lg-12">
@@ -543,6 +567,24 @@
 				placeholder: 'Select  Salesman',
 				ajax: {
 					url:'{base_url()}supervisor/autocomplete/superSalesman_ajax',
+
+					type: 'post',
+					dataType: 'json',
+					delay:250,
+					processResults: function(data) {
+						return {
+							results: data
+						};
+					}
+				},
+
+			});
+
+			$('.country_ajax').select2({
+
+				placeholder: 'Select  Country',
+				ajax: {
+					url:'{base_url()}supervisor/autocomplete/countryNames_ajax',
 
 					type: 'post',
 					dataType: 'json',

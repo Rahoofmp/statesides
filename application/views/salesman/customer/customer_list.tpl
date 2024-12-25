@@ -57,6 +57,21 @@
 									</select>  
 								</div> 
 							</div> 
+
+
+							<div class="col-sm-3">
+								<div class="form-group">
+
+									<select id="country" name="country" class="country_ajax form-control" >
+
+										{if $search_arr['country']}
+										<option value="{$search_arr['country']}">{$search_arr['country_name']}</option>
+										{/if}
+										
+									</select> 
+									{form_error("country")}
+								</div>
+							</div>
 							
 							
 							<div class="col-md-2" style="max-width: 237px;">
@@ -174,6 +189,24 @@
 
 		});
 
+		$('.country_ajax').select2({
+
+			placeholder: 'Select  Country',
+			ajax: {
+				url:'{base_url()}supervisor/autocomplete/countryNames_ajax',
+
+				type: 'post',
+				dataType: 'json',
+				delay:250,
+				processResults: function(data) {
+					return {
+						results: data
+					};
+				}
+			},
+
+		});
+
 		// $('.salesman_ajax').select2({
 
 		// 	placeholder: 'Select a Salesman',
@@ -229,24 +262,24 @@
 			"pagingType": "full_numbers",
 			"pageLength": 10, 
 			"lengthMenu": [
-			 [10, 25, 50, 100, 150, 200, 250, 300, 350, 400], 
-			 [10, 25, 50, 100, 150, 200, 250, 300, 350, 400]  
-			 ],
+			[10, 25, 50, 100, 150, 200, 250, 300, 350, 400], 
+			[10, 25, 50, 100, 150, 200, 250, 300, 350, 400]  
+			],
 
 
-			 "sortable": true,
+			"sortable": true,
 
-			 "aaSorting": [],
-			 "order": [],
-			 "aoColumnDefs": [
-			 { "bSortable": false, "aTargets": [0, 1, 2, 3, 4, 5, 6, 7, 8] },
-			 ],
+			"aaSorting": [],
+			"order": [],
+			"aoColumnDefs": [
+			{ "bSortable": false, "aTargets": [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+			],
 
-			 "columnDefs": [{
-			 	"targets": 'no-sort',
-			 	"orderable": false,
-			 	"order": [],
-			 }],
+			"columnDefs": [{
+				"targets": 'no-sort',
+				"orderable": false,
+				"order": [],
+			}],
 
 			'ajax': {
 				'url':'{base_url()}salesman/customer/get_customer_list_ajax',
@@ -258,6 +291,7 @@
 					// 'mobile' : '{$search_arr['mobile']}',
 					'enquiry' : '{$search_arr['enquiry']}',
 					'source_id' : '{$search_arr['source_id']}',
+					'country' : '{$search_arr['country']}',
 				}
 
 			},

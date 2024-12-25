@@ -398,6 +398,17 @@ class Autocomplete extends Base_Controller {
 		}
 	}
 
+	function countryNames_ajax() {
+
+		if ($this->input->is_ajax_request()) {
+			$post = $this->input->post();
+			// print_r($post);die();
+			$post['q'] = element('q', $post) ? $post['q'] : '';
+			$json = $this->Base_model->getCountryAuto($post['q']);
+			echo json_encode($json);
+		}
+	}
+
 
 
 }

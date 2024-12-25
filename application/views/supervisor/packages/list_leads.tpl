@@ -51,6 +51,22 @@
 									</select>  
 								</div> 
 							</div> 
+
+							<div class="col-sm-3">
+								<div class="form-group">
+								
+									<select id="country" name="country" class="country_ajax form-control" >
+									
+										{if $post_arr['country']}
+										<option value="{$post_arr['country']}">{$post_arr['country_name']}</option>
+										{/if}
+										
+									</select> 
+									{form_error("country")}
+								</div>
+							</div>
+
+
 							
 							
 							<div class="col-md-2" style="max-width: 237px;">
@@ -201,6 +217,24 @@
 
 		});
 
+		$('.country_ajax').select2({
+
+			placeholder: 'Select  Country',
+			ajax: {
+				url:'{base_url()}supervisor/autocomplete/countryNames_ajax',
+
+				type: 'post',
+				dataType: 'json',
+				delay:250,
+				processResults: function(data) {
+					return {
+						results: data
+					};
+				}
+			},
+
+		});
+
 
 		$('.customer_ajax').select2({
 
@@ -229,84 +263,85 @@
 			"pagingType": "full_numbers",
 			"pageLength": 10, 
 			"lengthMenu": [
-			 [10, 25, 50, 100, 150, 200, 250, 300, 350, 400], 
-			 [10, 25, 50, 100, 150, 200, 250, 300, 350, 400]  
-			 ],
+			[10, 25, 50, 100, 150, 200, 250, 300, 350, 400], 
+			[10, 25, 50, 100, 150, 200, 250, 300, 350, 400]  
+			],
 
 
-			 "sortable": true,
+			"sortable": true,
 
-			 "aaSorting": [],
-			 "order": [],
-			 "aoColumnDefs": [
-			 { "bSortable": false, "aTargets": [0, 1, 2, 3, 4, 5, 6, 7, 8] },
-			 ],
+			"aaSorting": [],
+			"order": [],
+			"aoColumnDefs": [
+			{ "bSortable": false, "aTargets": [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+			],
 
-			 "columnDefs": [{
-			 	"targets": 'no-sort',
-			 	"orderable": false,
-			 	"order": [],
-			 }],
-
-
-			 'ajax': {
-			 	'url':'{base_url()}admin/customer/get_customer_list_ajax',
-			 	"type": "POST", 
-			 	"data" : {
-			 		'customer_username' : '{$search_arr['customer_username']}',
-			 		'name' : '{$search_arr['name']}',
-			 		'email' : '{$search_arr['email']}',
-			 		'mobile' : '{$search_arr['mobile']}',
-			 		'enquiry' : '{$search_arr['enquiry']}',
-			 		'source_id' : '{$post_arr['source_id']}',
-			 	}
-
-			 },
-
-			 'columns': [
+			"columnDefs": [{
+				"targets": 'no-sort',
+				"orderable": false,
+				"order": [],
+			}],
 
 
-			 { data: 'index'},
-			 { data: 'fullname'},
-			 { data: 'mobile'},
-			 { data: 'email'},
-			 { data: 'source_name'},
-			 { data: 'immigration_status'},
-			 { data: 'enquiry_status'},
+			'ajax': {
+				'url':'{base_url()}admin/customer/get_customer_list_ajax',
+				"type": "POST", 
+				"data" : {
+					'customer_username' : '{$search_arr['customer_username']}',
+					'name' : '{$search_arr['name']}',
+					'email' : '{$search_arr['email']}',
+					'mobile' : '{$search_arr['mobile']}',
+					'enquiry' : '{$search_arr['enquiry']}',
+					'source_id' : '{$post_arr['source_id']}',
+					'country' : '{$post_arr['country']}',
+				}
 
-			 { data: 'created_date'},
-			 { data: 'customer_username',
-			 mRender: function(data, type, row) {
-			 	var link = '<a href = "modify-leads/' + row.enc_customerid +'" class="btn-sm btn btn-info btn-link" data-placement="top" title ="Edit" target="_blank"><i class="material-icons" aria-hidden="true">person</i></a>';
+			},
 
-			 	return link;
-			 }}, 
-			 ],
+			'columns': [
 
-			 dom: '<"top"lBf>rt<"bottom"ip>',
-			 buttons: [
-			 {
-			 	extend: 'excelHtml5',
-			 	title: 'Exported Data',
-			 	className: 'btn btn-success',
-			 	exportOptions: {
-			 		columns: ':visible'
-			 	}
-			 },
 
-			 {
-			 	extend: 'print',
-			 	title: 'Exported Data',
-			 	className: 'btn btn-primary',
-			 	exportOptions: {
-			 		columns: ':visible'
-			 	}
-			 }
-			 ],
+			{ data: 'index'},
+			{ data: 'fullname'},
+			{ data: 'mobile'},
+			{ data: 'email'},
+			{ data: 'source_name'},
+			{ data: 'immigration_status'},
+			{ data: 'enquiry_status'},
 
-			 success: function(response) { 
-			 } 
-			});  
+			{ data: 'created_date'},
+			{ data: 'customer_username',
+			mRender: function(data, type, row) {
+				var link = '<a href = "modify-leads/' + row.enc_customerid +'" class="btn-sm btn btn-info btn-link" data-placement="top" title ="Edit" target="_blank"><i class="material-icons" aria-hidden="true">person</i></a>';
+
+				return link;
+			}}, 
+			],
+
+			dom: '<"top"lBf>rt<"bottom"ip>',
+			buttons: [
+			{
+				extend: 'excelHtml5',
+				title: 'Exported Data',
+				className: 'btn btn-success',
+				exportOptions: {
+					columns: ':visible'
+				}
+			},
+
+			{
+				extend: 'print',
+				title: 'Exported Data',
+				className: 'btn btn-primary',
+				exportOptions: {
+					columns: ':visible'
+				}
+			}
+			],
+
+			success: function(response) { 
+			} 
+		});  
 
 	});  
 </script>

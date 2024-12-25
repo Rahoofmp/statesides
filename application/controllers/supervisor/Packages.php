@@ -131,7 +131,8 @@ class Packages extends Base_Controller {
 			$post_arr['due_amount']=$total_amount-$advance_amount;
 
 
-
+			// print_r($post_arr);
+			// die();
 
 			$this->Packages_model->begin();
 
@@ -188,6 +189,11 @@ class Packages extends Base_Controller {
 				if(element('source_id',$post_arr)){
 					$post_arr['source_user'] =$this->Base_model->getSourceName($post_arr['source_id']);
 
+				} 
+
+
+				if(element('country',$post_arr)){
+					$post_arr['country_name'] =$this->Base_model->getCountryName($post_arr['country']);
 
 				} 
 

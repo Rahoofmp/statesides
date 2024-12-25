@@ -2123,7 +2123,7 @@ class Base_Model extends CI_Model
         foreach ($query->result() as $row) {
             $source_name = $row->source_name;
         }
-       
+
         return $source_name;
     }
 
@@ -2170,6 +2170,43 @@ class Base_Model extends CI_Model
         }
 
         return $output;
+    }
+
+    public function getCountryAuto($term='') {
+
+        $output = [];
+        $sub_id=log_user_id();
+        $this->db->select('country_id,country_name');
+        $this->db->from('countries');
+        if($term)
+            $this->db->where("country_name LIKE '$term%'");
+        $this->db->limit(10);
+        $this->db->order_by('country_name','ASC');
+        $res = $this->db->get();
+        foreach($res->result_array() as $row) {
+            $output[] = ['id'=>$row['country_id'], 
+
+            'text'=>$row['country_name']];
+        }
+
+        return $output;
+    }
+
+
+    public function getCountryName($id) 
+    {
+
+        $country_name = NULL;
+        $this->db->select('country_name');
+        $this->db->from('countries');
+        $this->db->where('country_id', $id);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $country_name = $row->country_name;
+        }
+
+        return $country_name;
     }
 
 

@@ -77,6 +77,11 @@ class Website_model extends Base_Model {
 			$this->db->set('due_amount',$post_arr['due_amount']);
 		}
 
+		if (element('country',$post_arr)) {
+			
+			$this->db->set('country',$post_arr['country']);
+		}
+
 		
 		$this->db->insert('customer_info');
 		$result=$this->db->insert_id();

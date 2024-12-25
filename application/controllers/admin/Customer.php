@@ -167,12 +167,13 @@ class Customer extends Base_Controller {
 
 				if(element('source_id',$post_arr)){
 					$search_arr['source_user'] =$this->Base_model->getSourceName($post_arr['source_id']);
-
 					$search_arr['source_id'] = $post_arr['source_id'];
-
-
-
 				} 
+
+				if(element('country',$post_arr)){
+					$search_arr['country_name'] =$this->Base_model->getCountryName($post_arr['country']);
+
+				}
 
 				if(!element('salesman_id',$post_arr)){
 					$post_arr['salesman_id'] = '';
@@ -186,6 +187,8 @@ class Customer extends Base_Controller {
 				$search_arr['enquiry'] = $post_arr['enquiry'];
 				$search_arr['customer_username'] = $post_arr['customer_username'];
 				$search_arr['salesman_id'] = $post_arr['salesman_id'];
+				$search_arr['country'] = $post_arr['country'];
+				
 
 			}
 			;
